@@ -1,8 +1,8 @@
-const VERSION={id:'2026.10.22.3',date:'22 октября 2026',title:'Помощник Липотактиса временно снят'};
+const VERSION={id:'2026.10.22.4',date:'22 октября 2026',title:'Материалы Липотактиса сняты с публикации'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
- ['/gm/tools','/build/materials/core.html'],['/gm/handouts.pdf','/build/materials/handouts.pdf'],
+ ['/gm/tools','/build/materials/core.html'],
  ['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);
 function headers(response,{asset=false}={}){
@@ -24,6 +24,5 @@ export default {async fetch(request,env){
  const clean=new Headers(request.headers);clean.delete('cookie');clean.delete('authorization');
  const result=await env.ASSETS.fetch(new Request(destination,{method:request.method,headers:clean}));
  const response=headers(result,{asset:target.startsWith('/assets/')});
- if(path==='/gm/handouts.pdf'&&response.ok)response.headers.set('Content-Disposition','attachment; filename="lipotaktis-handouts-full.pdf"');
  return response;
 }};
