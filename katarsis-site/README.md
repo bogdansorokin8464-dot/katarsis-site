@@ -45,7 +45,7 @@ npm start
 
 ## Постоянная ссылка: только Cloudflare
 
-1. Создайте бесплатный аккаунт: https://dash.cloudflare.com/.
+1. Создайте бесплатный аккаунт: [https://dash.cloudflare.com/](https://dash.cloudflare.com/).
 2. В `wrangler.jsonc` проверьте `name`: выберите имя Worker, которое не перезапишет ваш существующий сайт.
 3. Из папки проекта выполните:
 
@@ -93,3 +93,4 @@ node scripts/check-deploy.mjs https://ВАШ-АДРЕС.workers.dev
 - `node tests/browser-check.mjs` — браузерная проверка при запущенном сервере: все игровые разделы, сохранение, мобильные размеры, анонимное открытие помощника и бестиария, скачивание полного PDF, карта восьми помещений и уведомление об обновлении.
 
 Для браузерной проверки дополнительно установите Playwright: `npm install --no-save --package-lock=false playwright`, затем `npx playwright install chromium`. На Linux могут понадобиться зависимости: `npx playwright install-deps chromium`.
+
