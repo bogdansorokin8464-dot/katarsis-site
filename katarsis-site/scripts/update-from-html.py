@@ -13,13 +13,14 @@ for sc in s.find_all('script'):
   t=t.replace("gm:'Ширма Мастера',bestiary:'Бестиарий',",'')
   a=t.index("let gmActive='gm-encounters';");b=t.index("window.addEventListener('beforeprint'",a)
   t=t[:a]+t[b:];sc.string=t
-# Real navigation to the server-protected area.
+# Navigation to the general GM tools; adventure handouts remain withdrawn.
 nav=s.select_one('.portal-nav');link=s.new_tag('a',href='/gm',**{'class':'online-gm-link'});link.string='◇ Раздел Мастера';nav.append(link)
 s.select_one('.portal-sidebar-foot').clear();s.select_one('.portal-sidebar-foot').append(BeautifulSoup('<span><i class="portal-dot"></i>Веб-версия</span><p>Общие правила — по одной ссылке.<br>Персонаж хранится в этом браузере.</p><small><a href="/">Главная сайта</a> · <a href="/updates">Обновления</a></small>','html.parser'))
 h=str(s)
 h=h.replace('if(saved)restore(JSON.parse(saved),false).catch','if(saved)restore(JSON.parse(saved),false).then(()=>{if(requestedInitialView)showView(requestedInitialView);}).catch').replace("let view='home',step=0,restoring=false,saveTimer=null,toastTimer=null;","const requestedInitialView=Object.hasOwn(titles,location.hash.slice(1))?location.hash.slice(1):'';let view='home',step=0,restoring=false,saveTimer=null,toastTimer=null;")
 h=h.replace('Все файлы встроены в сайт и доступны без интернета.','Материалы доступны на сайте; готовые PDF можно скачать для печати.')
 # Content-addressed public assets: browser downloads each unchanged asset only once.
+(web/'assets').mkdir(exist_ok=True)
 assets={};stats={'references':0,'unique':0,'public_html_before':len(h.encode())}
 exts={'image/png':'png','image/jpeg':'jpg','image/webp':'webp','image/svg+xml':'svg','font/ttf':'ttf','font/woff2':'woff2','application/pdf':'pdf','application/x-font-ttf':'ttf','application/font-woff':'woff','font/woff':'woff'}
 def asset(m):
@@ -35,7 +36,7 @@ h=re.sub(r'data:([a-zA-Z0-9.+/-]+);base64,([A-Za-z0-9+/=]+)',asset,h)
 h=h.replace('</head>','<meta name="robots" content="index,follow"><link rel="stylesheet" href="/online.css"></head>',1)
 h=h.replace('</body>','<script src="/online.js" defer></script></body>',1)
 (web/'play').mkdir(exist_ok=True);(web/'play/index.html').write_text(h)
-# Rebuild protected assets through the same Node step used before deployment.
+# Rebuild general materials only; prepare-materials removes withdrawn adventure files.
 import subprocess
 subprocess.run(['node',str(site/'scripts/prepare-materials.mjs')],check=True)
 # Reuse the actual emblem and display typeface on the new site pages.

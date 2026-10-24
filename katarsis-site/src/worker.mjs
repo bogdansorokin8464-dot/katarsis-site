@@ -1,9 +1,9 @@
-const VERSION={id:'2026.10.22.4',date:'22 октября 2026',title:'Материалы Липотактиса сняты с публикации'};
+const VERSION={id:'2026.10.24.2',date:'24 октября 2026',title:'Новая обложка и оформление главной страницы'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
  ['/gm/tools','/build/materials/core.html'],
- ['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
+ ['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);
 function headers(response,{asset=false}={}){
  const h=new Headers(response.headers);
