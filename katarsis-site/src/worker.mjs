@@ -1,4 +1,4 @@
-const VERSION={id:'2026.10.24.2',date:'24 октября 2026',title:'Новая обложка и оформление главной страницы'};
+const VERSION={id:'2026.10.24.5',date:'24 октября 2026',title:'Персонажи: до десяти независимых листов'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
