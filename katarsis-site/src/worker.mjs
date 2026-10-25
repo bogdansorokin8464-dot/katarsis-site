@@ -1,4 +1,4 @@
-const VERSION={id:'2026.10.24.7',date:'24 октября 2026',title:'За столом, избранное, отмена и резервные копии'};
+const VERSION={id:'2026.10.25.1',date:'25 октября 2026',title:'Новые призвания, отдых, ритуалы и примеры ходов'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],

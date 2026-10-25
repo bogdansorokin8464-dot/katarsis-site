@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const CURRENT='2026.10.24.7',$=id=>document.getElementById(id);
+const CURRENT='2026.10.25.1',$=id=>document.getElementById(id);
 const menu=document.querySelector('.menu-toggle');if(menu)menu.onclick=()=>{const open=document.getElementById('main-nav').classList.toggle('open');menu.setAttribute('aria-expanded',String(open));};
 const search=$('section-search');if(search)search.addEventListener('input',()=>{const q=search.value.toLocaleLowerCase('ru').trim();let visible=0;document.querySelectorAll('[data-search]').forEach(c=>{c.hidden=!c.dataset.search.includes(q);if(!c.hidden)visible++;});$('search-empty').hidden=visible>0;});
 let offered=false;

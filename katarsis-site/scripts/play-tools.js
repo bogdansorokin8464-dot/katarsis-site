@@ -79,7 +79,7 @@ function renderFavorites(){
  for(const d of data)grid.append(favoriteCard(d));$('favorites-empty').hidden=data.length>0;$('favorites-count').textContent=data.length+' / '+favorites.length;
 }
 $('favorites-search').oninput=renderFavorites;$('favorites-type').onchange=renderFavorites;
-(window.KATAR_HOOKS ||= {}).playTools={get:()=>({favorites:[...favorites]}),set:data=>{favorites=[...new Set(Array.isArray(data?.favorites)?data.favorites.filter(k=>typeof k==='string'&&catalog.has(k)).slice(0,1000):[])];updateStars();renderFavorites();scheduleSession();}};
+(window.KATAR_HOOKS ||= {}).playTools={get:()=>({favorites:[...favorites]}),set:data=>{favorites=[...new Set(Array.isArray(data?.favorites)?data.favorites.filter(k=>typeof k==='string').map(k=>k===keyFor('vocation','Щитоносец','Тяжеловес')?keyFor('vocation','Щитоносец','Плечом к плечу'):k===keyFor('vocation','Щитоносец','Неистовство')?keyFor('vocation','Щитоносец','Стой за мной'):k).filter(k=>catalog.has(k)).slice(0,1000):[])];updateStars();renderFavorites();scheduleSession();}};
 const healthFields=[...document.querySelectorAll('.quick-values .tile')].slice(0,2).map(n=>[...n.querySelectorAll('.uline')]);
 const resourceBars=[...document.querySelectorAll('.track-group')].map(g=>({name:g.querySelector('.scale-lab')?.textContent.trim(),bar:g.querySelector('.bar')}));
 const inspiration=resourceBars.find(x=>x.name==='Вдохновение')?.bar;
@@ -107,7 +107,7 @@ function renderSession(){
  const abilities=$('session-abilities');abilities.replaceChildren();
  for(const original of $('chosen-skills').querySelectorAll('.ability-card')){
   const card=element('article',undefined,'play-card favorite-enabled');card.append(element('small',original.querySelector('.ability-source')?.textContent||''),element('h3',original.querySelector('h3')?.textContent||''),element('div',original.querySelector('.ability-cost')?.textContent||'','play-cost'));
-  original.querySelectorAll('p').forEach(p=>card.append(element('p',p.textContent)));const key=original.querySelector('.favorite-star')?.dataset.favorite;if(key)card.append(star(key));abilities.append(card);
+  original.querySelectorAll('p:not(.ability-print-text)').forEach(p=>card.append(element('p',p.textContent)));const key=original.querySelector('.favorite-star')?.dataset.favorite;if(key)card.append(star(key));abilities.append(card);
  }
  $('session-abilities-empty').hidden=abilities.children.length>0;
  const quick=$('session-favorites');quick.replaceChildren();for(const k of favorites.slice(0,8)){const data=catalog.get(k);if(!data)continue;const b=element('button',data.name,'portal-button');b.type='button';b.onclick=()=>openFavorite(data);quick.append(b);}
