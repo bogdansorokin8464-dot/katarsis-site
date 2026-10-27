@@ -1,0 +1,67 @@
+/* Screen-only interface polish. Deliberately excludes printable sheets and cards. */
+@media screen{
+:root{--ui-ease:cubic-bezier(.32,.72,0,1);--ui-paper:#f7f6f2;--ui-surface:#fffefc;--ui-plum:#4b2a59;--ui-line:#e5e1e8}
+#portal{font-family:'Libre Franklin',sans-serif;background:var(--ui-paper)}
+#portal :is(h1,h2,h3){text-wrap:balance}#portal :is(p,li){text-wrap:pretty}
+#portal .portal-sidebar{background:var(--ui-surface);border-color:var(--ui-line)}
+#portal .portal-brand strong{font-family:'Eterna Breaks 240410',serif;font-size:24px;line-height:32px;font-weight:400;letter-spacing:.04em}
+#portal .portal-brand small,#portal .portal-nav-label{font-size:12px;line-height:16px;letter-spacing:.04em;font-weight:500}
+#portal .portal-nav{display:flex;flex-direction:column;gap:4px}
+#portal .portal-nav button{min-height:44px;padding:12px 16px;border-radius:8px;font-family:'Libre Franklin',sans-serif;font-size:14px;line-height:20px;transition:background 240ms var(--ui-ease),color 240ms var(--ui-ease),transform 240ms var(--ui-ease)}
+#portal .portal-nav button.active{background:#eee9ef;color:var(--ui-plum);font-weight:600;box-shadow:none}
+#portal .portal-nav button:hover{background:#f2eef3;color:var(--ui-plum)}#portal .portal-nav button:active{transform:scale(.98)}
+#portal .portal-nav button svg{width:20px;height:20px;stroke-width:1.5}
+#portal .portal-sidebar-foot{font-size:12px;line-height:20px}#portal .portal-sidebar-foot p,#portal .portal-sidebar-foot small{font:12px/20px 'Libre Franklin',sans-serif}
+#portal .portal-page-title{font-family:'Eterna Breaks 240410',serif;font-size:48px;line-height:1.08;letter-spacing:-.02em;font-weight:400}
+#portal .portal-eyebrow{font:500 12px/16px 'Libre Franklin',sans-serif;letter-spacing:.08em;text-transform:none;color:#755d80}
+#portal .portal-lead{font:16px/24px 'Libre Franklin',sans-serif;max-width:65ch;color:#6e6373}
+#portal .portal-button{font:600 14px/20px 'Libre Franklin',sans-serif;min-height:44px;padding:12px 16px;border-radius:8px;transition:background 240ms var(--ui-ease),color 240ms var(--ui-ease),transform 240ms var(--ui-ease),box-shadow 240ms var(--ui-ease)}
+#portal .portal-button.gold{background:var(--ui-plum);color:#fffefc;border-color:var(--ui-plum)}#portal .portal-button.gold:hover{background:#2d1838}
+#portal .portal-button:not(:disabled):active{transform:translateY(1px) scale(.98)}
+#portal :is(button,a,input,select,textarea):focus-visible{outline:2px solid #4b2a59;outline-offset:4px}
+#portal :is(.portal-stat strong,.session-resource input,.play-tile strong,.characters-count){font-variant-numeric:tabular-nums}
+#portal .portal-hero{background:#eee9ef;border:0;border-radius:16px;padding:40px;box-shadow:none}
+#portal .portal-hero:before{display:none}
+#portal .portal-hero h1{font:60px/1.05 'Eterna Breaks 240410',serif;color:#4b2a59;letter-spacing:-.02em}
+#portal .portal-hero h1 em{font-style:normal;color:#4b2a59}
+#portal .portal-hero p{font:16px/24px 'Libre Franklin',sans-serif;max-width:48ch;color:#6e6373}
+#portal .portal-hero-art{background:none;box-shadow:none}#portal .portal-hero-art:before,#portal .portal-hero-art:after{display:none}
+#portal .portal-hero-art img{mix-blend-mode:multiply}#portal .hero-mark{font-size:12px;line-height:16px;letter-spacing:.04em;color:#6e6373}
+#portal .portal-stat-strip{background:transparent;box-shadow:none;border-radius:0;border:0;gap:24px;padding:32px 0}
+#portal .portal-stat strong{font-family:'Eterna Breaks 240410',serif;font-size:36px;line-height:40px;font-weight:400;color:#4b2a59}
+#portal .portal-stat span{font-size:12px;line-height:20px;color:#6e6373}
+#portal .portal-grid-three{grid-template-columns:1.2fr 1fr;gap:24px}
+#portal .portal-feature{background:#fffefc;border:1px solid #e5e1e8;border-radius:16px;box-shadow:none;padding:24px}
+#portal .portal-feature:first-child{grid-row:span 2;display:flex;flex-direction:column;justify-content:center;background:#eee9ef;border:0;padding:32px}
+#portal .portal-feature h3{font:24px/32px 'Eterna Breaks 240410',serif;font-weight:400}#portal .portal-feature p{font:14px/24px 'Libre Franklin',sans-serif;color:#6e6373}
+#portal .portal-feature-icon{font:24px/32px 'Eterna Breaks 240410',serif;color:#4b2a59;background:none}
+#portal .portal-link{min-height:44px;font:600 14px/20px 'Libre Franklin',sans-serif;color:#4b2a59}
+#portal .portal-character,#portal .portal-note{background:#fffefc;box-shadow:none;border:1px solid #e5e1e8;border-radius:16px;padding:24px}
+#portal .portal-note p{font:14px/24px 'Libre Franklin',sans-serif;color:#6e6373}
+#portal .portal-footer{font:12px/20px 'Libre Franklin',sans-serif;letter-spacing:0}
+#portal .portal-view:not(#view-sheet) :is(.sr-body,.lore-body){font-family:'Libre Franklin',sans-serif;font-size:16px;line-height:28px}
+#portal .sr-body>p,#portal .lore-body>p{max-width:75ch}
+#portal .system-rule-chapter{border:1px solid #e5e1e8;border-radius:12px;box-shadow:none;background:#fffefc}
+#portal .system-rule-chapter>summary{padding:24px}
+#portal .system-rule-chapter>summary h2{font-size:24px;line-height:32px;font-weight:400}
+#portal .system-rule-chapter>summary h2 small{font:500 12px/16px 'Libre Franklin',sans-serif;letter-spacing:.04em}
+#portal .sr-body{padding:0 24px 24px}
+#portal .sr-status,#portal .sr-note,#portal .sr-example,#portal .sr-formula{border:1px solid #e5e1e8;border-radius:8px;background:#f7f6f2;font-size:14px;line-height:24px;box-shadow:none}
+#portal .portal-ref-tools :is(input,select){font:16px/24px 'Libre Franklin',sans-serif;padding:12px 16px;min-height:48px;border:1px solid #e5e1e8;border-radius:8px;background:#fffefc;color:#302735}
+#portal .portal-ref-count{font:12px/20px 'Libre Franklin',sans-serif}
+#portal .play-section{padding:24px;background:#fffefc;border:1px solid #e5e1e8;border-radius:16px;margin-block:24px;box-shadow:none}
+#portal .play-section>h2{font:30px/36px 'Eterna Breaks 240410',serif;margin-bottom:24px}
+#portal .session-resource{border:1px solid #e5e1e8;border-radius:12px;background:#fffefc;box-shadow:none;padding:16px}
+#portal .session-resource label{font-size:14px;line-height:20px}#portal .session-resource small{font-size:12px;line-height:20px}
+#portal .session-resource-control input{font:500 30px/36px 'Libre Franklin',sans-serif}
+#portal .session-resource-control button{transition:background 240ms var(--ui-ease),transform 240ms var(--ui-ease)}#portal .session-resource-control button:active{transform:scale(.96)}
+#portal .play-card{background:#f7f6f2;border:1px solid #e5e1e8;border-radius:12px;box-shadow:none}
+#portal .play-card p{font:14px/24px 'Libre Franklin',sans-serif}#portal .play-card small,#portal .play-cost{font:12px/20px 'Libre Franklin',sans-serif;color:#6e6373}
+#portal .vocation-role{font-style:normal}
+#portal .portal-topbar{background:#fffefcf5;backdrop-filter:blur(16px)}
+.interface-skip{position:fixed;z-index:21000;left:16px;top:8px;background:#4b2a59;color:#fffefc;border-radius:8px;padding:12px 16px;transform:translateY(-160%);font:14px/20px 'Libre Franklin',sans-serif}.interface-skip:focus{transform:none}
+@media(max-width:1000px){#portal .portal-hero{padding:32px}#portal .portal-hero h1{font-size:48px}}
+@media(max-width:700px){#portal .portal-page-title{font-size:36px;line-height:40px}#portal .portal-hero{padding:24px}#portal .portal-hero h1{font-size:36px;line-height:40px}#portal .portal-grid-three{grid-template-columns:1fr;gap:16px}#portal .portal-feature:first-child{grid-row:auto;padding:24px}#portal .portal-stat-strip{gap:16px;padding:24px 0}#portal .portal-stat strong{font-size:30px;line-height:36px}#portal .portal-stat span{font-size:12px;line-height:16px}#portal .portal-button{padding:8px 12px}#portal .play-section{padding:16px;margin-block:16px}#portal .play-section>h2{font-size:24px;line-height:32px;margin-bottom:16px}#portal .session-resource{padding:12px}#portal .session-resource label{font-size:12px;line-height:16px}#portal .system-rule-chapter>summary{padding:16px}#portal .system-rule-chapter>summary h2{font-size:20px;line-height:28px}#portal .sr-body{padding:0 16px 16px}#portal .portal-sidebar{overflow-y:auto;overscroll-behavior:contain;max-height:100dvh}#portal .portal-nav{gap:2px}#portal .portal-nav button{min-height:44px;padding:8px 12px}}
+@media(prefers-reduced-motion:reduce){#portal *,#portal *:before,#portal *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+}
+@media print{.interface-skip{display:none!important}}

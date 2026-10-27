@@ -1,9 +1,9 @@
-const VERSION={id:'2026.10.25.1',date:'25 октября 2026',title:'Новые призвания, отдых, ритуалы и примеры ходов'};
+const VERSION={id:'2026.10.28.3',date:'28 октября 2026',title:'Летящий к6 и ручное распределение характеристик'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
- ['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
+ ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
  ['/gm/tools','/build/materials/core.html'],
- ['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
+ ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);
 function headers(response,{asset=false}={}){
  const h=new Headers(response.headers);
@@ -19,7 +19,11 @@ export default {async fetch(request,env){
  if(path==='/api/version')return headers(Response.json(VERSION));
  if(path==='/api/session')return headers(Response.json({openAccess:true,authenticationRequired:false}));
  const target=ROUTES.get(path)||(/^\/assets\/[a-f0-9]{24}\.(png|jpg|webp|svg|ttf|woff2?|pdf|bin)$/.test(path)?path:null);
- if(!target)return headers(new Response('Страница не найдена',{status:404,headers:{'Content-Type':'text/plain; charset=utf-8'}}));
+ if(!target){
+ const destination=new URL(request.url);destination.pathname='/404.html';destination.search='';
+ const page=await env.ASSETS.fetch(new Request(destination,{method:request.method}));
+ return headers(new Response(page.body,{status:404,headers:{'Content-Type':'text/html; charset=utf-8'}}));
+ }
  const destination=new URL(request.url);destination.pathname=target;destination.search='';
  const clean=new Headers(request.headers);clean.delete('cookie');clean.delete('authorization');
  const result=await env.ASSETS.fetch(new Request(destination,{method:request.method,headers:clean}));

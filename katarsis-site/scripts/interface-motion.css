@@ -1,0 +1,18 @@
+/* Pure presentation: no changes to saves, rule data, editable fields or print layout. */
+@media screen and (prefers-reduced-motion:no-preference){
+#portal .portal-view:not([hidden]):not(#view-sheet):not(#view-map){animation:portal-reveal 650ms cubic-bezier(.22,1,.36,1) both}
+#portal .portal-builder-panel:not([hidden]){animation:portal-step-reveal 600ms cubic-bezier(.22,1,.36,1) both}
+#portal dialog[open]{animation:portal-dialog-reveal 450ms cubic-bezier(.22,1,.36,1) both}
+#portal dialog::backdrop{animation:portal-backdrop-reveal 400ms ease-out both}
+#portal :is(.portal-feature,.portal-card,.play-tile){transition:box-shadow 500ms cubic-bezier(.22,1,.36,1),border-color 500ms cubic-bezier(.22,1,.36,1)}
+#portal :is(.portal-feature,.portal-card,.play-tile):hover{border-color:#c8b8d0;box-shadow:0 12px 28px #4b2a5908}
+#portal .portal-nav button.active svg{animation:portal-icon-reveal 500ms cubic-bezier(.22,1,.36,1) both}
+@keyframes portal-reveal{from{opacity:.1;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portal-step-reveal{from{opacity:.2;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
+@keyframes portal-dialog-reveal{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes portal-backdrop-reveal{from{opacity:0}to{opacity:1}}
+@keyframes portal-icon-reveal{from{transform:scale(.8)}to{transform:scale(1)}}
+}
+@media print{#portal .portal-view,#portal .portal-builder-panel,#portal dialog{animation:none!important;transform:none!important;opacity:1!important}}
+
+html[data-motion=off] #portal *,html[data-motion=off] #portal *::before,html[data-motion=off] #portal *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}

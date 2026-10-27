@@ -12,4 +12,11 @@ test('adventure PDF and helper are unavailable anonymously or via direct build p
 test('assets can be cached, updated HTML must revalidate',async()=>{const asset=await worker.fetch(req('/assets/0123456789abcdef01234567.webp'),env),page=await worker.fetch(req('/gm/tools'),env);assert.match(asset.headers.get('Cache-Control'),/immutable/);assert.equal(page.headers.get('Cache-Control'),'no-cache');});
 test('unknown paths still return 404 and files cannot be listed',async()=>{for(const p of ['/src/worker.mjs','/.dev.vars','/build/','/build/materials/core.html'])assert.equal((await worker.fetch(req(p),env)).status,404);});
 
-test('removed adventure helper returns 404 without fetching assets',async()=>{const r=await worker.fetch(req('/gm/adventure'),env);assert.equal(r.status,404);});
+test('removed adventure helper returns 404',async()=>{const r=await worker.fetch(req('/gm/adventure'),env);assert.equal(r.status,404);});
+
+test('privacy and usage pages are public; unknown routes use only the branded 404 template',async()=>{
+ for(const path of ['/privacy','/terms'])assert.equal((await worker.fetch(req(path),env)).status,200);
+ const fetched=[];const safe={ASSETS:{fetch:async r=>{fetched.push(new URL(r.url).pathname);return new Response('Not found template');}}};
+ const r=await worker.fetch(req('/build/materials/lipotaktis.html'),safe);
+ assert.equal(r.status,404);assert.match(r.headers.get('Content-Type'),/text\/html/);assert.deepEqual(fetched,['/404.html']);
+});
