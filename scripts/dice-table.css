@@ -1,0 +1,45 @@
+@media screen{
+#portal #stats-creator{padding:24px;background:#faf8fc;overflow:visible}
+#portal .dice-table{margin:24px -8px;border:1px solid #d3bfdc;border-radius:14px;overflow:hidden;background:#fffefc;box-shadow:0 16px 40px #4b2a5908}
+#portal .dice-arena{position:relative;min-height:300px;display:flex;align-items:center;justify-content:center;flex-direction:column;background:#2c2033;color:#f7ead3;isolation:isolate;overflow:hidden;padding:32px 20px;gap:24px}
+#portal .dice-arena:before,#portal .dice-arena:after{content:'';position:absolute;left:50%;top:50%;width:280px;height:280px;border:1px solid #bda16a30;border-radius:50%;transform:translate(-50%,-50%);z-index:-1;pointer-events:none}
+#portal .dice-arena:after{width:210px;height:210px;border-style:dashed;border-color:#bda16a25;transform:translate(-50%,-50%) rotate(22deg)}
+#portal .dice-arena-label{position:absolute;top:20px;left:24px;font:10px/16px 'Libre Franklin',sans-serif;letter-spacing:.16em;color:#c1a372}
+#portal .dice-progress{position:absolute;top:20px;right:24px;font:11px/16px 'Libre Franklin',sans-serif;color:#beabc8}
+#portal .dice-perspective{perspective:700px;position:relative;padding:24px 48px 4px}
+#portal .dice-token{position:relative;display:block;appearance:none;border:0;background:transparent;padding:0;width:80px;height:80px;touch-action:none;cursor:grab;outline-offset:12px;transform-style:preserve-3d;user-select:none;-webkit-user-select:none;z-index:2}
+#portal .dice-token:disabled{cursor:default;opacity:1}
+#portal .dice-token.is-ready{filter:drop-shadow(0 12px 12px #100b1890)}
+#portal .dice-token.is-armed{outline:2px solid #d1b375;outline-offset:12px;border-radius:8px}
+#portal .dice-cube{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(-14deg) rotateY(20deg);transition:transform 400ms cubic-bezier(.22,1,.36,1)}
+#portal .dice-face{position:absolute;inset:0;border:1px solid #c9bfa9;border-radius:12px;background:#f5ead2;backface-visibility:hidden;box-shadow:inset 0 0 12px #c8b99b44;display:grid;place-items:center;color:#4b2a59}
+#portal .dice-face svg{width:76%;height:76%;fill:#4b2a59}
+#portal .dice-face-front{transform:translateZ(40px)}#portal .dice-face-back{transform:rotateY(180deg) translateZ(40px)}#portal .dice-face-right{transform:rotateY(90deg) translateZ(40px);background:#dfd0b3}#portal .dice-face-left{transform:rotateY(-90deg) translateZ(40px)}#portal .dice-face-top{transform:rotateX(90deg) translateZ(40px);background:#fff4df}#portal .dice-face-bottom{transform:rotateX(-90deg) translateZ(40px)}
+#portal .dice-modifier{font:48px/1 'Eterna Breaks 240410',serif;color:#4b2a59}
+#portal .dice-shadow{width:110px;height:14px;background:#0b06178c;border-radius:50%;filter:blur(8px);margin:18px auto 0;transition:transform 500ms,opacity 500ms}
+#portal .dice-result{font:14px/24px 'Libre Franklin',sans-serif;color:#e6d3b1;text-align:center;min-height:24px;max-width:40ch}
+#portal .dice-toolbar{display:flex;justify-content:center;gap:12px;align-items:center;padding:20px;border-bottom:1px solid #ede3f1;background:#f6f1f8;flex-wrap:wrap}
+#portal .dice-toolbar #stats-roll{font-size:15px;padding:14px 24px;border-radius:8px;min-height:50px;box-shadow:0 6px 16px #4b2a5912}
+#portal .dice-toolbar #stats-roll:hover:not(:disabled){transform:translateY(-2px);background:#34223f}
+#portal .dice-toolbar #stats-roll:disabled{opacity:.45;cursor:default}
+#portal .dice-hint{font:12px/22px 'Libre Franklin',sans-serif;color:#8b7298;margin:0;max-width:40ch}
+#portal .dice-targets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));padding:20px;gap:10px}
+#portal .dice-target{appearance:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-width:0;min-height:120px;padding:16px 8px;border:1px solid #ded0e7;border-radius:10px;background:#fffefc;color:#775686;position:relative;transition:background 300ms,border-color 300ms,box-shadow 400ms,transform 500ms cubic-bezier(.22,1,.36,1);font:12px/20px 'Libre Franklin',sans-serif;cursor:pointer}
+#portal .dice-target strong{font:32px/36px 'Eterna Breaks 240410',serif;color:#4b2a59}
+#portal .dice-target small{font-size:10px;line-height:16px;color:#a38baa}
+#portal .dice-target:disabled{cursor:default;opacity:.75}
+#portal .dice-target.is-available{border-style:dashed;border-color:#b99ac9;background:#faf6fc}
+#portal .dice-target.is-available:hover,#portal .dice-target.is-over{border-style:solid;border-color:#9670aa;background:#e9dcef;box-shadow:inset 0 0 0 1px #9670aa,0 8px 24px #4b2a590d;transform:translateY(-3px)}
+#portal .dice-target.is-assigned{background:#eee6f2;border-color:#d1bddb}
+#portal .dice-target.is-assigned:after{content:'✓';position:absolute;right:8px;top:6px;font-size:10px;color:#a08568}
+#portal .dice-target:focus-visible,#portal .dice-token:focus-visible{outline:2px solid #c5a15e;outline-offset:5px}
+.dice-drag-ghost{position:fixed;z-index:25000;pointer-events:none;display:grid;place-items:center;width:64px;height:64px;border:1px solid #bba789;background:#f5ead2;color:#4b2a59;border-radius:10px;font:32px/1 'Eterna Breaks 240410',serif;box-shadow:0 16px 32px #29173144;transform:translate(-50%,-50%) rotate(8deg)}
+#portal .dice-table.is-rolling .dice-token{cursor:default}
+#portal .dice-table.is-rolling .dice-result{color:#baa1c7}
+#portal .dice-table.is-rolling .dice-shadow{transform:scale(.65);opacity:.35}
+#portal .dice-table-note{font-size:11px;line-height:20px;color:#a18ba9;padding:0 20px 20px;margin:0}
+@media(max-width:1100px){#portal .dice-targets{grid-template-columns:repeat(2,minmax(0,1fr))}#portal .dice-target{min-height:100px}}
+@media(max-width:600px){#portal #stats-creator{padding:12px}#portal .dice-table{margin:20px -4px}#portal .dice-arena{min-height:280px;padding:40px 12px 24px}#portal .dice-targets{padding:12px;gap:8px}#portal .dice-target{min-height:106px;font-size:11px;padding:12px 4px}#portal .dice-target strong{font-size:30px}#portal .dice-toolbar{padding:16px 12px;gap:12px}#portal .dice-hint{font-size:11px;line-height:20px;text-align:center}#portal .dice-arena-label{left:16px;font-size:9px}#portal .dice-progress{right:16px;font-size:10px}#portal .dice-result{font-size:13px;line-height:22px}#portal .dice-table-note{padding:0 12px 16px}}
+@media(prefers-reduced-motion:reduce){#portal .dice-table *{transition:none!important}}
+}
+@media print{.dice-table,.dice-drag-ghost{display:none!important}}

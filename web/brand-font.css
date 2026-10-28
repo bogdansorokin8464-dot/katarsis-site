@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Eterna Breaks 240410";
+  src: url(/assets/f7617474b4dc8e4b62993197.ttf) format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url(/assets/7ea09642e90d25bc23b9a3c8.ttf) format("truetype");
+  font-weight: 400; font-style: normal; font-display: swap;
+}
