@@ -2,7 +2,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import re
-root=Path(__file__).resolve().parents[1]
+root=Path(__file__).resolve().parents[2]
 exact={
 'Статы и многие приёмы бестиария обозначены как черновые. Это игровые заготовки противников, а не полный источник общих правил.':'Особые приёмы бестиария относятся к указанным НПС.',
 'Цены магазина остаются черновыми игровыми оценками.':'',

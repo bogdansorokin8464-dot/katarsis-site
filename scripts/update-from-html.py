@@ -1,7 +1,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import hashlib,re,base64,json,shutil
-root=Path(__file__).resolve().parents[1];site=Path(__file__).resolve().parents[1];web=site/'web';source=(root/'КАТАРСИС.html').read_text();s=BeautifulSoup(source,'html.parser')
+root=Path(__file__).resolve().parents[2];site=Path(__file__).resolve().parents[1];web=site/'web';source=(root/'КАТАРСИС.html').read_text();s=BeautifulSoup(source,'html.parser')
 # Physically exclude GM data and tools from the public document.
 for ident in ['view-gm','view-bestiary','gm-digital-workspace','bestiary-workspace','gm-encounter-data','bestiary-data']:
  el=s.find(id=ident)

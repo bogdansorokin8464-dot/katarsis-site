@@ -4,7 +4,7 @@ Run from any directory, then run update-from-html.py. Idempotent.
 from pathlib import Path
 from bs4 import BeautifulSoup
 import json, html
-site=Path(__file__).resolve().parents[1];root=site
+site=Path(__file__).resolve().parents[1];root=site.parent
 source=root/'КАТАРСИС.html';s=BeautifulSoup(source.read_text(),'html.parser')
 script=next(t for t in s.select('script') if 'const VOCATION_DATA = ' in (t.string or ''))
 t=script.string;start=t.index('const VOCATION_DATA = ')+len('const VOCATION_DATA = ')

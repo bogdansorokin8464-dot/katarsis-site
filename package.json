@@ -11,8 +11,7 @@
     "prestart": "npm run prepare:materials",
     "predeploy": "npm run prepare:materials",
     "predev": "npm run prepare:materials",
-    "prepare:materials": "node scripts/prepare-materials.mjs",
-    "pretest": "npm run prepare:materials"
+    "prepare:materials": "node scripts/prepare-materials.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
