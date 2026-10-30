@@ -2,7 +2,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import base64,json
-site=Path(__file__).resolve().parents[1];root=site;p=root/'КАТАРСИС.html';source=p.read_text();s=BeautifulSoup(source,'html.parser');builder=s.find(id='view-builder')
+site=Path(__file__).resolve().parents[1];root=site.parent;p=root/'КАТАРСИС.html';source=p.read_text();s=BeautifulSoup(source,'html.parser');builder=s.find(id='view-builder')
 if not builder.select_one('.desk-builder-heading'):
  heading=s.new_tag('div',attrs={'class':'desk-builder-heading'})
  for el in list(builder.children):

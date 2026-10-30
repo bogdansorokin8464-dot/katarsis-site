@@ -1,6 +1,6 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
-site=Path(__file__).resolve().parents[1];p=site/'КАТАРСИС.html';s=BeautifulSoup(p.read_text(),'html.parser')
+site=Path(__file__).resolve().parents[1];p=site.parent/'КАТАРСИС.html';s=BeautifulSoup(p.read_text(),'html.parser')
 for kind,file,ident in [('style','dice-table.css','dice-table-style'),('script','dice-table.js','dice-table-script')]:
  old=s.find(id=ident)
  if old:old.decompose()

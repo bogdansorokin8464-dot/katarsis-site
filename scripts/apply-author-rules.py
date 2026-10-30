@@ -2,7 +2,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import re,json,shutil
-root=Path(__file__).resolve().parents[1]
+root=Path(__file__).resolve().parents[2]
 p=root/'КАТАРСИС.html'
 text=p.read_text()
 if 'id="author-rules-engine"' in text:raise SystemExit('Already migrated; edit the canonical source or engine explicitly.')

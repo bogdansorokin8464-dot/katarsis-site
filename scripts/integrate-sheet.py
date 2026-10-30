@@ -1,7 +1,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import json,re
-site=Path(__file__).resolve().parents[1];root=site
+site=Path(__file__).resolve().parents[1];root=site.parent
 # Adopt the author-approved clarifications in the source descriptions.
 p=site/'scripts/fullplay-proposals.json';rules=json.loads(p.read_text())
 for d in rules:

@@ -2,7 +2,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import json
-site=Path(__file__).resolve().parents[1];p=site/'КАТАРСИС.html';s=BeautifulSoup(p.read_text(),'html.parser')
+site=Path(__file__).resolve().parents[1];p=site.parent/'КАТАРСИС.html';s=BeautifulSoup(p.read_text(),'html.parser')
 for sc in s.select('script'):
  t=sc.string or ''
  if 'function snapshot(){const modules={}' in t and "hooks.fullplay?.set" not in t:

@@ -2,7 +2,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import json,math
-site=Path(__file__).resolve().parents[1];web=site/'web';root=site
+site=Path(__file__).resolve().parents[1];web=site/'web';root=site.parent
 s=BeautifulSoup((web/'index.html').read_text(),'html.parser')
 hero='/assets/16f3a3680ec6b991aa1b5d80.webp'
 particles=''.join(f'<i style="--x:{31+(i*19)%66}%;--y:{15+(i*13)%65}%;--delay:{-i*.71}s;--duration:{5+i%5}s"></i>' for i in range(18))
@@ -31,10 +31,8 @@ stage='''<section class="home-section omen-stage" id="omen-stage" aria-labelledb
 old=s.find(id='omen-stage')
 if old:old.replace_with(BeautifulSoup(stage,'html.parser'))
 else:s.select_one('.proof-strip').insert_after(BeautifulSoup(stage,'html.parser'))
-kit='''<section class="home-section tactile-section" id="tactile" aria-labelledby="tactile-title"><div class="section-head reveal"><div><div class="eyebrow">По ту сторону экрана</div><h2 id="tactile-title">Мир, который хочется<br>взять в руки.</h2></div><p class="tactile-caption">Концепты аксессуаров Катарсиса.<br>Тот же характер. Другая форма.</p></div><div class="tactile-grid"><figure class="tactile-box reveal" data-tilt-card><img src="/assets/521696a96b610e4a4f824f5b.webp" alt="Концепт светлой коробки Катарсиса с монолитом" width="1100" height="733" loading="lazy"><figcaption><span>01 / Коробочное издание</span><span>Катарсис</span></figcaption></figure><figure class="tactile-dice reveal" data-tilt-card><img src="/assets/8e7b22fb6a4d63c789f6219f.webp" alt="Концепт семи молочных игровых костей со сливовыми и золотыми деталями" width="1024" height="1024" loading="lazy"><figcaption><span>02 / Семь многогранников</span><span>Случай в твоих руках</span></figcaption></figure></div><p class="tactile-note">Изображения показывают дизайн аксессуаров, а не товары в продаже.</p></section>'''
-old=s.find(id='tactile')
-if old:old.replace_with(BeautifulSoup(kit,'html.parser'))
-else:s.select_one('.faq-layout').insert_before(BeautifulSoup(kit,'html.parser'))
+# The tactile accessory concept section was intentionally removed from the homepage.
+for old in s.select('#tactile,.tactile-section'): old.decompose()
 # A deliberate separator rather than another stack of cards.
 for el in s.select('.feature-note,.directory-link,.faq-item'):el['data-motion-item']=''
 nav=s.find(id='main-nav')
@@ -51,4 +49,4 @@ if not s.find('script',src='/cinematic.js'):
  sc=s.new_tag('script',src='/cinematic.js',defer='');s.body.append(sc)
 if not s.find(attrs={'data-motion-toggle':True}):
  b=s.new_tag('button',type='button',attrs={'class':'motion-toggle','data-motion-toggle':'','aria-pressed':'false'});b.string='Анимации: включены';s.select_one('.footer').append(b)
-(web/'index.html').write_text(str(s));print('Cinematic hero, eight interactive omens, tactile designs and motion controls installed.')
+(web/'index.html').write_text(str(s));print('Cinematic hero, eight interactive omens and motion controls installed.')
