@@ -1,5 +1,5 @@
 (()=>{'use strict';
-const CURRENT='2026.10.30.3',$=id=>document.getElementById(id);
+const CURRENT='2026.10.30.4',$=id=>document.getElementById(id);
 const menu=document.querySelector('.menu-toggle'),nav=$('main-nav');
 if(menu&&nav){
  let last=null;

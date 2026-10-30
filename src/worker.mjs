@@ -1,4 +1,4 @@
-const VERSION={id:'2026.10.30.3',date:'30 октября 2026',title:'Адаптация и единый интерфейс'};
+const VERSION={id:'2026.10.30.4',date:'30 октября 2026',title:'Плавные переходы между главами'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],

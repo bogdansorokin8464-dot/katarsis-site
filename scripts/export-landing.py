@@ -28,6 +28,6 @@ for name,title in [('privacy','Данные и сохранения'),('terms','
  content=BeautifulSoup((web/(name+'.html')).read_text(),'html.parser').select_one('.legal-copy')
  content.select_one('a').decompose()
  details=s.new_tag('details',id='offline-'+name,attrs={'class':'panel'});summary=s.new_tag('summary');summary.string=title;details.append(summary);details.append(content);s.find('main').append(details)
-label=s.new_tag('p',id='release-note',attrs={'class':'small'});label.string='Версия 2026.10.30.3 · Адаптивность, доступность и единый визуальный ритм.';s.select_one('.footer').append(label)
+label=s.new_tag('p',id='release-note',attrs={'class':'small'});label.string='Версия 2026.10.30.4 · Плавные переходы между главами игрового кабинета.';s.select_one('.footer').append(label)
 (site.parent/'Катарсис — главная.html').write_text(str(s))
 print('Standalone landing exported with embedded images, fonts, styles and local game links.')
