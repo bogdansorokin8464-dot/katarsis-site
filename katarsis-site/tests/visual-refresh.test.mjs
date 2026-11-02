@@ -18,6 +18,26 @@ test('world map keeps every labelled place and reports the current selection', (
   assert.match(html, /wm-city-select/);
 });
 
+test('map reflects the 1850 collapse, disputed lands, and Lipotaktis ruins', () => {
+  const payload = html.match(/<script id="world-map-data" type="application\/json">([\s\S]*?)<\/script>/)?.[1];
+  assert.ok(payload, 'embedded map data is present');
+  const places = JSON.parse(payload);
+  const former = 'Бывшие земли Рейгшаля · спорные';
+  const ruins = places.find(place => place.id === 'wm-place-95');
+  assert.equal(places.length, 294);
+  assert.equal(places.filter(place => place.region === former).length, 53);
+  assert.equal(ruins.name, 'Руины Липотактиса');
+  assert.equal(ruins.type, 'руины');
+  assert.equal(ruins.region, former);
+  assert.equal(ruins.count, 0);
+  assert.match(ruins.context, /все жители погибли/);
+  assert.match(ruins.context, /Причина разрушения и виновник неизвестны/);
+  assert.match(html, /1850 · СМУТНОЕ ВРЕМЯ/);
+  assert.match(html, /крупнейшая страна/);
+  assert.match(html, /1850 год/);
+  assert.match(html, /city\.type==='руины'\?'0 жителей'/);
+});
+
 test('constructor completion uses the existing six-step checklist and announces status', () => {
   assert.equal((html.match(/class="portal-step-button(?: active)?"/g) ?? []).length, 6);
   assert.match(html, /const done=\[!!name,!!omen&&skills\.omen\.length===2/);
