@@ -1,18 +1,104 @@
-/* Pure presentation: no changes to saves, rule data, editable fields or print layout. */
+/*
+ * Катарсис · движение интерфейса
+ * Вдохновение: Scrolltide — ритм появления по частям; SceneAI — слоёный hero;
+ * Refero — общие временные интервалы и согласованные состояния.
+ * Только CSS, без новых зависимостей, данных или изменений игровых действий.
+ */
 @media screen and (prefers-reduced-motion:no-preference){
-#portal .portal-view:not([hidden]):not(#view-sheet):not(#view-map){animation:portal-reveal 650ms cubic-bezier(.22,1,.36,1) both}
+#portal .portal-view:not([hidden]){animation:portal-reveal 650ms cubic-bezier(.22,1,.36,1) both}
+#portal .portal-view:not([hidden])>.portal-eyebrow{animation:portal-heading-reveal 480ms cubic-bezier(.22,1,.36,1) 40ms both}
+#portal .portal-view:not([hidden])>.portal-page-title{animation:portal-heading-reveal 560ms cubic-bezier(.22,1,.36,1) 70ms both}
+#portal .portal-view:not([hidden])>.portal-lead{animation:portal-heading-reveal 560ms cubic-bezier(.22,1,.36,1) 130ms both}
 #portal .portal-builder-panel:not([hidden]){animation:portal-step-reveal 600ms cubic-bezier(.22,1,.36,1) both}
 #portal dialog[open]{animation:portal-dialog-reveal 450ms cubic-bezier(.22,1,.36,1) both}
 #portal dialog::backdrop{animation:portal-backdrop-reveal 400ms ease-out both}
-#portal :is(.portal-feature,.portal-card,.play-tile){transition:box-shadow 500ms cubic-bezier(.22,1,.36,1),border-color 500ms cubic-bezier(.22,1,.36,1)}
-#portal :is(.portal-feature,.portal-card,.play-tile):hover{border-color:#c8b8d0;box-shadow:0 12px 28px #4b2a5908}
+#portal :is(.portal-feature,.portal-card,.play-tile,.portal-ability,.product,.be-card,.ho-card,.system-rule-chapter){transition:box-shadow 500ms cubic-bezier(.22,1,.36,1),border-color 500ms cubic-bezier(.22,1,.36,1),transform 500ms cubic-bezier(.22,1,.36,1)}
+#portal :is(.portal-feature,.portal-card,.play-tile,.portal-ability,.product,.be-card,.ho-card,.system-rule-chapter):hover{border-color:#c8b8d0;box-shadow:0 12px 28px #4b2a5908}
 #portal .portal-nav button.active svg{animation:portal-icon-reveal 500ms cubic-bezier(.22,1,.36,1) both}
-@keyframes portal-reveal{from{opacity:.1;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* Home: a layered opening, then a calm sequence of useful sections. */
+#view-home .portal-hero{animation:portal-hero-reveal 900ms cubic-bezier(.22,1,.36,1) both}
+#view-home .portal-hero-art:after{transform-origin:center;animation:portal-ring-orbit 54s linear infinite}
+#view-home .portal-hero-art img{transform-origin:center;animation:portal-emblem-breathe 9s ease-in-out infinite}
+#view-home .portal-stat-strip{animation:portal-section-reveal 650ms cubic-bezier(.22,1,.36,1) 70ms both}
+#view-home>.portal-section-head{animation:portal-section-reveal 650ms cubic-bezier(.22,1,.36,1) 120ms both}
+#view-home .portal-grid-three>.portal-feature{animation:portal-card-reveal 680ms cubic-bezier(.22,1,.36,1) both}
+#view-home .portal-grid-three>.portal-feature:nth-child(2){animation-delay:70ms}
+#view-home .portal-grid-three>.portal-feature:nth-child(3){animation-delay:140ms}
+#view-home .portal-bottom-grid{animation:portal-section-reveal 700ms cubic-bezier(.22,1,.36,1) 180ms both}
+#view-home>.portal-footer{animation:portal-section-reveal 650ms cubic-bezier(.22,1,.36,1) 240ms both}
+
+/* Character sheet: paper panels arrive in reading order; print geometry is untouched. */
+#view-sheet .characters-panel{animation:portal-card-reveal 620ms cubic-bezier(.22,1,.36,1) 60ms both}
+#view-sheet .portal-sheet-tools{animation:portal-section-reveal 580ms cubic-bezier(.22,1,.36,1) 100ms both}
+#view-sheet .derived-stats-panel{animation:portal-section-reveal 580ms cubic-bezier(.22,1,.36,1) 140ms both}
+#view-sheet .portal-sheet-viewport>.sheet:nth-of-type(1){animation:portal-paper-reveal 720ms cubic-bezier(.22,1,.36,1) 110ms both}
+#view-sheet .portal-sheet-viewport>.sheet:nth-of-type(2){animation:portal-paper-reveal 720ms cubic-bezier(.22,1,.36,1) 190ms both}
+
+/* Bestiary: ease in the filters and first visible cards, not every record at once. */
+#view-bestiary .be-toolbar{animation:portal-section-reveal 580ms cubic-bezier(.22,1,.36,1) 60ms both}
+#view-bestiary .be-summary,#view-bestiary .be-intro{animation:portal-section-reveal 580ms cubic-bezier(.22,1,.36,1) 100ms both}
+#view-bestiary .be-grid>.be-card:nth-child(-n+8){animation:portal-card-reveal 650ms cubic-bezier(.22,1,.36,1) both}
+#view-bestiary .be-grid>.be-card:nth-child(2){animation-delay:45ms}
+#view-bestiary .be-grid>.be-card:nth-child(3){animation-delay:90ms}
+#view-bestiary .be-grid>.be-card:nth-child(4){animation-delay:135ms}
+#view-bestiary .be-grid>.be-card:nth-child(5){animation-delay:180ms}
+#view-bestiary .be-grid>.be-card:nth-child(6){animation-delay:225ms}
+#view-bestiary .be-grid>.be-card:nth-child(7){animation-delay:270ms}
+#view-bestiary .be-grid>.be-card:nth-child(8){animation-delay:315ms}
+#view-bestiary .be-method{animation:portal-section-reveal 580ms cubic-bezier(.22,1,.36,1) 170ms both}
+
+/* Map: controls and frame settle in; hundreds of hotspots stay still and crisp. */
+#view-map .wm-controls{animation:portal-section-reveal 560ms cubic-bezier(.22,1,.36,1) 70ms both}
+#view-map .wm-instructions{animation:portal-section-reveal 560ms cubic-bezier(.22,1,.36,1) 110ms both}
+#view-map .wm-viewport{animation:portal-map-reveal 820ms cubic-bezier(.22,1,.36,1) 120ms both}
+#view-map .wm-map-foot{animation:portal-section-reveal 560ms cubic-bezier(.22,1,.36,1) 180ms both}
+
+/* Other long-form views follow the same brief entrance and gentle card cadence. */
+#view-abilities .portal-ref-tools,#view-abilities .portal-ref-count{animation:portal-section-reveal 560ms cubic-bezier(.22,1,.36,1) 60ms both}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(-n+8),#view-shop #shop-products>.product:nth-child(-n+8){animation:portal-card-reveal 640ms cubic-bezier(.22,1,.36,1) both}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(2),#view-shop #shop-products>.product:nth-child(2){animation-delay:45ms}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(3),#view-shop #shop-products>.product:nth-child(3){animation-delay:90ms}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(4),#view-shop #shop-products>.product:nth-child(4){animation-delay:135ms}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(5),#view-shop #shop-products>.product:nth-child(5){animation-delay:180ms}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(6),#view-shop #shop-products>.product:nth-child(6){animation-delay:225ms}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(7),#view-shop #shop-products>.product:nth-child(7){animation-delay:270ms}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(8),#view-shop #shop-products>.product:nth-child(8){animation-delay:315ms}
+#view-shop .shop-heading,#view-shop .shop-common,#view-shop .shop-tools,#view-shop .shop-basket{animation:portal-section-reveal 600ms cubic-bezier(.22,1,.36,1) 70ms both}
+#view-combat .combat-card{animation:portal-paper-reveal 700ms cubic-bezier(.22,1,.36,1) 90ms both}
+#view-combat #combat-skirmish{animation:portal-section-reveal 620ms cubic-bezier(.22,1,.36,1) 170ms both}
+#view-gm .gm-topline,#view-gm .gm-tabs,#view-gm .gm-preview{animation:portal-section-reveal 600ms cubic-bezier(.22,1,.36,1) 70ms both}
+#view-handouts .ho-grid>.ho-card:nth-child(-n+6){animation:portal-card-reveal 640ms cubic-bezier(.22,1,.36,1) both}
+#view-handouts .ho-grid>.ho-card:nth-child(2){animation-delay:60ms}
+#view-handouts .ho-grid>.ho-card:nth-child(3){animation-delay:120ms}
+#view-handouts .ho-grid>.ho-card:nth-child(4){animation-delay:180ms}
+#view-handouts .ho-grid>.ho-card:nth-child(5){animation-delay:240ms}
+#view-handouts .ho-grid>.ho-card:nth-child(6){animation-delay:300ms}
+
+@keyframes portal-reveal{from{opacity:.15;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portal-heading-reveal{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portal-section-reveal{from{opacity:0;transform:translateY(11px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portal-card-reveal{from{opacity:0;transform:translateY(12px) scale(.992)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes portal-paper-reveal{from{opacity:0;transform:translateY(13px) scale(.996)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes portal-map-reveal{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes portal-hero-reveal{from{opacity:0;transform:translateY(18px) scale(.99)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes portal-ring-orbit{to{transform:rotate(342deg)}}
+@keyframes portal-emblem-breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}
 @keyframes portal-step-reveal{from{opacity:.2;transform:translateX(12px)}to{opacity:1;transform:translateX(0)}}
 @keyframes portal-dialog-reveal{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @keyframes portal-backdrop-reveal{from{opacity:0}to{opacity:1}}
 @keyframes portal-icon-reveal{from{transform:scale(.8)}to{transform:scale(1)}}
 }
-@media print{#portal .portal-view,#portal .portal-builder-panel,#portal dialog{animation:none!important;transform:none!important;opacity:1!important}}
+
+@media(max-width:700px) and (prefers-reduced-motion:no-preference){
+#view-home .portal-hero{animation-duration:760ms}
+#view-home .portal-hero-art:after{animation-duration:70s}
+#view-bestiary .be-grid>.be-card:nth-child(n+5){animation-delay:0ms}
+#view-abilities .portal-ability-grid>.portal-ability:nth-child(n+5),#view-shop #shop-products>.product:nth-child(n+5){animation-delay:0ms}
+}
+
+@media print{
+#portal .portal-view,#portal .portal-builder-panel,#portal dialog,#portal .portal-ability,#portal .product,#portal .be-card,#portal .ho-card,#portal .sheet{animation:none!important;transform:none!important;opacity:1!important;filter:none!important}
+}
 
 html[data-motion=off] #portal *,html[data-motion=off] #portal *::before,html[data-motion=off] #portal *::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}

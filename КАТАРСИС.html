@@ -4476,9 +4476,9 @@ const emblem=document.querySelector('.head-logo')?.src;if(emblem){$('portal-bran
 const identity=[...document.querySelectorAll('.ident-l .line')];
 const backgrounds=[...document.querySelectorAll('.background-card .line')];
 const identityMap=[['portal-name',identity[0]],['portal-age',identity[1]],['portal-origin',identity[2]],['portal-languages',identity[3]]];
-identityMap.forEach(([id,field])=>{if(!field)return;$(id).value=field.textContent;$(id).addEventListener('input',()=>{field.textContent=$(id).value;field.dispatchEvent(new Event('input',{bubbles:true}));});field.addEventListener('input',()=>{$(id).value=field.textContent;});});
+identityMap.forEach(([id,field])=>{if(!field)return;const input=$(id);input.value=field.textContent;input.addEventListener('input',()=>{if(field.textContent===input.value)return;field.textContent=input.value;field.dispatchEvent(new Event('input',{bubbles:true}));});field.addEventListener('input',()=>{if(document.activeElement!==input&&input.value!==field.textContent)input.value=field.textContent;});});
 $('portal-background').value=backgrounds.map(f=>f.textContent).filter(Boolean).join('\n');
-$('portal-background').addEventListener('input',()=>{const lines=$('portal-background').value.split('\n');backgrounds.forEach((f,i)=>f.textContent=i===backgrounds.length-1?lines.slice(i).join('\n'):(lines[i]||''));updateHome();});
+$('portal-background').addEventListener('input',()=>{const lines=$('portal-background').value.split('\n');backgrounds.forEach((f,i)=>{const value=i===backgrounds.length-1?lines.slice(i).join('\n'):(lines[i]||'');if(f.textContent!==value)f.textContent=value;});updateHome();});
 function toast(message){$('portal-toast').textContent=message;$('portal-toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('portal-toast').hidden=true,3400);}
 function showView(next,updateHash=true){
  const openCraft=next==='alchemy'||next==='craft';if(openCraft)next='rules';
@@ -4507,7 +4507,7 @@ document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('portal-backdrop'
 window.addEventListener('hashchange',()=>showView(location.hash.slice(1),false));
 $('portal-brand-image').closest('a').addEventListener('click',e=>{e.preventDefault();showView('home');});
 ['choose-skills','choose-vocation-skills'].forEach((id,i)=>$(id).addEventListener('click',()=>{showView('builder');showStep(i?3:1);move($('skills-picker'),'portal-picker-slot');},true));
-function syncIdentity(){identityMap.forEach(([id,field])=>{if(field&&document.activeElement!==$(id))$(id).value=field.textContent;});if(document.activeElement!==$('portal-background'))$('portal-background').value=backgrounds.map(f=>f.textContent).filter(Boolean).join('\n');}
+function syncIdentity(){identityMap.forEach(([id,field])=>{const input=$(id);if(field&&document.activeElement!==input&&input.value!==field.textContent)input.value=field.textContent;});const background=$('portal-background'),value=backgrounds.map(f=>f.textContent).filter(Boolean).join('\n');if(document.activeElement!==background&&background.value!==value)background.value=value;}
 function updateHome(){
  syncIdentity();const name=identity[0]?.textContent.trim()||'';const omen=omenSelect.value,vocation=vocationSelect.value;
  $('portal-home-name').textContent=name||'История ещё не написана';$('portal-home-avatar').textContent=name?name[0].toUpperCase():'?';

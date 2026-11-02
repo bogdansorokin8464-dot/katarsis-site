@@ -11,3 +11,4 @@ html[data-motion=off] *,html[data-motion=off] *:before,html[data-motion=off] *:a
 
 @media(max-width:700px){.scene-image{top:30%;mask-image:linear-gradient(to bottom,transparent,#000 24%)}.scene-return{padding:8px;background:#241b2a80;border-radius:4px}.scene-bottom a{color:#fff3dc}}
 @media(min-width:701px){.scene-return{padding:8px 12px;background:#241b2a99;border-radius:6px}}
+

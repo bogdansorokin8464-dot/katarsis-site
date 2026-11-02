@@ -1,7 +1,12 @@
-const VERSION={id:'2026.10.28.3',date:'28 октября 2026',title:'Летящий к6 и ручное распределение характеристик'};
+const VERSION={id:'2026.10.30.4',date:'30 октября 2026',title:'Плавные переходы между главами'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
+ ['/lipotaktis','/lipotaktis/index.html'],['/lipotaktis/','/lipotaktis/index.html'],
+ ['/lipotaktis/master','/lipotaktis/master.html'],['/lipotaktis/master.html','/lipotaktis/master.html'],
+ ['/lipotaktis/pregens','/lipotaktis/pregens.html'],['/lipotaktis/pregens.html','/lipotaktis/pregens.html'],
+ ['/lipotaktis/players.pdf','/lipotaktis/players.pdf'],['/lipotaktis/hohotun-scenes.pdf','/lipotaktis/hohotun-scenes.pdf'],
+ ['/lipotaktis/catharsis','/lipotaktis/catharsis.html'],['/lipotaktis/catharsis.md','/lipotaktis/catharsis.md'],
  ['/gm/tools','/build/materials/core.html'],
  ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);
