@@ -1,9 +1,16 @@
 import type { CharacterCollection, Companion } from "./types";
 declare global {
   interface Window {
-    KATAR_PORTAL: { showView: (view: string) => void };
+    KATAR_PORTAL: {
+      showView: (view: string) => void;
+      showStep?: (step: number) => void;
+      save?: (silent?: boolean) => void;
+      snapshot?: () => { savedAt?: string };
+    };
     KATAR_CHARACTERS: {
       isReady: () => boolean;
+      activeId?: () => string;
+      flush?: () => Promise<unknown>;
       collectionData: () => Promise<CharacterCollection>;
       importCollection: (
         data: CharacterCollection,

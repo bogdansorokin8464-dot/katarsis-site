@@ -30,6 +30,11 @@ for (const [width, height] of [
   await page.setViewportSize({ width, height });
   await page.goto("http://localhost:3000/play/#home");
   await page.waitForFunction(() => !!window.KATAR_PORTAL);
+  // Reset between viewport reloads; browser scroll anchoring can preserve the
+  // prior viewport's scrollTop and make a downward wheel test start at bottom.
+  await page.evaluate(() => {
+    document.querySelector(".portal-sidebar").scrollTop = 0;
+  });
   const before = await metrics();
   assert.equal(
     before.overflow,
@@ -113,7 +118,7 @@ assert.equal(drawer.x, 0);
 assert.equal(drawer.overflow, "auto");
 assert.equal(drawer.pageOverflow, false);
 assert(drawer.scrollHeight > drawer.clientHeight);
-await page.locator("#portal-backdrop").click({position:{x:330,y:420}});
+await page.locator("#portal-backdrop").click({ position: { x: 330, y: 420 } });
 await page.waitForTimeout(300);
 assert.equal(
   await page.evaluate(() =>

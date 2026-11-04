@@ -4,6 +4,8 @@ import { Journal } from "./components/Journal";
 import { Gm } from "./components/Gm";
 import { Backup } from "./components/Backup";
 import { installLegacyEnhancements } from "./legacy-enhancements";
+import { installShell } from "./shell";
+import { allowAutoCopy, saveCopy } from "./autobackup";
 import { load, message, STORAGE_KEY, type Companion, type Tab } from "./types";
 const tabs: [Tab, string][] = [
   ["search", "⌕ Поиск"],
@@ -29,8 +31,19 @@ export function App() {
     busyRef.current = value;
     setBusy(value);
   };
+  const activateLauncher = (t: Tab) => {
+    document
+      .querySelectorAll<HTMLElement>(".kx-launch[data-kx-tab]")
+      .forEach((item) => {
+        const active = item.dataset.kxTab === t;
+        item.classList.toggle("active", active);
+        if (active) item.setAttribute("aria-current", "page");
+        else item.removeAttribute("aria-current");
+      });
+  };
   const open = useCallback((t: Tab, q = "") => {
     if (busyRef.current) return;
+    activateLauncher(t);
     setTab(t);
     setSearchQuery(q);
     if (t === "search") setSearchGeneration((n) => n + 1);
@@ -43,6 +56,28 @@ export function App() {
   useEffect(() => {
     if (isOpen && !dialog.current?.open) dialog.current?.showModal();
   }, [isOpen]);
+  /* Автоматическая копия при открытии сайта — только после готовности
+     коллекции, не чаще раза в 10 минут и лишь при изменении данных. */
+  useEffect(() => {
+    let stopped = false;
+    const ready = async () => {
+      for (let i = 0; i < 60; i++) {
+        if (stopped || window.KATAR_CHARACTERS?.isReady()) return !stopped;
+        await new Promise((r) => setTimeout(r, 250));
+      }
+      return false;
+    };
+    void (async () => {
+      if (stopped || !(await ready()) || !allowAutoCopy()) return;
+      try {
+        const collection = await window.KATAR_CHARACTERS.collectionData();
+        await saveCopy({ companion: dataRef.current, collection }, "auto");
+      } catch {}
+    })();
+    return () => {
+      stopped = true;
+    };
+  }, []);
   useEffect(() => {
     const nav = document.querySelector(".portal-nav");
     const buttons: HTMLButtonElement[] = [];
@@ -55,6 +90,7 @@ export function App() {
       const b = document.createElement("button");
       b.type = "button";
       b.className = "kx-launch";
+      b.dataset.kxTab = key;
       b.textContent = label;
       b.onclick = () => open(key);
       nav?.insertBefore(b, nav.querySelector(".online-gm-link"));
@@ -67,6 +103,7 @@ export function App() {
       }
     };
     document.addEventListener("keydown", onKey);
+    installShell();
     installLegacyEnhancements(() => open("backup"));
     return () => {
       buttons.forEach((b) => b.remove());
@@ -129,6 +166,7 @@ export function App() {
               disabled={busy}
               aria-selected={tab === key}
               onClick={() => {
+                activateLauncher(key);
                 setTab(key);
                 if (key === "search") setSearchGeneration((n) => n + 1);
               }}

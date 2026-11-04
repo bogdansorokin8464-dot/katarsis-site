@@ -66,3 +66,15 @@
     outline-offset: -3px;
   }
 }
+/* Save stamp in the topbar and automatic copies inside «Резервная копия». */
+.kx-save-stamp{font-size:10px;line-height:16px;color:#9a87a3;margin-right:12px;white-space:nowrap}
+@media(max-width:1200px){.kx-save-stamp{display:none}}
+.kx-note{margin:12px 0;padding:10px 12px;border:1px solid #e2d6e6;border-left:3px solid #c5a15e;border-radius:4px;background:#fdfaf3;color:#5f4a6a;font-size:.92rem;line-height:1.5}
+.kx-copies{display:grid;gap:8px;margin:10px 0}
+.kx-copy{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid #ded3e1;border-radius:7px;background:#fff}
+.kx-copy strong,.kx-copy small{display:block}
+.kx-copy small{color:#76647c;font-size:.85rem;line-height:1.45}
+.kx-copy .kx-actions{margin:0}
+.kx-copy .kx-button{padding:7px 10px;font-size:.9rem}
+/* Highlight and reveal the selected companion destination in the sidebar. */
+#portal .portal-nav .kx-launch[aria-current="page"]{background:#eee9ef;color:var(--ui-plum);font-weight:600;box-shadow:inset 2px 0 var(--ui-gold,#c5a15e)}
