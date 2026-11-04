@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client";
 import { Identity } from "./Identity";
 import { WizardNav } from "./WizardNav";
 import { WizardFooter } from "./WizardFooter";
+import { installStats } from "./installStats";
 /* The legacy controls remain in the DOM. They are hidden only after React
    successfully mounts, so the original builder remains usable on failure. */
 export function installBuilder() {
@@ -28,4 +29,5 @@ export function installBuilder() {
   createRoot(navRoot).render(<WizardNav legacyNav={nav} />);
   createRoot(identityRoot).render(<Identity legacyIdentity={identity} />);
   createRoot(footerRoot).render(<WizardFooter legacyFooter={footer} />);
+  installStats();
 }

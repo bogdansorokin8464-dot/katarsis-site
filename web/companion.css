@@ -15,3 +15,22 @@
 }
 @media print{.react-wizard-nav,.react-wizard-bottom{display:none!important}}
 @media screen and (max-width:600px){#portal .react-wizard-nav{top:auto}}
+/* React controls for the stats step; the original markup and engine stay in place. */
+@media screen {
+#portal #stats-creator .stats-methods .react-method{appearance:none;border:1px solid #ddd0e4;border-radius:10px;padding:20px;background:#fffefc;display:grid;grid-template-columns:20px minmax(0,1fr);gap:8px 12px;align-items:start;text-align:left;font:inherit;color:inherit;cursor:pointer;transition:border-color 350ms,background 350ms}
+#portal #stats-creator .stats-methods .react-method-title{grid-column:2;font:24px/28px 'Eterna Breaks 240410',serif;color:#4b2a59;letter-spacing:0}
+#portal #stats-creator .stats-methods .react-method-text{grid-column:2;font-size:12px;line-height:22px;color:#8d7798}
+#portal #stats-creator .stats-methods .react-method.is-active{background:#ede5f2;border-color:#a787ba;box-shadow:inset 0 3px #4b2a59}
+#portal #stats-creator .stats-methods .react-method:focus-visible{outline:2px solid #c5a15e;outline-offset:3px}
+#portal #stats-creator .stats-methods .react-method-dot{grid-column:1;grid-row:1;width:14px;height:14px;margin:3px 0 0;border:1px solid #b49bc0;border-radius:50%;background:#fffefc}
+#portal #stats-creator .stats-methods .react-method.is-active .react-method-dot{border:4px solid #4b2a59;background:#fffefc}
+#portal #stats-creator .dice-toolbar .dice-roll{font:500 15px/24px 'Libre Franklin',sans-serif;padding:14px 24px;border-radius:8px;min-height:50px;border:1px solid #4b2a59;background:#4b2a59;color:#fff7e9;box-shadow:0 6px 16px #4b2a5912;cursor:pointer;transition:background 300ms,transform 400ms}
+#portal #stats-creator .dice-toolbar .dice-roll:hover:not(:disabled){transform:translateY(-2px);background:#34223f}
+#portal #stats-creator .dice-toolbar .dice-roll:disabled{opacity:.45;cursor:default}
+#portal .react-stats-warning{padding:10px;background:#fff5dd;color:var(--plum);font-size:13px;line-height:24px;margin-top:20px}
+#portal .react-stats-pending,#portal .react-stats-progress{font-size:13px;line-height:24px;margin-top:20px;color:#947e9e}
+#portal .react-stats-progress{color:var(--plum);font-weight:600}
+#portal .react-stats-history{display:flex;gap:8px;flex-wrap:wrap;list-style:none;padding:0;margin-bottom:0;font-size:13px;line-height:26px;color:#796383}
+#portal .react-stats-history li{border:1px solid var(--rule);border-radius:3px;background:var(--wash-2);padding:5px 9px;font-size:11px}
+@media(max-width:600px){#portal #stats-creator .stats-methods .react-method{padding:16px}#portal #stats-creator .stats-methods .react-method strong{font-size:22px}}
+}
