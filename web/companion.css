@@ -34,3 +34,35 @@
 #portal .react-stats-history li{border:1px solid var(--rule);border-radius:3px;background:var(--wash-2);padding:5px 9px;font-size:11px}
 @media(max-width:600px){#portal #stats-creator .stats-methods .react-method{padding:16px}#portal #stats-creator .stats-methods .react-method strong{font-size:22px}}
 }
+/* Desktop sidebar: the menu is taller than a laptop screen, so it scrolls
+   instead of being clipped. Mobile keeps its own drawer rules. */
+@media screen and (min-width:851px) {
+  #portal .portal-sidebar {
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #cdbcd8 transparent;
+    scrollbar-gutter: stable;
+  }
+  #portal .portal-sidebar > * {
+    flex: 0 0 auto;
+  }
+  #portal .portal-sidebar::-webkit-scrollbar {
+    width: 8px;
+  }
+  #portal .portal-sidebar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  #portal .portal-sidebar::-webkit-scrollbar-thumb {
+    background: #d9cbe2;
+    border-radius: 4px;
+  }
+  #portal .portal-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #c3aed0;
+  }
+  #portal .portal-sidebar:focus-visible {
+    outline: 2px solid #c5a15e;
+    outline-offset: -3px;
+  }
+}
