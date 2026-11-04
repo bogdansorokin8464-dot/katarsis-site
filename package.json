@@ -8,15 +8,25 @@
     "dev": "wrangler dev",
     "test": "node --test tests/*.test.mjs",
     "deploy": "wrangler deploy",
-    "prestart": "npm run prepare:materials",
-    "predeploy": "npm run prepare:materials",
-    "predev": "npm run prepare:materials",
-    "prepare:materials": "node scripts/prepare-materials.mjs"
+    "prestart": "npm run build:companion && npm run prepare:materials",
+    "predeploy": "npm run build:companion && npm run prepare:materials",
+    "predev": "npm run build:companion && npm run prepare:materials",
+    "prepare:materials": "node scripts/prepare-materials.mjs",
+    "typecheck": "tsc --noEmit",
+    "build:companion": "npm run typecheck && node scripts/build-companion.mjs"
   },
   "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
     "wrangler": "^4.0.0"
   },
   "engines": {
     "node": ">=20"
+  },
+  "dependencies": {
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   }
 }
