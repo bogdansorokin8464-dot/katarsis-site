@@ -3,7 +3,7 @@ const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
  ['/gm/tools','/build/materials/core.html'],
- ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
+ ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/companion.js','/companion.js'],['/companion.css','/companion.css'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);
 function headers(response,{asset=false}={}){
  const h=new Headers(response.headers);

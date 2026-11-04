@@ -1,7 +1,7 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import hashlib,re,base64,json,shutil
-root=Path(__file__).resolve().parents[2];site=Path(__file__).resolve().parents[1];web=site/'web';source=(root/'КАТАРСИС.html').read_text();s=BeautifulSoup(source,'html.parser')
+root=Path(__file__).resolve().parents[1];site=root;web=site/'web';source=(root/'КАТАРСИС.html').read_text();s=BeautifulSoup(source,'html.parser')
 # Physically exclude GM data and tools from the public document.
 for ident in ['view-gm','view-bestiary','gm-digital-workspace','bestiary-workspace','gm-encounter-data','bestiary-data']:
  el=s.find(id=ident)
@@ -33,8 +33,8 @@ def asset(m):
  return '/assets/'+name
 h=re.sub(r'data:([a-zA-Z0-9.+/-]+);base64,([A-Za-z0-9+/=]+)',asset,h)
 # CSS/JS additions are kept outside the source rules and character logic.
-h=h.replace('</head>','<meta name="robots" content="index,follow"><link rel="stylesheet" href="/online.css"></head>',1)
-h=h.replace('</body>','<script src="/online.js" defer></script></body>',1)
+h=h.replace('</head>','<meta name="robots" content="index,follow"><link rel="stylesheet" href="/online.css"><link rel="stylesheet" href="/companion.css"></head>',1)
+h=h.replace('</body>','<script src="/online.js" defer></script><script src="/companion.js" defer></script></body>',1)
 (web/'play').mkdir(exist_ok=True);(web/'play/index.html').write_text(h)
 # Rebuild general materials only; prepare-materials removes withdrawn adventure files.
 import subprocess
