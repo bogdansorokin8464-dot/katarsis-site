@@ -8,7 +8,7 @@ const ROUTES=new Map([
  ['/lipotaktis/players.pdf','/lipotaktis/players.pdf'],['/lipotaktis/hohotun-scenes.pdf','/lipotaktis/hohotun-scenes.pdf'],
  ['/lipotaktis/catharsis','/lipotaktis/catharsis.html'],['/lipotaktis/catharsis.md','/lipotaktis/catharsis.md'],
  ['/gm/tools','/build/materials/core.html'],
- ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
+ ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site-polish.css','/site-polish.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);
 function headers(response,{asset=false}={}){
  const h=new Headers(response.headers);
