@@ -1,4 +1,4 @@
-const VERSION={id:'2026.11.08.3',date:'8 ноября 2026',title:'Памятка по правилам на двух сторонах A4'};
+const VERSION={id:'2026.11.08.4',date:'8 ноября 2026',title:'Памятка в левом меню'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
