@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Памятка по правилам · Катарсис</title>
+<meta content="Краткая памятка по правилам Катарсиса для печати на двух сторонах A4: персонаж, проверки, ресурсы, отдых, смерть, сцена, снаряжение и ремесло." name="description"/>
+<meta content="#4b2a59" name="theme-color"/>
+<link href="/brand-font.css" rel="stylesheet"/>
+<style>
+:root{--paper:#fffefc;--ink:#2c2430;--muted:#5f5464;--line:#d9d1dd;--plum:#4b2a59;--gold:#c5a15e;--soft:#f4eff2}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:#e7e2e9;color:var(--ink);font-family:'Libre Franklin',system-ui,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+h1,h2,h3{font-family:'Eterna Breaks 240410',Georgia,serif;font-weight:400;margin:0;color:var(--plum)}
+strong{color:var(--plum);font-weight:600}
+p,ul,ol{margin:0}
+ul,ol{padding-left:3.6mm}
+li{margin:0 0 .5mm}
+.memo-toolbar{max-width:210mm;margin:10mm auto 0;display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;font-size:13px;color:#4b3a52}
+.memo-toolbar p{margin:0;max-width:60ch;line-height:1.5}
+.memo-toolbar button{font:600 13px/1 'Libre Franklin',sans-serif;padding:11px 16px;border:1px solid var(--plum);border-radius:6px;background:var(--plum);color:#fff;cursor:pointer}
+.memo-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.memo-actions a{font:600 12px/1 'Libre Franklin',sans-serif;color:#4b2a59;text-decoration:none;border-bottom:1px solid #c5a15e;padding-bottom:2px}
+.memo-actions a:hover{color:#2d1838}
+.memo-toolbar button:hover{background:#2d1838}
+.memo-sheet{width:210mm;min-height:297mm;padding:8.5mm 9mm 7mm;margin:8mm auto;background:var(--paper);box-shadow:0 10px 32px #2d183826;display:flex;flex-direction:column;gap:3mm}
+.memo-head{display:flex;align-items:flex-end;justify-content:space-between;gap:6mm;border-bottom:.5mm solid var(--plum);padding-bottom:1.8mm}
+.memo-head .brandline{font-family:'Eterna Breaks 240410',Georgia,serif;font-size:13pt;line-height:1.05;letter-spacing:.02em;color:var(--plum)}
+.memo-head .brandline small{display:block;font-family:'Libre Franklin',sans-serif;font-size:6.6pt;letter-spacing:.14em;color:var(--muted);margin-top:.8mm}
+.memo-head .sidetag{font-size:6.8pt;letter-spacing:.12em;color:var(--muted);white-space:nowrap;padding-bottom:.6mm}
+.memo-cols{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0 6mm;font-size:7.85pt;line-height:1.34}
+.memo-col{display:flex;flex-direction:column;gap:2mm}
+.block{break-inside:avoid}
+h3{font-size:9.2pt;line-height:1.15;margin:0 0 1.1mm;padding-bottom:.5mm;border-bottom:.35mm solid var(--gold)}
+h3 span{font-family:'Libre Franklin',sans-serif;font-size:6pt;letter-spacing:.1em;color:var(--muted);margin-left:1.5mm}
+table{width:100%;border-collapse:collapse;font-size:7.15pt;line-height:1.25;margin:.5mm 0 0}
+th,td{border-bottom:.2mm solid var(--line);padding:.35mm .6mm;text-align:left;vertical-align:top}
+th{color:var(--plum);font-weight:600}
+tr:last-child td{border-bottom:0}
+.note{font-size:7.05pt;line-height:1.32;color:var(--muted);margin-top:.8mm}
+.lead{font-size:7.2pt;color:var(--muted);margin:.4mm 0 .8mm}
+.keyline{margin:0 0 .8mm;padding:.9mm 1.4mm;background:var(--soft);border-left:.6mm solid var(--gold);font-size:7.3pt;line-height:1.3}
+.memo-foot{border-top:.3mm solid var(--line);padding-top:1.4mm;display:flex;justify-content:space-between;gap:4mm;font-size:6.2pt;line-height:1.35;color:var(--muted)}
+.memo-foot b{color:var(--plum);font-weight:600}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 3mm}
+@page{size:A4;margin:0}
+@media print{
+ body{background:#fff}
+ .memo-toolbar{display:none!important}
+ .memo-sheet{width:auto;min-height:0;height:297mm;margin:0;box-shadow:none;break-after:page;page-break-after:always}
+ .memo-sheet:last-of-type{break-after:auto;page-break-after:auto}
+}
+@media screen and (max-width:840px){
+ .memo-toolbar{margin:6mm 4mm 0}
+ .memo-sheet{width:auto;min-height:0;padding:6mm 4mm;margin:4mm}
+ .memo-cols{grid-template-columns:1fr;font-size:9pt}
+}
+</style>
+</head>
+<body>
+<div class="memo-toolbar">
+<p><b>Памятка по правилам.</b> Две стороны A4. Печать: масштаб 100%, поля «нет», фон включён. Бой, действия и защита — в отдельной памятке «Твой ход в бою».</p>
+<div class="memo-actions"><a href="/play/#rules">← К правилам на сайте</a><a href="/play/#combat">Памятка боя</a><button onclick="window.print()" type="button">Печать памятки</button></div>
+</div>
+<main>
+<section aria-label="Сторона 1: персонаж, проверки, ресурсы" class="memo-sheet">
+<header class="memo-head">
+<div class="brandline">КАТАРСИС<small>НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</small></div>
+<div class="sidetag">СТОРОНА 1 · ПЕРСОНАЖ · ПРОВЕРКИ · РЕСУРСЫ</div>
+</header>
+<div class="memo-cols">
+<div class="memo-col">
+
+<section class="block">
+<h3>Создание персонажа <span>7 ШАГОВ</span></h3>
+<ol>
+<li><strong>Одно знамение.</strong> Даёт родную характеристику, бонус и набор стартовых умений.</li>
+<li><strong>Восемь характеристик.</strong> Стандартный набор или восемь бросков к6.</li>
+<li><strong>Один изученный навык.</strong> Его значение — характеристика плюс родная.</li>
+<li><strong>Два умения знамения</strong> из семи доступных.</li>
+<li><strong>Одно призвание:</strong> два умения и ключ автоматически.</li>
+<li><strong>Кошель 6к10</strong> и снаряжение.</li>
+<li><strong>Образ, личные записи</strong> и проверка листа.</li>
+</ol>
+<p class="note">Изученный навык и выбранное умение — разные вещи. Один навык не заменяет умения знамения или призвания.</p>
+</section>
+
+<section class="block">
+<h3>Восемь характеристик</h3>
+<p>Сила · Ловкость · Харизма · Интеллект · Мудрость · Удача · Проклятие · Магия.</p>
+<p class="keyline"><strong>Стандарт:</strong> родная +3; остальные +2, +2, +1, +1, 0, −1, −2.<br/><strong>Случайно:</strong> к6 − 3 → от −2 до +3, восемь бросков, назначение свободное.</p>
+<p>Характеристики задают параметры персонажа и спасброски: к20 + модификатор по требованию Мастера. Обычная атака идёт через навык, а не через характеристику.</p>
+</section>
+
+<section class="block">
+<h3>31 навык <span>ПО ХАРАКТЕРИСТИКАМ</span></h3>
+<table>
+<thead><tr><th>Характеристика</th><th>Навыки</th></tr></thead>
+<tbody>
+<tr><td>Ловкость</td><td>Ловкость рук · Стрельба · Фехтование · Реакция · Скрытность</td></tr>
+<tr><td>Сила</td><td>Атлетика · Запугивание · Стойкость · Сопротивление ядам · Ближний бой</td></tr>
+<tr><td>Мудрость</td><td>Внимательность · Выживание · Воля · Медицина · Знание улиц</td></tr>
+<tr><td>Интеллект</td><td>История · Физиология · Мышление · Этикет · Религия</td></tr>
+<tr><td>Харизма</td><td>Торг · Манипуляция · Артистизм · Авторитет · Смирение</td></tr>
+<tr><td>Удача</td><td>Магия удачи · Чистая удача</td></tr>
+<tr><td>Проклятие</td><td>Оккультизм · Магия проклятия</td></tr>
+<tr><td>Магия</td><td>Аркана · Чистая магия</td></tr>
+</tbody>
+</table>
+<p class="note">Обычный навык = модификатор связанной характеристики. Изученный = характеристика + родная характеристика знамения. Отрицательные значения не заменяются нулём.</p>
+</section>
+
+<section class="block">
+<h3>Проверка</h3>
+<ol>
+<li>Объявите действие.</li>
+<li>Мастер назначает подходящий навык и необходимость броска.</li>
+<li>Бросьте <strong>к20 + итог навыка</strong> из листа.</li>
+<li>Связанную характеристику повторно не прибавляйте — она уже учтена.</li>
+</ol>
+<p class="note">Исход обычной проверки определяет Мастер: единой шкалы сложности пока нет. Спорный навык выбирается по ситуации.</p>
+</section>
+
+<section class="block">
+<h3>20 и 1 на к20</h3>
+<p><strong>20 — критический успех.</strong> Проверка удаётся, если успех вообще возможен по обстановке, и приносит <strong>+1 вдохновение</strong>. Способности могут расширять диапазон: «Длань Туити» считает критическим и 19.</p>
+<p><strong>1 — критический провал.</strong> Проверка провалена, Мастер вводит осложнение по обстановке. Отдельного ресурса для этого нет.</p>
+</section>
+
+<section class="block">
+<h3>Преимущество и помеха</h3>
+<p>Преимущество: к20 + модификатор + к6. Помеха: к20 + модификатор − к6. У обоих по три степени, но формулы 2-й и 3-й пока не закреплены.</p>
+<p class="note">Порядок совместного применения нескольких источников — решение Мастера.</p>
+</section>
+
+</div>
+<div class="memo-col">
+
+<section class="block">
+<h3>Ресурсы и максимумы</h3>
+<p class="keyline">Максимум ФЗ = 10 + итоговая Стойкость. Максимум МЗ = 10 + итоговая Воля.</p>
+<p>Текущее значение и максимум — разные величины: потеря ресурса не уменьшает максимум. Прибавки, полученные броском при взятии способности, записываются один раз и не перебрасываются.</p>
+</section>
+
+<section class="block">
+<h3>Стресс, Воля и струны души</h3>
+<p>При <strong>10 и более стресса</strong> — проверка к20 + Воля. При провале текущее МЗ становится 1, это не потеря единицы и не изменение максимума.</p>
+<p>Вместо проверки можно потратить одно действие на сосредоточение и закрасить один череп в струнах души.</p>
+<ul>
+<li>Правый череп: значение струны не может опуститься ниже 6.</li>
+<li>Левый череп: значение струны не может превысить 5.</li>
+<li>Оба черепа одной струны закрасить нельзя.</li>
+</ul>
+<p class="note">Стресс не сбрасывается ни проверкой, ни сосредоточением.</p>
+</section>
+
+<section class="block">
+<h3>Вдохновение</h3>
+<p>Ресурс оплаты умений. Максимум — <strong>восемь</strong> делений трекера; лишнее не копится.</p>
+<ul>
+<li><strong>Критический успех</strong> на любой проверке — +1.</li>
+<li><strong>«Подготовиться»</strong> на отдыхе — +1; при подготовке вместе — по 2 каждому.</li>
+<li><strong>Способности</strong> — по своему описанию.</li>
+</ul>
+<p class="note">Само по себе вдохновение не восстанавливается. Трата не требует действия, если описание умения не говорит обратного.</p>
+</section>
+
+<section class="block">
+<h3>Отдых <span>1к6 СТРЕССА + 2 ХОДА</span></h3>
+<p>Любой завершённый отдых: снимите <strong>1к6 стресса</strong> (не ниже нуля) и возьмите <strong>два хода</strong> из таблицы. Один и тот же ход можно взять дважды.</p>
+<table>
+<thead><tr><th>Ход отдыха</th><th>Короткий</th><th>Длинный</th></tr></thead>
+<tbody>
+<tr><td>Залечить раны — себе или союзнику</td><td>1к4 ФЗ</td><td>2к4 ФЗ</td></tr>
+<tr><td>Прийти в себя — себе или союзнику</td><td>1к4 МЗ</td><td>2к4 МЗ</td></tr>
+<tr><td>Снять стресс</td><td>1к6</td><td>2к6</td></tr>
+<tr><td>Починить броню</td><td>1 ячейка</td><td>все ячейки</td></tr>
+<tr><td>Подготовиться</td><td>+1 вдохновение</td><td>+2 вдохновения</td></tr>
+</tbody>
+</table>
+<p class="note">Длительность назначает Мастер. Восстановление не выше максимума. Залечить раны — перевязка, а не операция. Ритуал призвания входит в отдых и второго к6 не даёт. Прерванный отдых не считается. Завершённый отдых закрывает сцену.</p>
+</section>
+
+<section class="block">
+<h3>Смерть и ноль здоровья</h3>
+<p><strong>0 ФЗ.</strong> Персонаж без сознания: не действует, не перемещается, не цель атак. Выбирается <strong>один предсмертный ход</strong>:</p>
+<ul>
+<li><strong>Пламя славы.</strong> Последнее действие удаётся так, как решит Мастер, затем смерть.</li>
+<li><strong>Избежать смерти.</strong> Очнулся, когда союзник восстановил хотя бы 1 ФЗ или после длинного отдыха. Сразу получает <strong>шрам</strong>: −1 к связанному навыку навсегда.</li>
+<li><strong>Рискнуть всем.</strong> к20 + Воля против 12: успех — встаёт с 1 ФЗ, провал — смерть.</li>
+</ul>
+<p><strong>0 МЗ.</strong> Недееспособен, но не умирает. Снимается при МЗ 1 и выше или после завершённого отдыха.</p>
+</section>
+
+<section class="block">
+<h3>Сцена</h3>
+<p>Непрерывный отрезок игры в одном месте и времени: разговор, переговоры, погоня, спуск в подвал. Кончается, когда разрешилась ставка или группа покинула место. Эффекты «раз за сцену» и «до конца сцены» сбрасываются в её конце.</p>
+</section>
+
+</div>
+</div>
+<footer class="memo-foot">
+<span><b>Бой:</b> действия, повторения, атака, защита и перемещение — в отдельной памятке «Твой ход в бою».</span>
+<span>Катарсис · правила · сторона 1 из 2</span>
+</footer>
+</section>
+
+<section aria-label="Сторона 2: снаряжение, ремесло, лист, границы" class="memo-sheet">
+<header class="memo-head">
+<div class="brandline">КАТАРСИС<small>НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</small></div>
+<div class="sidetag">СТОРОНА 2 · СНАРЯЖЕНИЕ · РЕМЕСЛО · ЛИСТ</div>
+</header>
+<div class="memo-cols">
+<div class="memo-col">
+
+<section class="block">
+<h3>Снаряжение и кошель</h3>
+<p class="keyline"><strong>Кошель:</strong> один бросок 6к10 — от 6 до 60 монет.</p>
+<p><strong>Купец</strong> платит половину цены, <strong>Выродок</strong> — двойную, остальные призвания обычную. Отмена покупки возвращает уплаченную сумму.</p>
+<p>Носится одна защита корпуса, один шлем и один щит; бонусы одного слота не складываются.</p>
+<p>Предмет в руках и предмет на поясе — разные положения. Смена вещи с пояса требует действия. Одежда по погоде и одна личная вещь без цены выдаются бесплатно.</p>
+<p class="note">Одна покупка зелья — одна доза. Эффекты одинакового названия не складываются, длительность обновляется. Готовое зелье не делает рецепт известным.</p>
+</section>
+
+<section class="block">
+<h3>Ремесло <span>ОДИН ШАБЛОН</span></h3>
+<ol>
+<li>Запишите <strong>рецепт</strong>: материалы, инструменты, время, выход, эффект.</li>
+<li>Займите <strong>3–10 ячеек</strong>. В каждой базовый порог 1–6; критические отметьте буквой <strong>К</strong> до бросков.</li>
+<li>Итоговый порог = <strong>max(1, базовый − модификатор навыка)</strong>.</li>
+<li>Положите в каждую ячейку <strong>один к6</strong>. Можно бросать по очереди: это одна попытка.</li>
+<li>Все прошли — полный результат. Провал — оговорённый исход ремесла. Сумма кубиков не используется.</li>
+</ol>
+<p class="note">Порог выше 6 — работа пока невозможна. Минимум 1+ гарантирует успех ячейки. Кубики не переставляются, бесплатных перебросов нет. Оснастка снижает на 1 порог одной некритической ячейки и не складывается.</p>
+<table>
+<thead><tr><th>Ремесло</th><th>Навык</th></tr></thead>
+<tbody>
+<tr><td>Алхимия</td><td>Медицина</td></tr>
+<tr><td>Кузня</td><td>Мышление</td></tr>
+<tr><td>Готовка</td><td>Выживание</td></tr>
+<tr><td>Операции</td><td>Медицина</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="block">
+<h3>Примеры рецептов</h3>
+<table>
+<thead><tr><th>Работа</th><th>Ячейки</th><th>Время</th><th>Итог</th></tr></thead>
+<tbody>
+<tr><td>Восстанавливающий отвар</td><td>1+ · 4+ · 3+</td><td>30 мин</td><td>1к4 ФЗ</td></tr>
+<tr><td>Противоядие от слабого яда</td><td>2+ · 5+ · 3+</td><td>40 мин</td><td>одна доза</td></tr>
+<tr><td>Светящаяся взвесь</td><td>1+ · 3+ · 3+</td><td>20 мин</td><td>свет 6 м на час</td></tr>
+<tr><td>Кузня · изделие</td><td>3+К · 2+ · 3+К · 2+</td><td>—</td><td>готовое изделие</td></tr>
+<tr><td>Операция</td><td>2+ · 4+К · 3+К · 2+</td><td>—</td><td>1к4 ФЗ</td></tr>
+</tbody>
+</table>
+<p class="note">Кузня: провал обычного этапа — одна платная доработка половиной времени; критический провал — изделия нет, возвращается половина сырья. Операция: все этапы — цель достигнута и 1к4 ФЗ; критические пройдены и успешна хотя бы половина обычных — цель достигнута без лечения, время +50%; меньше — процедура остановлена без повреждений. Готовка: К означает безопасность пищи.</p>
+</section>
+
+<section class="block">
+<h3>Языки</h3>
+<p>Общий · Рейгшальский · Юглатан · Церковный · Вальденский · Ронгелстский · Меридарский · Сольвернский.</p>
+<p class="note">Выбирается несколько языков; их число не ограничивается автоматически и не выдаётся как новый бонус.</p>
+</section>
+
+</div>
+<div class="memo-col">
+
+<section class="block">
+<h3>Лист, сохранение и печать</h3>
+<ul>
+<li>До <strong>10 персонажей</strong> в этом браузере; переключение, копия, удаление.</li>
+<li>Экспорт и импорт <strong>JSON</strong> — перенос на другое устройство. Облака нет.</li>
+<li>Отмена ↶ и повтор ↷ — последние 20 изменений текущего листа.</li>
+<li>Карточки умений печатаются сеткой <strong>3 × 3</strong> на A4; ритуал призвания — полосой над сеткой.</li>
+<li>Печатные листы рассчитаны на A4; магазин и кнопки в печать не попадают.</li>
+</ul>
+<p class="note">Листы хранятся локально. Очистка данных сайта удалит сохранения — делайте резервную копию JSON.</p>
+</section>
+
+<section class="block">
+<h3>Быстрая сверка</h3>
+<table>
+<tbody>
+<tr><td><strong>20 на к20?</strong></td><td>Критический успех и +1 вдохновение. В атаке — полный урон и максимальная кость.</td></tr>
+<tr><td><strong>1 на к20?</strong></td><td>Критический провал: провал или промах и осложнение от Мастера.</td></tr>
+<tr><td><strong>Сколько лечит отдых?</strong></td><td>1к6 стресса автоматически и два хода: до 1к4 ФЗ, 1к4 МЗ, 1к6 стресса, ячейка брони или вдохновение.</td></tr>
+<tr><td><strong>Можно ли прибавить характеристику дважды?</strong></td><td>Нет. В навыке она уже учтена.</td></tr>
+<tr><td><strong>Что при 0 ФЗ?</strong></td><td>Предсмертный ход: Пламя славы, Избежать смерти или Рискнуть всем.</td></tr>
+<tr><td><strong>Что при 0 МЗ?</strong></td><td>Недееспособность, не смерть. Снимается лечением МЗ или отдыхом.</td></tr>
+<tr><td><strong>Когда кончается сцена?</strong></td><td>Когда разрешилась ставка или группа ушла; отдых закрывает сцену.</td></tr>
+<tr><td><strong>Изученный навык и умение — одно?</strong></td><td>Нет. Навык даёт значение, умение — отдельный эффект.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="block">
+<h3>Что пока не закреплено</h3>
+<p>Эти пункты остаются договорённостью за столом, а не общим правилом:</p>
+<ul>
+<li>назначение сложности проверок в конкретных ситуациях;</li>
+<li>формулы 2-й и 3-й степеней преимущества и помехи, порядок источников;</li>
+<li>классификация однотипных действий;</li>
+<li>порядок одновременных модификаторов;</li>
+<li>инициатива и обновление реакции;</li>
+<li>укрытие, обзор, падение, прыжки и сложная местность;</li>
+<li>перезарядка, боезапас, нагрузка и переноска;</li>
+<li>таблица травм и длительное лечение;</li>
+<li>источники получения стресса и сроки отдельных эффектов.</li>
+</ul>
+<p class="note">Правила другой игры не заполняют пробел автоматически. Спорное записывайте в личные поля и согласуйте до игры.</p>
+</section>
+
+<section class="block">
+<h3>Принципы</h3>
+<ul>
+<li><strong>Сначала fiction.</strong> Сначала описывается действие, потом назначается проверка.</li>
+<li><strong>Одна процедура.</strong> к20 + навык; отклонения только по описанию способности.</li>
+<li><strong>Ничего не выдумывать.</strong> Отсутствующее правило не заменяется чужим.</li>
+<li><strong>Стол главнее.</strong> Договорённость группы действует, пока автор не включит её в общие правила.</li>
+</ul>
+</section>
+
+</div>
+</div>
+<footer class="memo-foot">
+<span><b>Полные правила:</b> раздел «Правила системы» на сайте, 18 глав. Печатные PDF и памятка боя не заменяются этой страницей.</span>
+<span>Катарсис · правила · сторона 2 из 2</span>
+</footer>
+</section>
+</main>
+</body>
+</html>

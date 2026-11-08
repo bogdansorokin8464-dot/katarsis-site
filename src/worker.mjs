@@ -1,8 +1,9 @@
-const VERSION={id:'2026.11.08.2',date:'8 ноября 2026',title:'Крит, ходы отдыха и предсмертный ход'};
+const VERSION={id:'2026.11.08.3',date:'8 ноября 2026',title:'Памятка по правилам на двух сторонах A4'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
  ['/gm/tools','/build/materials/core.html'],
+ ['/memo','/memo.html'],['/memo/','/memo.html'],
  ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/companion.js','/companion.js'],['/companion.css','/companion.css'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);
 function headers(response,{asset=false}={}){
