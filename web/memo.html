@@ -21,6 +21,8 @@ li{margin:0 0 .5mm}
 .memo-toolbar p{margin:0;max-width:60ch;line-height:1.5}
 .memo-toolbar button{font:600 13px/1 'Libre Franklin',sans-serif;padding:11px 16px;border:1px solid var(--plum);border-radius:6px;background:var(--plum);color:#fff;cursor:pointer}
 .memo-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+body.embedded .memo-toolbar{display:none}
+body.embedded .memo-sheet{margin:6mm auto}
 .memo-actions a{font:600 12px/1 'Libre Franklin',sans-serif;color:#4b2a59;text-decoration:none;border-bottom:1px solid #c5a15e;padding-bottom:2px}
 .memo-actions a:hover{color:#2d1838}
 .memo-toolbar button:hover{background:#2d1838}
@@ -63,6 +65,11 @@ tr:last-child td{border-bottom:0}
 <p><b>Памятка по правилам.</b> Две стороны A4. Печать: масштаб 100%, поля «нет», фон включён. Бой, действия и защита — в отдельной памятке «Твой ход в бою».</p>
 <div class="memo-actions"><a href="/play/#rules">← К правилам на сайте</a><a href="/play/#combat">Памятка боя</a><button onclick="window.print()" type="button">Печать памятки</button></div>
 </div>
+<script>if(window.self!==window.top)document.body.classList.add('embedded');
+if(new URLSearchParams(location.search).has('print')){
+ const go=()=>setTimeout(()=>window.print(),150);
+ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(go).catch(go);else go();
+}</script>
 <main>
 <section aria-label="Сторона 1: персонаж, проверки, ресурсы" class="memo-sheet">
 <header class="memo-head">
