@@ -24,7 +24,7 @@ for(const [ac,outcome] of [[total+2,'промах'],[total,'половина у�
  await page.fill('#check-ac',String(ac));assert.ok((await page.locator('#check-result').innerText()).includes(outcome));
 }
 for(const edge of ['plus2','plus3','minus2','minus3']){await page.selectOption('#check-edge',edge);assert.equal(await page.locator('#check-roll').isDisabled(),true);assert.match(await page.locator('#check-formula').innerText(),/не уточнена/);}
-await page.selectOption('#check-edge','plain');await page.selectOption('#check-modifier','save:Ловкость');await page.click('#check-roll');assert.match(await page.locator('#check-result').innerText(),/КД не применяется/);
+await page.selectOption('#check-edge','plain');await page.selectOption('#check-modifier','save:Ловкость');await page.click('#check-roll');assert.match(await page.locator('#check-result').innerText(),/Уклонение не применяется/);
 await page.evaluate(()=>KATAR_PORTAL.showView('sheet'));await page.locator('.soul-rules summary').click();
 await page.fill('#stress-total','12');await page.locator('#stress-total').dispatchEvent('change');
 await page.click('#stress-fail');assert.equal(await page.locator('.quick-values .tile:nth-child(2) .uline').first().innerText(),'1');
