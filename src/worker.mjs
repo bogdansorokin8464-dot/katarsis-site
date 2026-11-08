@@ -1,4 +1,4 @@
-const VERSION={id:'2026.11.08.1',date:'8 ноября 2026',title:'Уклонение и доспех вместо класса брони'};
+const VERSION={id:'2026.11.08.2',date:'8 ноября 2026',title:'Крит, ходы отдыха и предсмертный ход'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
