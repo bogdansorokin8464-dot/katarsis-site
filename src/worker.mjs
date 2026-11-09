@@ -1,4 +1,4 @@
-const VERSION={id:'2026.11.08.6',date:'8 ноября 2026',title:'Второй заход правил: сложность, степени, травмы'};
+const VERSION={id:'2026.11.08.7',date:'8 ноября 2026',title:'Травмы и степени прямо в листе персонажа'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
