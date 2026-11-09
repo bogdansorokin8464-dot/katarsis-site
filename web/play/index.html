@@ -4637,31 +4637,46 @@ $('portal-ability-prev').onclick=()=>{abilityPage--;renderLibrary();};$('portal-
 // One local snapshot includes editable sheet fields and the private state of all modules.
 function editableFields(){return [...document.querySelectorAll('.sheet [contenteditable]')];}
 function stateCheckboxes(){return [...document.querySelectorAll('.sheet input[type=checkbox]')].filter(n=>!n.closest('.stats,.skill-item'));}
-function snapshot(){const modules={};Object.entries(hooks).forEach(([key,hook])=>modules[key]=hook.get());return {format:'katarsis-character',version:1,savedAt:new Date().toISOString(),omen:omenSelect.value,vocation:vocationSelect.value,fields:editableFields().map(f=>f.textContent),modules,checks:stateCheckboxes().map(n=>n.checked),pips:[...document.querySelectorAll('.sheet .pip')].map(p=>p.classList.contains('on')),photo:document.querySelector('.photo img')?.getAttribute('src')||'',ui:{view,step}};}
+// Каждый снимок должен быть отдельной копией: часть хуков отдаёт живые массивы,
+// иначе шаблон пустого персонажа и история отмены меняются вместе с открытым листом.
+const detach=v=>{if(typeof structuredClone==='function')try{return structuredClone(v);}catch(e){}return JSON.parse(JSON.stringify(v));};
+function snapshot(){const modules={};Object.entries(hooks).forEach(([key,hook])=>modules[key]=detach(hook.get()));return {format:'katarsis-character',version:1,savedAt:new Date().toISOString(),omen:omenSelect.value,vocation:vocationSelect.value,fields:editableFields().map(f=>f.textContent),modules,checks:stateCheckboxes().map(n=>n.checked),pips:[...document.querySelectorAll('.sheet .pip')].map(p=>p.classList.contains('on')),photo:document.querySelector('.photo img')?.getAttribute('src')||'',ui:{view,step}};}
 function save(silent=false){if(restoring)return;if(window.KATAR_CHARACTERS)return window.KATAR_CHARACTERS.saveSnapshot(snapshot(),silent);try{localStorage.setItem(STORAGE,JSON.stringify(snapshot()));$('portal-save-state').textContent='Сохранено в этом браузере';if(!silent)toast('Персонаж сохранён в этом браузере.');}catch(e){$('portal-save-state').textContent='Экспортируйте в файл';if(!silent)toast('Браузер не разрешил локальное сохранение. Используйте экспорт JSON.');}}
 function scheduleSave(){if(restoring)return;clearTimeout(saveTimer);$('portal-save-state').textContent='Есть изменения…';updateHome();saveTimer=setTimeout(()=>{save(true);updateHome();},1000);}
 function exportCharacter(){const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=(identity[0]?.textContent.trim()||'КАТАРСИС_персонаж').replace(/[<>:"/\\|?*]/g,'_')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),5000);toast('Файл персонажа подготовлен к скачиванию.');}
+// Один раздел листа не должен срывать восстановление остальных: иначе новый персонаж
+// молча остаётся прежним героем вместе с его снаряжением и кошельком.
+function applyModule(key,value){
+ const hook=hooks[key];if(typeof hook?.set!=='function')return;
+ try{hook.set(value===undefined?{}:value);}catch(error){console.warn('Раздел «'+key+'» не восстановлен:',error);}
+}
 async function restore(data,announce=true){
  if(!data||data.format!=='katarsis-character'||data.version!==1||!Array.isArray(data.fields)||!data.modules)throw Error('Это не поддерживаемый файл персонажа Катарсиса.');
  restoring=true;clearTimeout(saveTimer);
  try{
  omenSelect.value=Object.hasOwn(OMEN_DATA,data.omen)?data.omen:'';omenSelect.dispatchEvent(new Event('change',{bubbles:true}));
  vocationSelect.value=Object.hasOwn(VOCATION_DATA,data.vocation)?data.vocation:'';vocationSelect.dispatchEvent(new Event('change',{bubbles:true}));
- ['abilities','stats','shop'].forEach(key=>{if(data.modules[key]&&hooks[key])hooks[key].set(data.modules[key]);});
+ // Раздел, которого нет в файле, получает пустое значение: иначе в листе остаются
+ // данные прежнего героя.
+ ['abilities','stats','shop','training','custom'].forEach(key=>applyModule(key,data.modules[key]));
  editableFields().forEach((field,index)=>{field.textContent=typeof data.fields[index]==='string'?data.fields[index]:'';});
- if(data.modules.training)hooks.training?.set(data.modules.training);
- if(data.modules.defense)hooks.defense?.set(data.modules.defense);else hooks.defense?.set({});
- if(data.modules.custom)hooks.custom?.set(data.modules.custom);
+ applyModule('defense',data.modules.defense);
+ // Ячейки брони раньше не сбрасывались вовсе и переезжали в нового персонажа.
+ applyModule('armor',data.modules.armor);
  [...document.querySelectorAll('.sheet .pip')].forEach((p,i)=>p.classList.toggle('on',!!data.pips?.[i]));
  
  
  
- if(!hooks.fullplay)window.KATAR_BOOT_FULLPLAY=data.modules.fullplay||{};hooks.fullplay?.set(data.modules.fullplay||{});
- if(hooks.rulesV2)hooks.rulesV2.set(data.modules.rulesV2||{});
- hooks.playTools?.set(data.modules.playTools||{});
+ if(!hooks.fullplay)window.KATAR_BOOT_FULLPLAY=data.modules.fullplay||{};
+ applyModule('fullplay',data.modules.fullplay);
+ applyModule('rulesV2',data.modules.rulesV2);
+ applyModule('playTools',data.modules.playTools);
  
  stateCheckboxes().forEach((n,i)=>n.checked=!!data.checks?.[i]);
  const img=document.querySelector('.photo img');if(img){const allowed=typeof data.photo==='string'&&/^data:image\/(?:png|jpeg|webp|gif);base64,/i.test(data.photo);if(allowed){img.src=data.photo;img.closest('.photo').classList.add('has-img');}else{img.removeAttribute('src');img.closest('.photo').classList.remove('has-img');}}
+ // Карточки своих умений и статистика перерисовываются от текста листа, который только что
+ // обновлён: обновляем их ещё раз, не трогая снаряжение и кошелёк.
+ ['custom','stats','abilities'].forEach(key=>applyModule(key,data.modules[key]));
  document.querySelectorAll('.quick-values .tile:nth-child(-n+2) .uline:first-child').forEach(f=>f.dispatchEvent(new Event('input',{bubbles:true})));
  // The current-value span is the first editable span of each health tile.
  [...document.querySelectorAll('.quick-values .tile')].slice(0,2).forEach(t=>t.querySelector('.uline').dispatchEvent(new Event('input',{bubbles:true})));
@@ -4717,6 +4732,23 @@ const photoImage=document.querySelector('.photo img');if(photoImage)new Mutation
 window.addEventListener('beforeunload',()=>save(true));
 window.KATAR_PORTAL={snapshot,restore,showView,showStep,save};
 window.KATAR_EMPTY_CHARACTER=snapshot();
+// Пустой шаблон задаётся кодом, а не текущим состоянием формы: браузер восстанавливает
+// значения select, input и checkbox при перезагрузке, и иначе знамение, призвание,
+// состояния, одежда и личная вещь прежнего героя переезжают в нового.
+((blank)=>{
+ const modules=blank.modules||{};
+ blank.omen='';blank.vocation='';
+ blank.checks=blank.checks.map(()=>false);blank.pips=blank.pips.map(()=>false);
+ modules.abilities={omen:[],vocation:[]};
+ modules.training={chosen:''};
+ modules.stats={mode:'',history:[],pending:null,native:'',generated:[]};
+ modules.armor={marked:0};
+ modules.custom=[];
+ modules.rulesV2={stress:0};
+ modules.healthDerived={};
+ modules.defense=Object.fromEntries(Object.entries(modules.defense||{}).map(([key,value])=>[key,typeof value==='boolean'?false:'0']));
+ modules.shop={rolled:false,rolls:[],receipts:[],cart:[],overflow:[],owned:[[],[],[]],clothes:'',personal:''};
+})(window.KATAR_EMPTY_CHARACTER);
 renderLibrary();showStep(0);showView(titles[location.hash.slice(1)]?location.hash.slice(1):'home',false);
 try{const saved=localStorage.getItem(STORAGE);if(saved)restore(JSON.parse(saved),false).then(()=>{if(requestedInitialView)showView(requestedInitialView);}).catch(()=>toast('Локальное сохранение не удалось прочитать. Исходный файл не изменён.'));}catch(e){$('portal-save-state').textContent='Для сохранения используйте JSON';}
 })();
@@ -4833,21 +4865,48 @@ function saveSnapshot(snapshot,silent=false){
  return serial(async()=>{try{await storeSnapshot(snapshot,characterId);$('portal-save-state').textContent='Сохранено в этом браузере';if(!silent)note('Сохранён персонаж: '+name(state.characters.find(c=>c.id===characterId))+'.');return true;}catch(e){$('portal-save-state').textContent='Нужен экспорт JSON';note('Сохранение не удалось. '+e.message+' Экспортируйте текущий лист в JSON.');return false;}});
 }
 async function action(fn){
- if(busy||!ready)return;busy=true;controls();const previous=clone(api.snapshot()),previousId=state.active;
+ if(busy||!ready){note('Дождитесь загрузки персонажей и повторите действие.');return;}busy=true;controls();const previous=clone(api.snapshot()),previousId=state.active;
  try{await serial(async()=>{await storeSnapshot(previous,previousId);await fn(previous,previousId);});}
  catch(e){try{await api.restore(previous,false);const saved=await read();if(saved)state=saved;state.active=previousId;}catch{}note(e.message+' Текущий лист сохранён; при необходимости экспортируйте JSON.');}
  finally{busy=false;render();}
 }
-async function addSnapshot(snapshot,previous){
+// Новый лист обязан совпадать с пустым шаблоном. Если после восстановления в нём остались
+// данные прежнего героя — снаряжение, кошелёк, броня — раздел сбрасывается ещё раз.
+const canon=v=>JSON.stringify(v,(key,item)=>item&&typeof item==='object'&&!Array.isArray(item)?Object.fromEntries(Object.entries(item).sort(([a],[b])=>a.localeCompare(b))):item);
+function blankDrift(template){
+ const actual=api.snapshot(),drift=[];
+ if(actual.fields.join('\n')!==template.fields.join('\n'))drift.push('fields');
+ if(canon(actual.checks)!==canon(template.checks))drift.push('checks');
+ if(canon(actual.pips)!==canon(template.pips))drift.push('pips');
+ for(const key of Object.keys(template.modules||{}))if(canon(actual.modules?.[key])!==canon(template.modules[key]))drift.push(key);
+ return drift;
+}
+// Отбор состояний тот же, что и в снимке: чекбоксы листа без характеристик и навыков.
+const stateChecks=()=>[...document.querySelectorAll('.sheet input[type=checkbox]')].filter(box=>!box.closest('.stats,.skill-item'));
+function settleBlank(template){
+ for(const key of blankDrift(template)){
+  if(key==='fields'){[...document.querySelectorAll('.sheet [contenteditable]')].forEach((field,index)=>{const value=template.fields[index];field.textContent=typeof value==='string'?value:'';});continue;}
+  if(key==='checks'){stateChecks().forEach((box,index)=>box.checked=!!template.checks?.[index]);continue;}
+  if(key==='pips'){[...document.querySelectorAll('.sheet .pip')].forEach((pip,index)=>pip.classList.toggle('on',!!template.pips?.[index]));continue;}
+  try{window.KATAR_HOOKS?.[key]?.set?.(clone(template.modules[key]));}catch(error){console.warn('Раздел «'+key+'» нового листа не очищен:',error);}
+ }
+}
+async function addSnapshot(snapshot,previous,blank=false){
  valid(snapshot);const saved=await read();if(saved.characters.length>=MAX)throw Error('Уже есть 10 персонажей. Удалите ненужный лист, предварительно экспортировав его.');
  const next=clone(snapshot);next.ui={view:'sheet',step:0};
  await api.restore(next,false);
+ let blankWarning='';
+ if(blank){
+  settleBlank(next);
+  const drift=blankDrift(next);if(drift.length){await api.restore(next,false);settleBlank(next);}
+  const rest=blankDrift(next);if(rest.length)blankWarning='разделы «'+rest.join('», «')+'» остались от прежнего героя. Проверьте их и очистите вручную; прежний лист не изменён.';
+ }
  const newId=id();
  state=await mutate(s=>{if(s.characters.length>=MAX)throw Error('Уже есть 10 персонажей.');s.characters.push({id:newId,snapshot:clone(api.snapshot()),updatedAt:new Date().toISOString()});s.active=newId;return s;});
  try{localStorage.setItem(KEY,JSON.stringify(api.snapshot()));}catch{}
- api.showView('sheet');note('Открыт отдельный лист. Остальные персонажи сохранены.');
+ api.showView('sheet');note('Открыт отдельный лист. Остальные персонажи сохранены.'+(blankWarning?' Внимание: '+blankWarning:''));
 }
-function create(){return action(async previous=>addSnapshot(clone(fresh),previous));}
+function create(){return action(async previous=>addSnapshot(clone(fresh),previous,true));}
 function duplicate(){return action(async previous=>{const copy=clone(previous);copy.fields[nameIndex]=(String(copy.fields[nameIndex]||'').trim()||'Персонаж')+' (копия)';await addSnapshot(copy,previous);note('Копия создана в отдельном слоте. Исходный персонаж не изменён.');});}
 async function importSnapshot(snapshot){valid(snapshot);return action(async previous=>addSnapshot(snapshot,previous));}
 $('characters-create').onclick=create;$('characters-copy').onclick=duplicate;
