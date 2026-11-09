@@ -71,10 +71,10 @@ test('creation never fails silently and snapshots never share live arrays', () =
 });
 
 test('the fix ships with a version and a changelog entry', () => {
-  assert.match(read('web/index.html'),/Версия 2026\.11\.08\.5/);
-  assert.match(read('ВЕРСИЯ.txt'),/^2026\.11\.08\.5/);
-  assert.match(worker,/id:'2026\.11\.08\.5'/);
-  assert.match(worker,/title:'Новый персонаж без остатков прежнего листа'/);
+  assert.match(read('web/index.html'),/Версия 2026\.11\.08\.6/);
+  assert.match(read('ВЕРСИЯ.txt'),/^2026\.11\.08\.6/);
+  assert.match(worker,/id:'2026\.11\.08\.6'/);
+  assert.match(worker,/title:'Второй заход правил: сложность, степени, травмы'/);
   assert.match(updates,/id="release-2026-11-08-5"/);
   assert.match(updates,/Новый персонаж без остатков прежнего листа/);
 });
