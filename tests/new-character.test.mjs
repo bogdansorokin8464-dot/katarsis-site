@@ -71,10 +71,10 @@ test('creation never fails silently and snapshots never share live arrays', () =
 });
 
 test('the fix ships with a version and a changelog entry', () => {
-  assert.match(read('web/index.html'),/Версия 2026\.11\.08\.8/);
-  assert.match(read('ВЕРСИЯ.txt'),/^2026\.11\.08\.8/);
-  assert.match(worker,/id:'2026\.11\.08\.8'/);
-  assert.match(worker,/title:'Травмы видны прямо в листе персонажа'/);
+  assert.match(read('web/index.html'),/Версия 2026\.11\.08\.9/);
+  assert.match(read('ВЕРСИЯ.txt'),/^2026\.11\.08\.9/);
+  assert.match(worker,/id:'2026\.11\.08\.9'/);
+  assert.match(worker,/title:'Травмы — только выбор на второй странице листа'/);
   assert.match(updates,/id="release-2026-11-08-5"/);
   assert.match(updates,/Новый персонаж без остатков прежнего листа/);
 });

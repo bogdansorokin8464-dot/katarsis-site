@@ -85,20 +85,22 @@ test('the generated play sheet ships the same module', () => {
   assert.ok(!play.includes('Для 2-й и 3-й степеней формула пока не уточнена'));
 });
 
-test('the injuries list is visible inside the sheet, not only in the hidden tracker', () => {
+test('injuries are only picked on the second page of the sheet', () => {
   assert.match(book,/#fullplay,#fullplay-print\{display:none!important\}/,'the compact rule still hides the tracker');
+  assert.ok(!book.includes("id='sheet-injuries'")&&!book.includes('id="sheet-injuries"'),'the whole-sheet injuries block must be gone');
+  assert.ok(!book.includes('id="si-list"'),'the active-injury list must be gone');
+  assert.ok(!book.includes('id="si-summary"'),'the penalty summary must be gone');
   assert.match(book,/<style id="sheet-injuries-style">/);
-  assert.match(book,/function injuryRoot\(\)\{let node=\$\(.sheet-injuries.\)/);
-  assert.match(book,/node\.innerHTML='<h2>Травмы<\/h2>/);
+  assert.match(book,/node\.id='sheet-injuries-picker'/);
+  assert.match(book,/const page=document\.querySelector\('\.sheet-two'\)\|\|\$\(.portal-sheet-slot.\);page\.append\(node\);/);
   assert.match(book,/id="si-select"/);
-  assert.match(book,/id="si-actions"/);
-  assert.match(book,/id="si-list"/);
-  assert.match(book,/id="si-summary"/);
-  assert.match(book,/if\(cards&&cards\.parentElement===slot\)slot\.insertBefore\(node,cards\);else slot\.append\(node\);/);
-  assert.match(book,/function renderInjuries\(\)/);
-  assert.match(book,/renderInjuries\(\);printState\(\);/);
-  assert.match(book,/@media print\{\n#sheet-injuries\{display:block!important/);
+  assert.match(book,/id="si-toggle"/);
+  assert.match(book,/id="si-print"/);
+  assert.match(book,/function renderInjuryPicker\(\)/);
+  assert.match(book,/renderInjuryPicker\(\);printState\(\);/);
+  assert.match(book,/@media print\{\n\.sheet-injury-picker\{display:block/);
+  assert.match(book,/\.sheet-injury-picker \.sip-title,\.sheet-injury-picker select,\.sheet-injury-picker button\{display:none!important\}/);
   assert.match(play,/<style id="sheet-injuries-style">/);
-  assert.match(play,/function renderInjuries\(\)/);
-  assert.match(play,/id="si-select"/);
+  assert.match(play,/function renderInjuryPicker\(\)/);
+  assert.match(play,/id="si-toggle"/);
 });
