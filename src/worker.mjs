@@ -1,4 +1,4 @@
-const VERSION={id:'2026.11.08.7',date:'8 ноября 2026',title:'Травмы и степени прямо в листе персонажа'};
+const VERSION={id:'2026.11.08.8',date:'8 ноября 2026',title:'Травмы видны прямо в листе персонажа'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],

@@ -84,3 +84,21 @@ test('the generated play sheet ships the same module', () => {
   assert.match(play,/value="plus5"/);
   assert.ok(!play.includes('Для 2-й и 3-й степеней формула пока не уточнена'));
 });
+
+test('the injuries list is visible inside the sheet, not only in the hidden tracker', () => {
+  assert.match(book,/#fullplay,#fullplay-print\{display:none!important\}/,'the compact rule still hides the tracker');
+  assert.match(book,/<style id="sheet-injuries-style">/);
+  assert.match(book,/function injuryRoot\(\)\{let node=\$\(.sheet-injuries.\)/);
+  assert.match(book,/node\.innerHTML='<h2>Травмы<\/h2>/);
+  assert.match(book,/id="si-select"/);
+  assert.match(book,/id="si-actions"/);
+  assert.match(book,/id="si-list"/);
+  assert.match(book,/id="si-summary"/);
+  assert.match(book,/if\(cards&&cards\.parentElement===slot\)slot\.insertBefore\(node,cards\);else slot\.append\(node\);/);
+  assert.match(book,/function renderInjuries\(\)/);
+  assert.match(book,/renderInjuries\(\);printState\(\);/);
+  assert.match(book,/@media print\{\n#sheet-injuries\{display:block!important/);
+  assert.match(play,/<style id="sheet-injuries-style">/);
+  assert.match(play,/function renderInjuries\(\)/);
+  assert.match(play,/id="si-select"/);
+});
