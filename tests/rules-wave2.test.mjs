@@ -143,8 +143,9 @@ test('the memo repeats the same numbers', () => {
   assert.match(memo,/максимум пять степеней/);
   assert.match(memo,/стресс, равный половине урона с округлением вверх/);
   assert.match(memo,/Переносимый вес = 30 × \(Атлетика \+ 1\)/);
-  assert.match(memo,/10, 50 и 150 монет/);
+  assert.match(memo,/10 \/ 50 \/ 150 монет/);
   assert.ok(!memo.includes('формулы 2-й и 3-й степеней'));
+  assert.match(memo,/на сайте, 25 глав/);
 });
 
 test('every page agrees on the release id', () => {
