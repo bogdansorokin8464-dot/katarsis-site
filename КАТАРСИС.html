@@ -1686,7 +1686,35 @@ html[data-motion=off] #portal *,html[data-motion=off] #portal *::before,html[dat
  #portal .portal-ability:hover,#portal #shop-products .product:hover{transform:none!important}
 }
 </style>
-<style id="map-status-1850">.wm-era-status{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:14px;align-items:start;margin:0 0 18px;padding:12px 16px;border:1px solid #dfd3e6;border-left:3px solid #a68649;border-radius:8px;background:#faf7fc;color:#735d82}.wm-era-status strong{font:600 11px/1.5 var(--display);letter-spacing:.08em;color:#765a83}.wm-era-status p{margin:0;font:12px/1.7 var(--body);color:#8d76a0}@media(max-width:650px){.wm-era-status{grid-template-columns:1fr;gap:4px;padding:11px 13px}}</style></head>
+<style id="map-status-1850">.wm-era-status{display:grid;grid-template-columns:max-content minmax(0,1fr);gap:14px;align-items:start;margin:0 0 18px;padding:12px 16px;border:1px solid #dfd3e6;border-left:3px solid #a68649;border-radius:8px;background:#faf7fc;color:#735d82}.wm-era-status strong{font:600 11px/1.5 var(--display);letter-spacing:.08em;color:#765a83}.wm-era-status p{margin:0;font:12px/1.7 var(--body);color:#8d76a0}@media(max-width:650px){.wm-era-status{grid-template-columns:1fr;gap:4px;padding:11px 13px}}</style><style id="sheet-injuries-style">
+@media screen{
+#sheet-injuries{margin:24px auto;width:min(210mm,100%);box-sizing:border-box;border:1px solid #d7cbdc;border-radius:10px;background:#fffefc;color:#4b3557;padding:22px 24px;font:14px/1.55 'Libre Franklin',system-ui,sans-serif;box-shadow:0 12px 40px #39244512}
+#sheet-injuries h2{font:400 24px/1.2 'Eterna Breaks 240410',Georgia,serif;color:#4b2a59;margin:0 0 8px}
+#sheet-injuries .si-lead,#sheet-injuries .si-note{font-size:12.5px;line-height:1.55;color:#80668c;margin:0 0 12px}
+#sheet-injuries .si-controls{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;margin:0 0 14px}
+#sheet-injuries .si-pick{display:flex;flex-direction:column;gap:6px;font:600 12px/1.3 'Libre Franklin',sans-serif;color:#80668c;flex:1 1 320px;min-width:0}
+#sheet-injuries select{font:14px/24px 'Libre Franklin',sans-serif;padding:8px 10px;border:1px solid #cfc0d6;border-radius:6px;background:#fff;color:#4b3557;max-width:100%}
+#sheet-injuries .si-actions{display:flex;flex-wrap:wrap;gap:8px}
+#sheet-injuries button{font:600 13px/1 'Libre Franklin',sans-serif;padding:11px 14px;border:1px solid #4b2a59;border-radius:6px;background:#f4eff7;color:#4b2a59;cursor:pointer}
+#sheet-injuries button:hover{background:#4b2a59;color:#fff1d5}
+#sheet-injuries .si-summary{margin:0 0 12px;padding:10px 12px;border-left:3px solid #c5a15e;background:#faf6ee;font-size:13px;line-height:1.5;color:#6e5679}
+#sheet-injuries .si-list{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:10px}
+#sheet-injuries .si-list li{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:baseline;justify-content:space-between;border:1px solid #e8deec;border-radius:8px;padding:10px 12px;background:#fbf9fc}
+#sheet-injuries .si-list li.si-empty{border-style:dashed;color:#8c7399}
+#sheet-injuries .si-list span.si-meta{flex:1 1 260px;font-size:12px;color:#8c7399}
+}
+@media print{
+#sheet-injuries{display:block!important;border:0;padding:0;margin:6mm 0 0;box-shadow:none;background:#fff}
+#sheet-injuries h2{font-size:13pt;margin:0 0 2mm}
+#sheet-injuries .si-controls,#sheet-injuries .si-note{display:none!important}
+#sheet-injuries .si-lead{font-size:7.5pt;margin:0 0 2mm}
+#sheet-injuries .si-summary{font-size:7.5pt;padding:1.5mm 2mm;margin:0 0 2mm;background:#faf6ee}
+#sheet-injuries .si-list li{display:block;border:0;border-bottom:.2mm solid #ddd3e2;border-radius:0;padding:1.4mm 0;background:#fff;break-inside:avoid}
+#sheet-injuries .si-list span.si-meta{display:block;font-size:7pt;color:#6c5a76}
+#sheet-injuries button{display:none!important}
+}
+</style>
+</head>
 <body><a class="interface-skip" href="#portal-content">К содержимому</a><div id="portal">
 <aside class="portal-sidebar" id="portal-sidebar">
 <a class="portal-brand" href="#home"><img alt="Эмблема Катарсиса" id="portal-brand-image"/><div><strong>КАТАРСИС</strong><small>СПУТНИК ИГРОКА</small></div></a>
@@ -5635,6 +5663,33 @@ function injuryPanel(body){
  carry.append(el('p',carryHint(),'fp-muted'),button('Взять лимит по формуле 30 × (Атлетика + 1)',()=>{const limit=carryLimit();if(limit===null){notify('Сначала заполните Атлетику в листе.');return;}commit(()=>state.carry.base=limit,'Лимит веса взят по формуле');}));
  grid.append(active,summary,carry);body.append(grid);
 }
+// Раздел «Травмы» живёт прямо в листе: модуль полного учёта на экране скрыт
+// (compact card edition), поэтому те же данные показываются отдельной видимой секцией.
+function injuryRoot(){let node=$('sheet-injuries');if(node)return node;
+ node=el('section');node.id='sheet-injuries';node.setAttribute('aria-label','Травмы персонажа');
+ node.innerHTML='<h2>Травмы</h2><p class="si-lead">Травма не снимается отдыхом: её штраф действует, пока она записана. Операция — проверка Медицины по полосе травмы, срок лечения и цена у лекаря указаны в записи.</p><div class="si-controls"><label class="si-pick">Травма из таблицы 60 примеров<select id="si-select"></select></label><div class="si-actions" id="si-actions"></div></div><p class="si-summary" id="si-summary"></p><ul class="si-list" id="si-list"></ul><p class="si-note">Провал операции добавляет один длинный отдых и ухудшает травму на одну полосу. Травмы входят в сохранение, отмену и экспорт JSON.</p>';
+ const slot=$('portal-sheet-slot'),cards=$('chosen-skills');
+ if(cards&&cards.parentElement===slot)slot.insertBefore(node,cards);else slot.append(node);
+ return node;
+}
+function renderInjuries(){const root=injuryRoot(),select=$('si-select'),actions=$('si-actions'),list=$('si-list'),summary=$('si-summary');
+ if(!select||!actions||!list||!summary)return;
+ const chosen=injuries(),known=injuryNumbers();
+ select.replaceChildren();
+ for(const band of ['light','mid','heavy']){const group=el('optgroup');group.label=INJURY_BANDS[band].label+' · операция '+INJURY_BANDS[band].op;
+  for(const item of INJURIES.filter(i=>i.band===band))group.append(new Option(item.n+'. '+item.name+' — '+item.effect,item.n));
+  select.append(group);}
+ actions.replaceChildren(
+  button('Добавить травму',()=>{const n=Number(select.value);if(!INJURY_BY_N.has(n)){notify('Выберите травму из списка.');return;}if(known.includes(n)){notify('Эта травма уже записана.');return;}commit(()=>{state.injuries.push(n);log('Травма: '+INJURY_BY_N.get(n).name);});}),
+  button('Случайная травма к6−1 / к10',()=>{const n=(rng(6)-1)*10+rng(10);if(!INJURY_BY_N.has(n))return;commit(()=>{if(!state.injuries.includes(n))state.injuries.push(n);log('Случайная травма '+n+': '+INJURY_BY_N.get(n).name);});}));
+ list.replaceChildren();
+ if(!chosen.length)list.append(el('li','Травм нет.','si-empty'));
+ for(const item of chosen){const band=INJURY_BANDS[item.band],li=el('li');
+  li.append(el('strong',item.n+'. '+item.name+' · '+item.effect),el('span','Операция: Медицина '+band.op+' · '+band.time+' · у лекаря '+band.cost+' монет','si-meta'),
+   button('Вылечить',()=>commit(()=>{state.injuries=state.injuries.filter(n=>n!==item.n);log('Излечена травма: '+item.name);},'Травма излечена')));
+  list.append(li);}
+ summary.textContent=injurySummary();
+}
 function resources(body){const grid=el('div',undefined,'fp-grid'),h=card('Максимумы и временное здоровье');h.append(el('p','ФЗ: 10 + Стойкость + '+sign(healthBonus('hp'))+' · МЗ: 10 + Воля + '+sign(healthBonus('mp')),'fp-muted'));for(const[key,label,dice]of[['strong','Крепыш',2],['wild','Звериная стойкость',1]])if(has(label)){h.append(el('p',label+': '+(state.rolls[key]===undefined?'прибавка ещё не определена':sign(state.rolls[key])+' к максимуму ФЗ')));h.append(button(state.rolls[key]===undefined?`Определить ${dice}к6 один раз`:'Исправить сохранённую прибавку',()=>{if(state.rolls[key]!==undefined){const answer=prompt('Исправление результата. Введите сумму '+dice+'к6:',state.rolls[key]);if(answer===null)return;const n=Number(answer);if(!Number.isInteger(n)||n<dice||n>dice*6){notify('Недопустимая сумма костей.');return;}commit(()=>state.rolls[key]=n,'Исправлена прибавка '+label);return;}commit(()=>{state.rolls[key]=Array.from({length:dice},()=>rng(6)).reduce((a,b)=>a+b,0);log(label+': разовая прибавка '+sign(state.rolls[key]));});}));}
 h.append(input('Прочая постоянная/согласованная поправка максимума ФЗ',state.hpAdjust,v=>state.hpAdjust=clamp(v,-10000,10000),'number'),input('Поправка максимума МЗ',state.mpAdjust,v=>state.mpAdjust=clamp(v,-10000,10000),'number'),input('Временные ФЗ (не складываются автоматически)',state.temp.value,v=>state.temp.value=clamp(integer(v),0,10000),'number'),input('Источник временных ФЗ',state.temp.source,v=>state.temp.source=v),input('Когда заканчиваются временные ФЗ',state.temp.expiry,v=>state.temp.expiry=v));h.append(button('Убрать временные ФЗ по окончании эффекта',()=>commit(()=>state.temp={value:0,source:'',expiry:''})));
 const damage=el('input');damage.type='number';damage.min='0';damage.value='1';damage.setAttribute('aria-label','Окончательный получаемый урон после защиты');damage.id='fp-damage';h.append(el('p','Введите окончательный урон после защиты и сопротивлений. Сначала расходуются временные ФЗ. При 0 ФЗ применяйте правила последствий.','fp-muted'),damage,button('Применить указанный урон',()=>{const n=Number(damage.value);if(!Number.isSafeInteger(n)||n<0){notify('Введите неотрицательное целое значение.');return;}commit(()=>{if(!health[0][0].textContent.trim())throw Error('Сначала заполните текущие ФЗ.');const absorbed=Math.min(n,state.temp.value);state.temp.value-=absorbed;putCurrent(0,hp()-(n-absorbed));log('Урон '+n+': временные ФЗ −'+absorbed+', обычные −'+(n-absorbed));});}));
@@ -5712,7 +5767,7 @@ let decoratingCards=false;function compactCards(){if(decoratingCards)return;deco
  const bonus=$('chosen-skills').querySelector('.omen-bonus');if(bonus&&['Удача','Харизма'].includes(omen())&&!bonus.querySelector('.fp-omen-tools')){const tools=el('span',undefined,'fp-omen-tools');tools.append(button('Ресурсы знамения',()=>{const what=omen();if(what==='Удача'){if(!state.grants.luck)commit(()=>{state.luck+=2;state.grants.luck=true;});else{const v=prompt('Осталось жетонов удачи',state.luck);if(v!==null)commit(()=>state.luck=clamp(integer(v),0,10000));}}else if(what==='Харизма'){if(!state.grants.charisma)commit(()=>{putInspiration(Math.min(8,inspiration()+1));state.grants.charisma=true;});}else notify('Постоянный бонус знамения указан над карточками.');}));bonus.append(tools);}if(bonus){let n=bonus.querySelector('.fp-omen-record');if(!n){n=el('span',undefined,'fp-omen-record');bonus.append(n);}n.textContent=omen()==='Удача'?' · Осталось жетонов: '+state.luck:omen()==='Харизма'&&state.grants.charisma?' · Стартовое вдохновение получено':'';}
 }finally{decoratingCards=false;}}
 function printState(){print.replaceChildren();compactCards();const list=injuries();if(list.length){const section=el('section',undefined,'fp-print-chapter');section.append(el('h2','Травмы'));const table=el('table'),tbody=el('tbody');for(const item of list){const band=INJURY_BANDS[item.band],tr=el('tr');tr.append(el('td',item.n+'. '+item.name),el('td',item.effect+'\nОперация: Медицина '+band.op+' · '+band.time+' · '+band.cost+' монет'));tbody.append(tr);}table.append(tbody);section.append(table);print.append(section);}}
-function render(){document.querySelectorAll('#chosen-skills .ability-card').forEach(c=>{c.__fpOpen=!!c.querySelector('.fp-card-tools')?.open;c.__fpState=null;});const d=OMEN_DATA[omen()];$('fp-omen').textContent=d?omen()+' · '+d.bonus:'Выберите знамение: здесь будет его постоянная памятка.';root.querySelectorAll('[data-fp-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.fpTab===currentTab)));const body=$('fp-body');body.replaceChildren();({resources,uses,effects,injuries:injuryPanel,role:rolePanel,acquired,proposals:proposalPanel,journal:b=>{b.append(el('p','Последние 40 записей учёта. Наличие записи не заменяет решение Мастера.','fp-muted'));for(const line of state.journal)b.append(el('p',line));}}[currentTab])(body);context.value=state.context;devil.hidden=!(approved('devil')&&has('Дьявольская удача'));if(devil.hidden)devilInput.checked=false;printState();}
+function render(){document.querySelectorAll('#chosen-skills .ability-card').forEach(c=>{c.__fpOpen=!!c.querySelector('.fp-card-tools')?.open;c.__fpState=null;});const d=OMEN_DATA[omen()];$('fp-omen').textContent=d?omen()+' · '+d.bonus:'Выберите знамение: здесь будет его постоянная памятка.';root.querySelectorAll('[data-fp-tab]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.fpTab===currentTab)));const body=$('fp-body');body.replaceChildren();({resources,uses,effects,injuries:injuryPanel,role:rolePanel,acquired,proposals:proposalPanel,journal:b=>{b.append(el('p','Последние 40 записей учёта. Наличие записи не заменяет решение Мастера.','fp-muted'));for(const line of state.journal)b.append(el('p',line));}}[currentTab])(body);context.value=state.context;devil.hidden=!(approved('devil')&&has('Дьявольская удача'));if(devil.hidden)devilInput.checked=false;renderInjuries();printState();}
 function queue(){if(renderQueued)return;renderQueued=true;requestAnimationFrame(()=>{renderQueued=false;refreshDerived();render();});}
 $('check-roll').addEventListener('click',()=>{if($('check-roll').disabled||!ready())return;const name=$('check-modifier').value.split(':')[1];const expiring=state.effects.filter(e=>e.target==='Я'&&e.active&&(!e.conditional||e.met)&&(!e.skill||e.skill===name)&&(e.expiry==='next-check'||(state.context==='attack'&&e.expiry==='next-attack'))).map(e=>e.id);if(expiring.length)commit(()=>{state.effects=state.effects.filter(e=>!expiring.includes(e.id));log('Израсходованы эффекты следующей проверки / атаки.');});});
 hooks.fullplay={get:()=>clone(state),set:v=>{restoring=true;state=clean(v);devilInput.checked=false;restoring=false;queue();},healthBonus,effectBonus,checkBonus,replacement,stressThreshold,stressCap,injuryDegrees,injuryFlat,injurySpeed,injuryMax,carryLimit,injurySummary,criticalLabel:d=>has('Длань Туити')&&d===19?' · Длань Туити: критический успех на натуральном 19 (урон разрешите по правилам крита)':''};
