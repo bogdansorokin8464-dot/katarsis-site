@@ -1,0 +1,131 @@
+@charset "utf-8";
+:root{color-scheme:light;--ink:#302836;--plum:#4b2a59;--deep:#302039;--gold:#b6924f;--muted:#776d7b;--line:#ded6df;--paper:#fffdf9;--wash:#f5f1ed;--soft:#f6f1e7;font-family:"Libre Franklin",Arial,sans-serif;color:var(--ink);background:#e9e5e9}
+*{box-sizing:border-box}
+html,body{margin:0;min-width:320px}
+body{background:#e9e5e9;color:var(--ink);font:10pt/1.42 "Libre Franklin",Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:var(--plum);text-underline-offset:2px}
+button{font:600 12px/1.2 "Libre Franklin",Arial,sans-serif}
+button:focus-visible,a:focus-visible{outline:3px solid #b6924f;outline-offset:3px}
+.screen-toolbar{position:sticky;z-index:10;top:0;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px max(16px,calc((100vw - 1180px)/2));border-bottom:1px solid #d8d0da;background:#fffdf9f2;backdrop-filter:blur(12px);box-shadow:0 3px 14px #3020390c}
+.screen-toolbar-title{display:flex;align-items:center;gap:9px;color:var(--plum);font-size:12px;font-weight:700}
+.screen-toolbar-title small{display:block;margin-top:2px;color:var(--muted);font-size:9px;font-weight:500;letter-spacing:.04em}
+.screen-toolbar-actions{display:flex;align-items:center;gap:8px}
+.screen-toolbar a,.screen-toolbar button{display:inline-flex;align-items:center;justify-content:center;min-height:36px;padding:7px 12px;border:1px solid #d8cedb;border-radius:6px;background:#fff;color:var(--plum);text-decoration:none;cursor:pointer}
+.screen-toolbar button{border-color:var(--plum);background:var(--plum);color:white}
+.screen-toolbar a:hover{background:#f4eff5}.screen-toolbar button:hover{background:#35203e}
+.print-note{max-width:1180px;margin:10px auto 0;padding:0 14px;color:#675c6b;font-size:11px;line-height:1.5}
+.screen-pages{display:grid;justify-items:center;gap:12px;padding:14px 12px 32px}
+.gm-page{position:relative;display:flex;flex-direction:column;overflow:hidden;padding:6mm;background:var(--paper);box-shadow:0 10px 34px #30203920;isolation:isolate}
+.gm-page--a5{width:min(148mm,calc(100vw - 24px));min-height:210mm;aspect-ratio:148/210}
+.gm-page--a4{width:min(297mm,calc(100vw - 24px));min-height:210mm;aspect-ratio:297/210;padding:7mm}
+.sheet-top{display:flex;align-items:center;justify-content:space-between;gap:4mm;padding-bottom:1.6mm;border-bottom:.35mm solid var(--plum)}
+.sheet-brand{color:var(--plum);font:500 11pt/1 "Eterna Breaks 240410",Georgia,serif;letter-spacing:.07em}
+.sheet-brand small{display:block;margin-top:1mm;color:var(--muted);font:600 5.4pt/1.2 "Libre Franklin",Arial,sans-serif;letter-spacing:.16em}
+.sheet-number{color:var(--muted);font-size:6.2pt;font-weight:700;letter-spacing:.14em;text-align:right}
+.sheet-title-row{display:flex;align-items:flex-end;justify-content:space-between;gap:3mm;padding:2.2mm 0 1.5mm}
+.sheet-eyebrow{margin:0 0 .5mm;color:var(--gold);font-size:5.8pt;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.sheet-title{margin:0;color:var(--plum);font:400 17pt/1.12 "Eterna Breaks 240410",Georgia,serif}
+.sheet-deck{max-width:47%;margin:0 0 .4mm;color:var(--muted);font-size:6.3pt;line-height:1.35;text-align:right}
+.sheet-grid{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:2.2mm;flex:1;min-height:0;padding-top:1mm}
+.sheet-stack{display:flex;flex-direction:column;gap:2mm;min-width:0}
+.panel{min-width:0;padding:2mm;border:.25mm solid var(--line);border-radius:1.2mm;background:#fff;break-inside:avoid;page-break-inside:avoid}
+.panel--tint{border-color:#e8deca;background:var(--soft)}
+.panel--plum{border-color:var(--plum);background:var(--plum);color:#fffaf2}
+.panel-head{display:flex;align-items:baseline;justify-content:space-between;gap:2mm;margin:0 0 1mm;padding-bottom:.65mm;border-bottom:.25mm solid #e3dce5}
+.panel--plum .panel-head{border-color:#ffffff44}
+.panel h2{margin:0;color:var(--plum);font:500 8.4pt/1.18 "Eterna Breaks 240410",Georgia,serif}
+.panel--plum h2,.panel--plum strong{color:#fff2d5}
+.panel-tag{flex:0 0 auto;color:var(--gold);font-size:5.2pt;font-weight:700;letter-spacing:.09em;text-transform:uppercase}
+.panel p{margin:.6mm 0 0;font-size:6.9pt;line-height:1.34}
+.panel ul,.panel ol{margin:.5mm 0 0;padding-left:3.2mm;font-size:6.75pt;line-height:1.32}
+.panel li{margin:0 0 .45mm;padding-left:.2mm}
+.panel li:last-child{margin-bottom:0}
+.panel strong{color:var(--plum);font-weight:700}
+.panel--plum p,.panel--plum li{color:#fffaf2}
+.panel--plum strong{color:#ffe6b0}
+.formula{margin:1mm 0 0;padding:1.1mm 1.4mm;border-left:.55mm solid var(--gold);background:#f7f3ed;color:var(--deep);font-size:7pt;font-weight:700;line-height:1.25}
+.panel--plum .formula{border-left-color:#e0c183;background:#ffffff12;color:#fff6e4}
+.rule-table{width:100%;margin:1mm 0 0;border-collapse:collapse;font-size:6.05pt;line-height:1.22}
+.rule-table th,.rule-table td{padding:.65mm .7mm;border-bottom:.2mm solid var(--line);text-align:left;vertical-align:top}
+.rule-table th{color:var(--plum);font-weight:700}
+.rule-table tr:last-child td{border-bottom:0}
+.rule-table strong{white-space:nowrap}
+.panel--plum .rule-table th,.panel--plum .rule-table td{border-color:#ffffff38;color:#fffaf2}
+.panel--plum .rule-table th,.panel--plum .rule-table strong{color:#ffe6b0}
+.micro-note{margin-top:1mm!important;color:var(--muted);font-size:5.8pt!important;line-height:1.3!important}
+.panel--plum .micro-note{color:#eee1f1}
+.callout{margin-top:1mm;padding:1.1mm 1.4mm;border: .2mm solid #e5d9c1;border-radius:.7mm;background:#fbf7ee;font-size:6.2pt;line-height:1.3}
+.callout strong{color:#72572e}
+.panel--plum .callout{color:var(--ink)}
+.steps{counter-reset:step;list-style:none;padding:0!important}
+.steps li{position:relative;min-height:3.5mm;padding-left:4.2mm!important}
+.steps li:before{position:absolute;top:0;left:0;display:grid;place-items:center;width:3.2mm;height:3.2mm;border-radius:50%;background:var(--plum);color:#fff;font-size:5.2pt;font-weight:700;content:counter(step);counter-increment:step}
+.sequence{display:grid;grid-template-columns:repeat(4,1fr);gap:1mm;margin-top:1.2mm}
+.sequence span{position:relative;display:grid;place-items:center;min-height:9mm;padding:1mm;border: .2mm solid #e1d9e4;border-radius:.7mm;background:#faf8fb;color:var(--plum);font-size:5.6pt;font-weight:700;line-height:1.2;text-align:center}
+.sequence span:not(:last-child):after{position:absolute;right:-1.2mm;z-index:1;color:var(--gold);content:"›"}
+.degree-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:.7mm;margin-top:1mm}
+.degree-strip span{padding:1mm .4mm;border-radius:.5mm;background:#f2edf3;color:#543b60;font-size:5.6pt;font-weight:700;text-align:center}
+.sheet-foot{display:flex;justify-content:space-between;gap:3mm;margin-top:1.2mm;padding-top:1mm;border-top:.25mm solid var(--line);color:var(--muted);font-size:5.2pt;line-height:1.2}
+.sheet-foot strong{color:var(--plum)}
+.screen-pages>.gm-page:last-child .sheet-stack{gap:1.4mm}
+.screen-pages>.gm-page:last-child .panel{padding-top:1.35mm;padding-bottom:1.35mm}
+.screen-pages>.gm-page:last-child .panel p,.screen-pages>.gm-page:last-child .panel ul,.screen-pages>.gm-page:last-child .panel ol{font-size:6.45pt}
+/* A4 landscape reference */
+.landscape-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:5mm;padding-bottom:2mm;border-bottom:.4mm solid var(--plum)}
+.landscape-head .sheet-title{font-size:23pt}
+.landscape-subtitle{margin:1mm 0 0;color:var(--muted);font-size:7.5pt}
+.landscape-stamp{padding:2mm 3mm;border: .3mm solid #dfd5c2;border-radius:1mm;background:var(--soft);color:#6e562f;font-size:7pt;font-weight:700;line-height:1.3;text-align:center}
+.landscape-grid{display:grid;grid-template-columns:1fr 1.08fr 1fr;align-items:start;gap:3mm;flex:1;padding-top:2.5mm}
+.landscape-column{display:flex;flex-direction:column;gap:2.3mm;min-width:0}
+.landscape-panel{padding:2.5mm;border:.25mm solid var(--line);border-radius:1.2mm;background:#fff;break-inside:avoid}
+.landscape-panel h2{margin:0 0 1.2mm;padding-bottom:.8mm;border-bottom:.3mm solid #e2dbe4;color:var(--plum);font:500 11pt/1.15 "Eterna Breaks 240410",Georgia,serif}
+.landscape-panel p,.landscape-panel li{font-size:7.35pt;line-height:1.35}
+.landscape-panel p{margin:.7mm 0 0}
+.landscape-panel ul,.landscape-panel ol{margin:.7mm 0 0;padding-left:4mm}
+.landscape-panel li{margin:0 0 .7mm}
+.landscape-panel strong{color:var(--plum)}
+.landscape-panel .rule-table{font-size:6.7pt}
+.landscape-panel .rule-table th,.landscape-panel .rule-table td{padding:1mm}
+.landscape-panel .formula{padding:1.5mm 2mm;font-size:8.4pt}
+.landscape-bottom{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4mm;margin-top:2mm;padding:1.6mm 2mm;border: .25mm solid #e5dac5;border-radius:1mm;background:#faf6ed;color:#66543a;font-size:6.6pt;line-height:1.3}
+.landscape-bottom strong{color:#493252}
+/* Landing page */
+.screen-hub{max-width:1040px;margin:0 auto;padding:clamp(24px,6vw,64px) 18px 70px}
+.hub-brand{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:36px;color:var(--plum);font-size:12px;font-weight:700}
+.hub-brand a{color:inherit;text-decoration:none}
+.hub-back{font-size:11px;font-weight:600}
+.hub-eyebrow{margin:0 0 8px;color:#9b7c43;font-size:10px;font-weight:700;letter-spacing:.16em}
+.screen-hub h1{max-width:780px;margin:0;color:var(--plum);font:400 clamp(38px,7vw,68px)/1.04 "Eterna Breaks 240410",Georgia,serif;letter-spacing:-.02em}
+.hub-intro{max-width:68ch;margin:16px 0 28px;color:#665b68;font-size:15px;line-height:1.7}
+.hub-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.hub-combined{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-top:16px;padding:20px 24px;border:1px solid #dfd8e0;border-radius:10px;background:#f7f4f0}
+.hub-combined .hub-eyebrow{margin:0 0 5px;font-size:8px}
+.hub-combined h2{margin:0;color:var(--plum);font:400 21px/1.2 "Eterna Breaks 240410",Georgia,serif}
+.hub-combined p:not(.hub-eyebrow){margin:5px 0 0;color:#6b606e;font-size:11px;line-height:1.5}
+.hub-combined .hub-action{flex:0 0 auto;margin:0}
+.hub-card{display:flex;flex-direction:column;min-height:260px;padding:24px;border:1px solid #ded6df;border-radius:12px;background:#fffdf9;box-shadow:0 10px 32px #3020390c}
+.hub-card-top{display:flex;justify-content:space-between;align-items:center;color:#9b7c43;font-size:10px;font-weight:700;letter-spacing:.13em}
+.hub-card h2{margin:18px 0 9px;color:var(--plum);font:400 29px/1.15 "Eterna Breaks 240410",Georgia,serif}
+.hub-card p{margin:0;color:#6b606e;font-size:13px;line-height:1.65}
+.hub-card ul{margin:12px 0 18px;padding-left:18px;color:#655b68;font-size:12px;line-height:1.65}
+.hub-action{display:inline-flex;align-items:center;justify-content:space-between;gap:16px;margin-top:auto;padding:12px 14px;border:1px solid var(--plum);border-radius:6px;background:var(--plum);color:#fff;text-decoration:none;font-size:12px;font-weight:700}
+.hub-action:hover{background:#35203e}
+.hub-download{display:inline-flex;align-self:flex-start;margin-top:10px;padding:7px 0;border-bottom:1px solid #c9b581;color:#674b6f;font-size:11px;font-weight:700;text-decoration:none}
+.hub-download:hover{color:#35203e;border-color:var(--plum)}
+.hub-help{display:grid;grid-template-columns:auto 1fr;gap:15px;margin-top:24px;padding:18px 20px;border-left:3px solid var(--gold);background:#f8f4eb;color:#655a66;font-size:12px;line-height:1.6}
+.hub-help strong{color:var(--plum)}
+.hub-footer{display:flex;justify-content:space-between;gap:10px;margin-top:32px;padding-top:14px;border-top:1px solid #ddd5df;color:#796f7d;font-size:10px}
+.hub-footer a{color:var(--plum)}
+@media(max-width:700px){.screen-toolbar{align-items:flex-start;flex-direction:column;padding:9px 12px}.screen-toolbar-actions{width:100%}.screen-toolbar-actions a,.screen-toolbar-actions button{flex:1;padding-inline:7px;font-size:10px}.print-note{margin-top:8px}.screen-pages{padding:10px 0 22px}.gm-page--a5{padding:5mm}.gm-page--a4{padding:5mm}.sheet-title{font-size:15pt}.sheet-deck{max-width:44%;font-size:5.8pt}.panel{padding:1.6mm}.panel p,.panel ul,.panel ol{font-size:6.2pt}.panel h2{font-size:7.8pt}.rule-table{font-size:5.7pt}.sheet-foot{font-size:4.8pt}.landscape-head .sheet-title{font-size:17pt}.landscape-panel{padding:1.8mm}.landscape-panel h2{font-size:9pt}.landscape-panel p,.landscape-panel li{font-size:5.7pt}.landscape-panel .rule-table{font-size:5.6pt}.screen-hub{padding:25px 15px 45px}.hub-brand{margin-bottom:28px}.hub-cards{grid-template-columns:1fr}.hub-card{min-height:0;padding:20px}.hub-combined{align-items:stretch;flex-direction:column;gap:12px;padding:18px}.hub-combined .hub-action{width:100%}.hub-help{grid-template-columns:1fr;gap:4px}.hub-footer{flex-direction:column}}
+@media print{
+  :root{background:#fff}
+  body{min-width:0;background:#fff;font-size:7pt}
+  .screen-toolbar,.print-note,.screen-hub{display:none!important}
+  .screen-pages{display:block;padding:0}
+  .gm-page{margin:0;border:0;border-radius:0;box-shadow:none;break-after:page;page-break-after:always}
+  .gm-page:last-child{break-after:auto;page-break-after:auto}
+  .gm-page--a5{width:148mm;height:210mm;min-height:210mm;aspect-ratio:auto;padding:6mm}
+  .gm-page--a4{width:297mm;height:210mm;min-height:210mm;aspect-ratio:auto;padding:7mm}
+  .panel,.landscape-panel{break-inside:avoid;page-break-inside:avoid}
+  a{color:inherit;text-decoration:none}
+}
