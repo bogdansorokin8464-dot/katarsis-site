@@ -1,8 +1,15 @@
-const VERSION={id:'2026.11.08.9',date:'8 ноября 2026',title:'Травмы — только выбор на второй странице листа'};
+const VERSION={id:'2026.11.12.2',date:'12 ноября 2026',title:'Памятка Мастера для ширмы'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],
+ ['/rulebook','/rulebook/index.html'],['/rulebook/','/rulebook/index.html'],['/rulebook/index.html','/rulebook/index.html'],
+ ['/rulebook.css','/rulebook.css'],['/rulebook.js','/rulebook.js'],
  ['/gm/tools','/build/materials/core.html'],
+ ['/gm/screen','/gm-screen/index.html'],['/gm/screen/','/gm-screen/index.html'],
+ ['/gm/screen/a5','/gm-screen/a5.html'],['/gm/screen/a5/','/gm-screen/a5.html'],
+ ['/gm/screen/a4','/gm-screen/a4.html'],['/gm/screen/a4/','/gm-screen/a4.html'],
+ ['/gm/screen/a5.pdf','/gm-screen/a5.pdf'],['/gm/screen/a4.pdf','/gm-screen/a4.pdf'],['/gm/screen/all.pdf','/gm-screen/all.pdf'],
+ ['/gm-screen.css','/gm-screen.css'],['/gm-screen.js','/gm-screen.js'],
  ['/memo','/memo.html'],['/memo/','/memo.html'],
  ['/cinematic.css','/cinematic.css'],['/cinematic.js','/cinematic.js'],['/home.css','/home.css'],['/site.css','/site.css'],['/site.js','/site.js'],['/online.css','/online.css'],['/online.js','/online.js'],['/companion.js','/companion.js'],['/companion.css','/companion.css'],['/brand-font.css','/brand-font.css'],['/master-nav.js','/master-nav.js'],['/private-session.js','/master-nav.js'],['/robots.txt','/robots.txt']
 ]);

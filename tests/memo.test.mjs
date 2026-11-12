@@ -57,7 +57,7 @@ test('the memo opens from the left sidebar', () => {
 
 test('the memo route, link and changelog are wired', () => {
   assert.match(worker,/\['\/memo','\/memo\.html'\],\['\/memo\/','\/memo\.html'\]/);
-  assert.match(worker,/id:'2026\.11\.08\.\d+'/);
+  assert.match(worker,/id:'2026\.11\.12\.\d+'/);
   assert.match(worker,/title:'.+'/);
   assert.match(updates,/id="release-2026-11-08-\d+"/);
   assert.match(play,/href="\/memo"/,'the rules view does not link to the memo');

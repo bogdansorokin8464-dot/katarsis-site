@@ -149,11 +149,13 @@ test('the memo repeats the same numbers', () => {
 });
 
 test('every page agrees on the release id', () => {
-  assert.equal(version,'2026.11.08.9');
-  assert.match(worker,/VERSION=\{id:'2026\.11\.08\.9'/);
-  assert.match(worker,/title:'Травмы — только выбор на второй странице листа'/);
-  assert.ok(updates.includes('id="release-2026-11-08-9"'));
-  assert.ok(updates.includes('2026.11.08.9'));
-  assert.match(read('web/index.html'),/2026\.11\.08\.9/);
-  assert.match(read('web/site.js'),/CURRENT='2026\.11\.08\.9'/);
+  assert.equal(version,'2026.11.12.2');
+  assert.match(worker,/VERSION=\{id:'2026\.11\.12\.2'/);
+  assert.match(worker,/title:'Памятка Мастера для ширмы'/);
+  assert.ok(updates.includes('id="release-2026-11-12-2"'));
+  assert.ok(updates.includes('2026.11.12.2'));
+  assert.ok(updates.includes('id="release-2026-11-12-1"'),'the rulebook release remains in the changelog');
+  assert.ok(updates.includes('id="release-2026-11-08-9"'),'the prior release remains in the changelog');
+  assert.match(read('web/index.html'),/2026\.11\.12\.2/);
+  assert.match(read('web/site.js'),/CURRENT='2026\.11\.12\.2'/);
 });
