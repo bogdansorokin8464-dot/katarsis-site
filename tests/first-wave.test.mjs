@@ -66,7 +66,7 @@ test('the calling ritual is printed above the ability cards', () => {
     assert.match(html,/Ритуал призвания · /,`${name} does not label the ritual card`);
     assert.match(html,/второй бросок не добавляет/,`${name} does not repeat the single-d6 rule`);
   }
-  assert.equal((source.match(/"ritualName"/g)||[]).length,27,'not every calling has a ritual');
+  assert.equal((source.match(/"ritualName"/g)||[]).length,30,'not every calling has a ritual');
 });
 
 test('the changelog, version and build agree', () => {
