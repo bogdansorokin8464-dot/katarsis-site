@@ -31,7 +31,7 @@ test('the complete rulebook is reachable from all canonical paths', async () => 
 
 test('the generated book contains the current rules, every ability and every shop entry', async () => {
   const html = await readFile(new URL('../web/rulebook/index.html', import.meta.url), 'utf8');
-  assert.match(html, /data-rulebook-version="2026\.11\.15\.2"/);
+  assert.match(html, /data-rulebook-version="2026\.11\.15\.3"/);
   assert.equal(countMatches(html, /class="system-rule-chapter"/g), 25);
   assert.equal(countMatches(html, /class="book-ability-card"/g), 232);
   assert.equal(countMatches(html, /class="book-gear-item"/g), 439);
