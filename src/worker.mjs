@@ -1,4 +1,4 @@
-const VERSION={id:'2026.11.12.2',date:'12 ноября 2026',title:'Памятка Мастера для ширмы'};
+const VERSION={id:'2026.11.15.1',date:'15 ноября 2026',title:'Призвание «Вор»'};
 const ROUTES=new Map([
  ['/', '/index.html'],['/play','/play/index.html'],['/play/','/play/index.html'],['/play/index.html','/play/index.html'],
  ['/privacy','/privacy.html'],['/terms','/terms.html'],['/gm','/gm.html'],['/gm/','/gm.html'],['/updates','/updates.html'],

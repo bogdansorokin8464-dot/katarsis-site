@@ -26,7 +26,7 @@ test('the rulebook carries 25 numbered chapters, new ones included', () => {
   }
   const numbers=[...book.matchAll(/<small>(\d\d) \/ /g)].map(m=>m[1]);
   assert.deepEqual(numbers.slice(0,25),Array.from({length:25},(_,i)=>String(i+1).padStart(2,'0')));
-  assert.match(book,/25 глав · 26 призваний · 31 навык/);
+  assert.match(book,/25 глав · 27 призваний · 31 навык/);
   assert.equal((book.match(/<details/g)||[]).length,(book.match(/<\/details>/g)||[]).length);
 });
 
@@ -149,13 +149,13 @@ test('the memo repeats the same numbers', () => {
 });
 
 test('every page agrees on the release id', () => {
-  assert.equal(version,'2026.11.12.2');
-  assert.match(worker,/VERSION=\{id:'2026\.11\.12\.2'/);
-  assert.match(worker,/title:'Памятка Мастера для ширмы'/);
-  assert.ok(updates.includes('id="release-2026-11-12-2"'));
-  assert.ok(updates.includes('2026.11.12.2'));
-  assert.ok(updates.includes('id="release-2026-11-12-1"'),'the rulebook release remains in the changelog');
-  assert.ok(updates.includes('id="release-2026-11-08-9"'),'the prior release remains in the changelog');
-  assert.match(read('web/index.html'),/2026\.11\.12\.2/);
-  assert.match(read('web/site.js'),/CURRENT='2026\.11\.12\.2'/);
+  assert.equal(version,'2026.11.15.1');
+  assert.match(worker,/VERSION=\{id:'2026\.11\.15\.1'/);
+  assert.match(worker,/title:'Призвание «Вор»'/);
+  assert.ok(updates.includes('id="release-2026-11-15-1"'));
+  assert.ok(updates.includes('2026.11.15.1'));
+  assert.ok(updates.includes('id="release-2026-11-12-2"'),'the prior release remains in the changelog');
+  assert.ok(updates.includes('id="release-2026-11-08-9"'),'the older release remains in the changelog');
+  assert.match(read('web/index.html'),/2026\.11\.15\.1/);
+  assert.match(read('web/site.js'),/CURRENT='2026\.11\.15\.1'/);
 });

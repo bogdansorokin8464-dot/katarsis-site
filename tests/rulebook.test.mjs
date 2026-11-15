@@ -31,11 +31,11 @@ test('the complete rulebook is reachable from all canonical paths', async () => 
 
 test('the generated book contains the current rules, every ability and every shop entry', async () => {
   const html = await readFile(new URL('../web/rulebook/index.html', import.meta.url), 'utf8');
-  assert.match(html, /data-rulebook-version="2026\.11\.12\.2"/);
+  assert.match(html, /data-rulebook-version="2026\.11\.15\.1"/);
   assert.equal(countMatches(html, /class="system-rule-chapter"/g), 25);
-  assert.equal(countMatches(html, /class="book-ability-card"/g), 212);
+  assert.equal(countMatches(html, /class="book-ability-card"/g), 217);
   assert.equal(countMatches(html, /class="book-gear-item"/g), 439);
-  assert.equal(countMatches(html, /class="vocation-guide"/g), 26);
+  assert.equal(countMatches(html, /class="vocation-guide"/g), 27);
   assert.match(html, /<b>31<\/b> навык/);
   assert.match(html, /Снаряжение/);
   assert.match(html, /Хроника мира/);

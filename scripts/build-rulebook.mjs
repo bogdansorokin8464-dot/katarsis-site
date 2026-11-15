@@ -353,7 +353,7 @@ const bookHtml = `<!doctype html>
 </html>`;
 
 if (chapters.length !== 25) throw new Error(`Ожидалось 25 глав правил, найдено ${chapters.length}`);
-if (abilityCount !== 212) throw new Error(`Ожидалось 212 способностей и ключей, найдено ${abilityCount}`);
+if (abilityCount !== 217) throw new Error(`Ожидалось 217 способностей и ключей, найдено ${abilityCount}`);
 if (catalog.length !== 439) throw new Error(`Ожидалось 439 предметов снаряжения, найдено ${catalog.length}`);
 if ((rules.match(/class="book-ability-card"/g) ?? []).length !== 0) throw new Error('В правилах случайно оказался каталог способностей');
 if (/<(?:button|input|select|textarea|iframe|form)\b/i.test(combatCard)) throw new Error('В боевой памятке остались элементы управления');
