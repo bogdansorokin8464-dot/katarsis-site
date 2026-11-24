@@ -6,6 +6,8 @@ const ROUTES=new Map([
  ['/rulebook.css','/rulebook.css'],['/rulebook.js','/rulebook.js'],
  ['/gm/tools','/build/materials/core.html'],
  ['/gm/screen','/gm-screen/index.html'],['/gm/screen/','/gm-screen/index.html'],
+ ['/gm/soul-catharsis','/soul-catharsis/index.html'],['/gm/soul-catharsis/','/soul-catharsis/index.html'],
+ ['/soul-catharsis.css','/soul-catharsis.css'],['/soul-catharsis.js','/soul-catharsis.js'],
  ['/gm/screen/a5','/gm-screen/a5.html'],['/gm/screen/a5/','/gm-screen/a5.html'],
  ['/gm/screen/a4','/gm-screen/a4.html'],['/gm/screen/a4/','/gm-screen/a4.html'],
  ['/gm/screen/a5.pdf','/gm-screen/a5.pdf'],['/gm/screen/a4.pdf','/gm-screen/a4.pdf'],['/gm/screen/all.pdf','/gm-screen/all.pdf'],
