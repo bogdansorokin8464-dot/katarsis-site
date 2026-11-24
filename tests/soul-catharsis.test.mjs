@@ -31,6 +31,9 @@ test('the printable document has three matched cards on each A4 side', async () 
   assert.match(html, /<html lang="ru">/);
   assert.equal([...html.matchAll(/class="quest-card quest-card--front"/g)].length, 3);
   assert.equal([...html.matchAll(/class="quest-card quest-card--back"/g)].length, 3);
+  assert.equal([...html.matchAll(/class="front-ornament"/g)].length, 3);
+  assert.match(html, /preserveAspectRatio="none"/);
+  assert.match(html, /печать фоновой графики/);
   assert.match(html, /Лицевая сторона/);
   assert.match(html, /Оборотная сторона/);
   for (const card of ['01', '02', '03']) {
@@ -43,6 +46,8 @@ test('the printable document has three matched cards on each A4 side', async () 
   assert.match(html, /Награда/);
   assert.match(css, /@page\{size:A4 portrait;margin:0\}/);
   assert.match(css, /grid-template-rows:repeat\(3,minmax\(0,1fr\)\)/);
+  assert.match(css, /front-ornament \.ornament-corner/);
+  assert.match(css, /quest-card--front\{border-color:#c3a15f/);
   assert.match(css, /break-after:page/);
 });
 
