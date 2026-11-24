@@ -1,0 +1,127 @@
+@charset "utf-8";
+:root{color-scheme:light;--ink:#302735;--plum:#4b2a59;--deep:#302039;--gold:#b6924f;--muted:#706576;--line:#ded6df;--paper:#fffdf9;--wash:#f4f0ed;font-family:"Libre Franklin",Arial,sans-serif;color:var(--ink);background:#efebef}
+*{box-sizing:border-box}
+html,body{margin:0;min-width:320px}
+body{background:#efebef;color:var(--ink);font:14px/1.5 "Libre Franklin",Arial,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+button,a{font:inherit}
+a{color:var(--plum);text-underline-offset:3px}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible,[contenteditable=true]:focus-visible{outline:3px solid #b6924f;outline-offset:3px}
+.workspace{width:min(1180px,calc(100% - 48px));margin:0 auto;padding:28px 0 54px}
+.page-heading{margin-bottom:27px}
+.back-link{display:inline-flex;align-items:center;min-height:36px;margin:0 0 25px;color:#66596b;font-size:12px;font-weight:650;text-decoration:none}
+.back-link:hover{text-decoration:underline;text-underline-offset:4px}
+.heading-row{display:flex;align-items:flex-end;justify-content:space-between;gap:26px}
+.heading-copy{max-width:700px}
+.eyebrow{margin:0 0 9px;color:#9a7942;font-size:10px;font-weight:750;letter-spacing:.15em}
+h1,h2,h3,p{margin:0}
+h1{color:var(--plum);font:400 clamp(38px,5.4vw,62px)/1.02 "Eterna Breaks 240410",Georgia,serif;letter-spacing:-.025em}
+.intro{max-width:64ch;margin-top:12px;color:#675d69;font-size:15px;line-height:1.65}
+.heading-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:9px;flex:0 0 auto}
+.button{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:43px;padding:10px 14px;border:1px solid transparent;border-radius:7px;font-size:12px;font-weight:700;transition:background .18s ease,border-color .18s ease,transform .18s ease}
+.button:hover{transform:translateY(-1px)}
+.button-primary{background:var(--plum);color:#fff}
+.button-primary:hover{background:#35203e}
+.button-secondary{border-color:#d8cfda;background:#fffdf9;color:var(--plum)}
+.button-secondary:hover{background:#f6f1f7}
+.button svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5}
+.print-guide{display:grid;grid-template-columns:28px 1fr;align-items:start;gap:11px;margin-top:24px;padding:14px 17px;border:1px solid #e8dec9;border-left:3px solid var(--gold);border-radius:7px;background:#faf7f0;color:#665b4b;font-size:12px;line-height:1.6}
+.print-guide strong{color:#493451}
+.guide-mark{display:grid;place-items:center;width:25px;height:25px;border-radius:50%;background:#eee4d2;color:#856633;font-size:13px}
+.sheet-stack{display:grid;justify-items:center;gap:33px}
+.sheet-preview{width:100%;display:grid;justify-items:center;gap:8px}
+.sheet-caption{display:flex;align-items:center;justify-content:space-between;gap:12px;width:min(210mm,calc(100vw - 32px));color:#776c7c}
+.sheet-caption h2{color:var(--plum);font:400 19px/1.25 "Eterna Breaks 240410",Georgia,serif}
+.sheet-caption>span{display:inline-flex;align-items:center;gap:8px;font-size:9px;font-weight:750;letter-spacing:.12em;text-align:right}
+.sheet-caption i{width:4px;height:4px;border-radius:50%;background:var(--gold)}
+.print-sheet{position:relative;isolation:isolate;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:3mm;width:min(210mm,calc(100vw - 32px));aspect-ratio:210 / 297;padding:5.5mm 6mm;background:#fff;box-shadow:0 16px 48px #30203920}
+.quest-card{position:relative;isolation:isolate;display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-width:0;min-height:0;overflow:hidden;padding:3mm 4mm 2.3mm;border:.4mm solid #bdb0c5;border-radius:2.2mm;background:linear-gradient(135deg,#fffefa 0%,#fffefa 70%,#faf7fb 100%);color:var(--ink);box-shadow:inset 0 0 0 .8mm #fff,inset 0 0 0 1.15mm #eee7f0}
+.quest-card::before{position:absolute;z-index:-1;inset:1.65mm;border:.2mm solid #e3d9c9;border-radius:1.25mm;content:"";pointer-events:none}
+.quest-card::after{position:absolute;z-index:-1;top:-23mm;right:-16mm;width:53mm;height:53mm;border:.2mm solid #e5dceb;border-radius:50%;background:radial-gradient(circle at center,#f2edf4 0 36%,#faf8fb 36.5% 37%,transparent 37.5%);content:"";pointer-events:none}
+.quest-card--back::after{top:auto;right:-17mm;bottom:-28mm;width:58mm;height:58mm;background:radial-gradient(circle at center,#f6efdf 0 35%,#fcf8ef 35.5% 36%,transparent 36.5%);border-color:#e8ddc5}
+.card-heading,.card-main,.card-footer{position:relative;z-index:1;min-width:0}
+.card-heading{display:flex;align-items:center;justify-content:space-between;gap:5mm;padding-bottom:2mm;border-bottom:.28mm solid #d9cfdd}
+.brand-lockup{display:flex;align-items:center;gap:1.7mm;min-width:0}
+.brand-lockup img{display:block;flex:0 0 auto;width:8mm;height:8mm;object-fit:contain;mix-blend-mode:multiply}
+.brand-lockup>div{display:grid;gap:.55mm}
+.brand-name{color:var(--plum);font:400 12pt/1 "Eterna Breaks 240410",Georgia,serif;letter-spacing:.13em}
+.brand-subtitle{color:#817585;font-size:5pt;font-weight:700;letter-spacing:.12em;line-height:1.2}
+.card-kind{display:grid;gap:.7mm;color:#87745b;text-align:right}
+.card-kind span{font-size:5.2pt;font-weight:750;letter-spacing:.16em}
+.card-kind strong{color:var(--plum);font-size:6.4pt;letter-spacing:.12em}
+.card-main{min-height:0}
+.front-main{display:grid;grid-template-columns:minmax(0,1.48fr) minmax(0,.9fr);grid-template-rows:minmax(0,1fr) auto;column-gap:4mm;row-gap:2mm;padding:2.7mm 0 2mm}
+.quest-field{display:flex;flex-direction:column;min-width:0;min-height:0}
+.quest-title-field{grid-column:1;grid-row:1}
+.hero-field{grid-column:1;grid-row:2}
+.beneficiary-field{grid-column:2;grid-row:1 / 3;padding:2.4mm 2.5mm 2mm;border:.3mm solid #d9cfdf;border-radius:1.1mm;background:linear-gradient(150deg,#faf7fb,#f7f2f6)}
+.field-label{display:block;color:#8a6b37;font-size:5.7pt;font-weight:750;letter-spacing:.13em;line-height:1.3}
+.writing-field{position:relative;display:block;flex:1;min-width:0;min-height:0;margin-top:1.1mm;padding:.7mm 1mm 0;border:0;border-bottom:.25mm solid #d4c8d8;border-radius:0;background-color:transparent;background-image:linear-gradient(to bottom,transparent calc(100% - .22mm),#d9cedd calc(100% - .22mm));background-repeat:repeat-y;background-size:100% 8mm;color:#302735;font-size:10pt;line-height:8mm;overflow:hidden;overflow-wrap:anywhere;white-space:pre-wrap;cursor:text}
+.writing-field:focus{outline:none}
+.writing-field[data-empty="true"]::before{position:absolute;top:.6mm;left:1mm;color:#aa9eac;font:italic 7pt/1.4 "Libre Franklin",Arial,sans-serif;content:attr(data-placeholder);pointer-events:none}
+.writing-field--title{font:400 18pt/9mm "Eterna Breaks 240410",Georgia,serif;background-size:100% 9mm}
+.writing-field--single{flex:0 0 8.5mm;margin-top:.5mm;background:none;font:400 12pt/8mm "Eterna Breaks 240410",Georgia,serif}
+.writing-field--notes{margin-top:2mm;background-size:100% 7.2mm;font-size:9pt;line-height:7.2mm}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:5mm;min-height:4mm;padding-top:1.2mm;border-top:.24mm solid #e3dce5;color:#786d7c;font-size:5pt;font-weight:700;letter-spacing:.12em}
+.card-index{flex:0 0 auto;color:#9a7942;font-variant-numeric:tabular-nums}
+.card-index i{padding:0 .5mm;color:#c6b184;font-style:normal}
+.back-main{display:grid;grid-template-columns:minmax(0,1.42fr) minmax(0,.9fr);gap:3.4mm;padding:2.6mm 0 2.1mm}
+.back-field{display:flex;flex-direction:column;min-width:0;min-height:0;padding:2.2mm 2.4mm 2mm;border:.28mm solid #d9cfdf;border-radius:1.1mm;background:#fff}
+.back-field--reward{border-color:#e4d6ba;background:linear-gradient(150deg,#fcf9f1,#faf6ec)}
+.back-field-heading{display:flex;align-items:center;gap:1.7mm;min-height:7.2mm;padding-bottom:1.1mm;border-bottom:.24mm solid #e5dfe7}
+.back-field--reward .back-field-heading{border-color:#eee5d2}
+.back-field-heading>span{display:grid;place-items:center;flex:0 0 auto;width:5.2mm;height:5.2mm;border-radius:50%;background:#efe8f1;color:var(--plum);font-size:5pt;font-weight:750}
+.back-field--reward .back-field-heading>span{background:#f0e7d5;color:#806436}
+.back-field-heading h3{color:var(--plum);font:400 12pt/1.15 "Eterna Breaks 240410",Georgia,serif}
+.back-field--reward .back-field-heading h3{color:#6e572f}
+.writing-field--long{margin-top:1.3mm;padding:.6mm .7mm 0;border-bottom:0;background-image:linear-gradient(to bottom,transparent calc(100% - .22mm),#ded5e1 calc(100% - .22mm));background-size:100% 7.5mm;font-size:9pt;line-height:7.5mm}
+.back-field--reward .writing-field--long{background-image:linear-gradient(to bottom,transparent calc(100% - .22mm),#e4dac4 calc(100% - .22mm))}
+.privacy-note{margin:14px 0 0;color:#857b89;font-size:10px;text-align:center}
+@media(max-width:780px){
+  .workspace{width:min(100% - 32px,640px);padding-top:20px}
+  .heading-row{align-items:flex-start;flex-direction:column;gap:18px}
+  .heading-actions{justify-content:flex-start}
+  .button{min-height:42px}
+  .print-guide{margin-top:18px}
+  .sheet-stack{gap:25px}
+  .sheet-caption h2{font-size:17px}
+  .sheet-caption>span{font-size:8px}
+}
+@media(max-width:450px){
+  .workspace{width:calc(100% - 24px);padding-top:13px}
+  .back-link{margin-bottom:18px}
+  .eyebrow{max-width:32ch;font-size:9px}
+  .intro{font-size:13px}
+  .heading-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}
+  .button{padding:9px 8px;font-size:10px}
+  .print-guide{grid-template-columns:22px 1fr;gap:8px;padding:11px 12px;font-size:11px}
+  .guide-mark{width:21px;height:21px}
+  .sheet-caption{align-items:flex-start;flex-direction:column;gap:3px}
+  .sheet-caption>span{font-size:7px}
+}
+@media print{
+  @page{size:A4 portrait;margin:0}
+  html,body{width:210mm;min-width:0;margin:0;background:#fff}
+  body{font-size:8pt}
+  .workspace{width:210mm;max-width:none;margin:0;padding:0}
+  .page-heading,.sheet-caption,.privacy-note{display:none!important}
+  .sheet-stack{display:block;gap:0}
+  .sheet-preview{display:block;width:210mm;margin:0;padding:0;break-after:page;page-break-after:always}
+  .sheet-preview:last-child{break-after:auto;page-break-after:auto}
+  .print-sheet{width:210mm;height:297mm;max-width:none;margin:0;padding:5.5mm 6mm;aspect-ratio:auto;gap:3mm;box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+  .quest-card{border-width:.4mm;border-radius:2.2mm;padding:3mm 4mm 2.3mm;box-shadow:inset 0 0 0 .8mm #fff,inset 0 0 0 1.15mm #eee7f0;break-inside:avoid;page-break-inside:avoid}
+  .card-heading{padding-bottom:2mm}
+  .brand-name{font-size:12pt}
+  .brand-subtitle{font-size:5pt}
+  .card-kind span{font-size:5.2pt}
+  .card-kind strong{font-size:6.4pt}
+  .field-label{font-size:5.7pt}
+  .writing-field{font-size:10pt}
+  .writing-field--title{font-size:18pt;line-height:9mm}
+  .writing-field--single{font-size:12pt;line-height:8mm}
+  .writing-field--notes,.writing-field--long{font-size:9pt}
+  .writing-field[data-empty="true"]::before{display:none!important;content:none!important}
+  .back-field-heading h3{font-size:12pt}
+  .card-footer{font-size:5pt}
+  a,button{color:inherit;text-decoration:none}
+}
