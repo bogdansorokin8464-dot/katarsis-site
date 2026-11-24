@@ -34,11 +34,12 @@ test('the printable document has three matched cards on each A4 side', async () 
   assert.equal([...html.matchAll(/class="quest-card quest-card--front"/g)].length, 3);
   assert.equal([...html.matchAll(/class="quest-card quest-card--back"/g)].length, 3);
   assert.equal([...html.matchAll(/class="front-ornament"/g)].length, 3);
-  assert.equal([...html.matchAll(/class="card-art-background"/g)].length, 0);
+  assert.equal([...html.matchAll(/class="quest-field front-title-field"/g)].length, 3);
+  assert.equal([...html.matchAll(/class="quest-field front-hero-field"/g)].length, 3);
+  assert.equal([...html.matchAll(/class="back-field back-field--beneficiary"/g)].length, 3);
+  assert.equal([...html.matchAll(/class="quest-field beneficiary-field"/g)].length, 0);
   assert.match(css, /background-image:url\("\/assets\/e0698678a36c087fde7a4705\.png"\)/);
-  assert.match(css, /background-size:cover/);
-  assert.match(css, /quest-card--front \.quest-title-field\{[^}]*padding:/);
-  assert.match(css, /quest-card--front \.hero-field\{[^}]*padding:/);
+  assert.match(css, /background-size:contain/);
   assert.match(html, /preserveAspectRatio="none"/);
   assert.match(html, /печать фоновой графики/);
   assert.match(html, /Лицевая сторона/);
@@ -48,7 +49,7 @@ test('the printable document has three matched cards on each A4 side', async () 
   }
   assert.match(html, /НАЗВАНИЕ КАТАРСИСА ДУШИ/);
   assert.match(html, /ИМЯ ГЕРОЯ/);
-  assert.match(html, /КОМУ ЭТОТ КАТАРСИС БУДЕТ ПОЛЕЗЕН/);
+  assert.match(html, /Кому полезен катарсис/);
   assert.match(html, /Условие катарсиса/);
   assert.match(html, /Награда/);
   assert.match(css, /@page\{size:A4 portrait;margin:0\}/);
@@ -58,16 +59,30 @@ test('the printable document has three matched cards on each A4 side', async () 
   assert.match(css, /break-after:page/);
 });
 
-test('the front artwork shows through the outlined, legible writing fields', async () => {
-  const css = await read('web/soul-catharsis.css');
-  assert.match(css, /quest-card--front \.front-main\{[^}]*background:transparent/);
-  assert.match(css, /quest-card--front \.quest-title-field\{[^}]*background:transparent/);
-  assert.match(css, /quest-card--front \.beneficiary-field\{[^}]*background:transparent/);
-  assert.match(css, /quest-card--front \.front-main::before\{[^}]*url\("\/assets\/e0698678a36c087fde7a4705\.png"\)/);
-  assert.match(css, /quest-card--front \.front-main\{grid-template-columns:minmax\(0,1\.5fr\) minmax\(28mm,\.65fr\) minmax\(0,1fr\)/);
-  assert.match(css, /quest-card--front \.beneficiary-field\{grid-column:3;grid-row:1 \/ 3/);
-  assert.match(css, /quest-card--front \.field-label\{[^}]*background:rgba\(255,253,246,\.96\)/);
-  assert.match(css, /quest-card--front \.writing-field\{[^}]*background-color:rgba\(255,253,246,\.86\)/);
+test('the face shows the complete artwork between solid title and hero fields', async () => {
+  const [html, css] = await Promise.all([
+    read('web/soul-catharsis/index.html'),
+    read('web/soul-catharsis.css'),
+  ]);
+  assert.match(css, /quest-card--front\{[^}]*background-size:contain/);
+  assert.match(css, /quest-card--front \.front-main\{display:block[^}]*background:transparent/);
+  assert.match(css, /quest-card--front \.front-title-field\{[^}]*background:#fffdf6/);
+  assert.match(css, /quest-card--front \.front-hero-field\{[^}]*background:#fffdf6/);
+  assert.match(css, /quest-card--front \.writing-field\{[^}]*background-color:#fffdf6/);
+  assert.doesNotMatch(css, /front-main::before/);
+  const fronts = [...html.matchAll(/<article class="quest-card quest-card--front"[\s\S]*?<\/article>/g)];
+  assert.equal(fronts.length, 3);
+  for (const [index, match] of fronts.entries()) {
+    const card = match[0];
+    const headerEnd = card.indexOf('</header>');
+    const systemName = card.indexOf('brand-name');
+    const title = card.indexOf('front-title-field');
+    const main = card.indexOf('class="card-main front-main"');
+    const hero = card.indexOf('front-hero-field');
+    const footerEnd = card.indexOf('</footer>');
+    assert.ok(systemName < title && title < headerEnd && headerEnd < main && main < hero && hero < footerEnd, `front card ${index + 1} field positions`);
+  }
+  assert.match(css, /back-main\{display:grid;grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
 });
 
 test('the fields can be typed into before printing and cleared together', async () => {
