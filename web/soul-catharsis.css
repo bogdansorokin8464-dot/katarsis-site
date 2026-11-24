@@ -36,6 +36,7 @@ h1{color:var(--plum);font:400 clamp(38px,5.4vw,62px)/1.02 "Eterna Breaks 240410"
 .sheet-caption i{width:4px;height:4px;border-radius:50%;background:var(--gold)}
 .print-sheet{position:relative;isolation:isolate;display:grid;grid-template-rows:repeat(3,minmax(0,1fr));gap:3mm;width:min(210mm,calc(100vw - 32px));aspect-ratio:210 / 297;padding:5.5mm 6mm;background:#fff;box-shadow:0 16px 48px #30203920}
 .quest-card{position:relative;isolation:isolate;display:grid;grid-template-rows:auto minmax(0,1fr) auto;min-width:0;min-height:0;overflow:hidden;padding:3mm 4mm 2.3mm;border:.4mm solid #bdb0c5;border-radius:2.2mm;background:linear-gradient(135deg,#fffefa 0%,#fffefa 70%,#faf7fb 100%);color:var(--ink);box-shadow:inset 0 0 0 .8mm #fff,inset 0 0 0 1.15mm #eee7f0}
+.card-art-background{position:absolute;z-index:0;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform:scale(1.025);filter:contrast(1.07) saturate(1.14);opacity:1;pointer-events:none}
 .quest-card::before{position:absolute;z-index:-1;inset:1.65mm;border:.2mm solid #e3d9c9;border-radius:1.25mm;content:"";pointer-events:none}
 .quest-card::after{position:absolute;z-index:-1;top:-23mm;right:-16mm;width:53mm;height:53mm;border:.2mm solid #e5dceb;border-radius:50%;background:radial-gradient(circle at center,#f2edf4 0 36%,#faf8fb 36.5% 37%,transparent 37.5%);content:"";pointer-events:none}
 .quest-card--back::after{top:auto;right:-17mm;bottom:-28mm;width:58mm;height:58mm;background:radial-gradient(circle at center,#f6efdf 0 35%,#fcf8ef 35.5% 36%,transparent 36.5%);border-color:#e8ddc5}
@@ -88,22 +89,22 @@ h1{color:var(--plum);font:400 clamp(38px,5.4vw,62px)/1.02 "Eterna Breaks 240410"
 .front-ornament .ornament-center{stroke-width:2.6}
 .front-ornament .ornament-dot{fill:#e6cd91;stroke:none}
 .quest-card--front .card-heading,.quest-card--front .card-main,.quest-card--front .card-footer{z-index:2}
-.quest-card--front .card-heading{padding:1mm 2mm 2mm;border-bottom-color:#b89a61}
+.quest-card--front .card-heading{padding:1mm 2mm 2mm;border-bottom-color:#b89a61;border-radius:.7mm;background:rgba(34,20,43,.74)}
 .quest-card--front .brand-lockup img{border:.3mm solid #d1b574;border-radius:50%;background:#fffdf8;box-shadow:0 0 0 .55mm #48334e;mix-blend-mode:normal}
 .quest-card--front .brand-name{color:#fff4d7}
 .quest-card--front .brand-subtitle{color:#d8c8a4}
 .quest-card--front .card-kind{color:#e0c78f}
 .quest-card--front .card-kind strong{color:#fff0cb}
-.quest-card--front .front-main{margin:1.8mm 1.4mm 1.4mm;padding:2.7mm 2.8mm 2mm;border:.3mm solid #d4c294;border-radius:1.3mm;background:linear-gradient(135deg,#fffdf7 0%,#f8f1e4 100%);box-shadow:inset 0 0 0 .5mm #fff}
+.quest-card--front .front-main{margin:1.8mm 1.4mm 1.4mm;padding:2.7mm 2.8mm 2mm;border:.3mm solid #d4c294;border-radius:1.3mm;background:linear-gradient(135deg,rgba(255,253,247,.79) 0%,rgba(248,241,228,.76) 100%);box-shadow:inset 0 0 0 .5mm rgba(255,255,255,.74)}
 .quest-card--front .field-label{color:#80612f}
 .quest-card--front .quest-title-field .field-label{display:flex;align-items:center;gap:1.2mm}
 .quest-card--front .quest-title-field .field-label::before{color:#ab8646;font-size:7pt;content:"✦"}
 .quest-card--front .quest-title-field .field-label::after{flex:1;height:.2mm;margin-left:1mm;background:#d9c89f;content:""}
-.quest-card--front .beneficiary-field{border-color:#d2bd91;background:linear-gradient(150deg,#f7eedf,#f3e8d4);box-shadow:inset 0 0 0 .4mm #fffaf0}
+.quest-card--front .beneficiary-field{border-color:#d2bd91;background:linear-gradient(150deg,rgba(247,238,223,.86),rgba(243,232,212,.81));box-shadow:inset 0 0 0 .4mm rgba(255,250,240,.78)}
 .quest-card--front .writing-field{border-bottom-color:#c9b88e;background-image:linear-gradient(to bottom,transparent calc(100% - .22mm),#d7c9a5 calc(100% - .22mm));color:#302735}
 .quest-card--front .writing-field--single{background:none}
 .quest-card--front .writing-field[data-empty="true"]::before{color:#9d8d6e}
-.quest-card--front .card-footer{padding:1.2mm 2mm 0;border-top-color:#b89a61;color:#eadbb6}
+.quest-card--front .card-footer{padding:1.2mm 2mm 0;border-top-color:#b89a61;border-radius:.7mm;background:rgba(34,20,43,.83);color:#eadbb6}
 .quest-card--front .card-index{color:#e5c987}
 .quest-card--front .card-index i{color:#b89a61}
 @media(max-width:780px){
