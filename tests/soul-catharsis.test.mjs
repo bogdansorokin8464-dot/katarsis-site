@@ -37,8 +37,8 @@ test('the printable document has three matched cards on each A4 side', async () 
   assert.equal([...html.matchAll(/class="card-art-background"/g)].length, 0);
   assert.match(css, /background-image:url\("\/assets\/e0698678a36c087fde7a4705\.png"\)/);
   assert.match(css, /background-size:cover/);
-  assert.match(css, /quest-card--front \.quest-title-field\{padding:/);
-  assert.match(css, /quest-card--front \.hero-field\{padding:/);
+  assert.match(css, /quest-card--front \.quest-title-field\{[^}]*padding:/);
+  assert.match(css, /quest-card--front \.hero-field\{[^}]*padding:/);
   assert.match(html, /preserveAspectRatio="none"/);
   assert.match(html, /печать фоновой графики/);
   assert.match(html, /Лицевая сторона/);
@@ -63,8 +63,11 @@ test('the front artwork shows through the outlined, legible writing fields', asy
   assert.match(css, /quest-card--front \.front-main\{[^}]*background:transparent/);
   assert.match(css, /quest-card--front \.quest-title-field\{[^}]*background:transparent/);
   assert.match(css, /quest-card--front \.beneficiary-field\{[^}]*background:transparent/);
+  assert.match(css, /quest-card--front \.front-main::before\{[^}]*url\("\/assets\/e0698678a36c087fde7a4705\.png"\)/);
+  assert.match(css, /quest-card--front \.front-main\{grid-template-columns:minmax\(0,1\.5fr\) minmax\(28mm,\.65fr\) minmax\(0,1fr\)/);
+  assert.match(css, /quest-card--front \.beneficiary-field\{grid-column:3;grid-row:1 \/ 3/);
   assert.match(css, /quest-card--front \.field-label\{[^}]*background:rgba\(255,253,246,\.96\)/);
-  assert.match(css, /quest-card--front \.writing-field\{[^}]*background-color:rgba\(255,253,246,\.72\)/);
+  assert.match(css, /quest-card--front \.writing-field\{[^}]*background-color:rgba\(255,253,246,\.86\)/);
 });
 
 test('the fields can be typed into before printing and cleared together', async () => {
