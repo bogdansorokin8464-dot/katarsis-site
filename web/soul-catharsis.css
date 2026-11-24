@@ -94,17 +94,17 @@ h1{color:var(--plum);font:400 clamp(38px,5.4vw,62px)/1.02 "Eterna Breaks 240410"
 .quest-card--front .brand-subtitle{color:#d8c8a4}
 .quest-card--front .card-kind{color:#e0c78f}
 .quest-card--front .card-kind strong{color:#fff0cb}
-.quest-card--front .front-main{margin:1.8mm 1.4mm 1.4mm;padding:2.7mm 2.8mm 2mm;border:.3mm solid #d4c294;border-radius:1.3mm;background:linear-gradient(135deg,rgba(255,253,247,.79) 0%,rgba(248,241,228,.76) 100%);box-shadow:inset 0 0 0 .5mm rgba(255,255,255,.74)}
-.quest-card--front .quest-title-field{padding:1.5mm 1.8mm;border:.3mm solid #d2bc90;border-radius:1mm;background:rgba(255,253,246,.94)}
-.quest-card--front .hero-field{padding:1mm 1.8mm .5mm;border:.3mm solid #d2bc90;border-radius:1mm;background:rgba(255,253,246,.94)}
-.quest-card--front .field-label{color:#80612f}
-.quest-card--front .quest-title-field .field-label{display:flex;align-items:center;gap:1.2mm}
+.quest-card--front .front-main{margin:1.8mm 1.4mm 1.4mm;padding:2.7mm 2.8mm 2mm;border:.3mm solid #d4c294;border-radius:1.3mm;background:transparent;box-shadow:none}
+.quest-card--front .quest-title-field{padding:1.5mm 1.8mm;border:.3mm solid #d2bc90;border-radius:1mm;background:transparent}
+.quest-card--front .hero-field{padding:1mm 1.8mm .5mm;border:.3mm solid #d2bc90;border-radius:1mm;background:transparent}
+.quest-card--front .field-label{display:inline-flex;align-items:center;align-self:flex-start;max-width:100%;padding:.55mm 1.1mm;border:.2mm solid rgba(210,188,144,.82);border-radius:.6mm;background:rgba(255,253,246,.96);box-shadow:0 .5mm 1.2mm rgba(30,20,10,.12);color:#604a2c}
+.quest-card--front .quest-title-field .field-label{display:flex;align-items:center;align-self:stretch;gap:1.2mm}
 .quest-card--front .quest-title-field .field-label::before{color:#ab8646;font-size:7pt;content:"✦"}
 .quest-card--front .quest-title-field .field-label::after{flex:1;height:.2mm;margin-left:1mm;background:#d9c89f;content:""}
-.quest-card--front .beneficiary-field{border-color:#d2bd91;background:linear-gradient(150deg,rgba(247,238,223,.94),rgba(243,232,212,.91));box-shadow:inset 0 0 0 .4mm rgba(255,250,240,.9)}
-.quest-card--front .writing-field{border-bottom-color:#c9b88e;background-image:linear-gradient(to bottom,transparent calc(100% - .22mm),#d7c9a5 calc(100% - .22mm));color:#302735}
-.quest-card--front .writing-field--single{background:none}
-.quest-card--front .writing-field[data-empty="true"]::before{color:#9d8d6e}
+.quest-card--front .beneficiary-field{border-color:#d2bd91;background:transparent;box-shadow:none}
+.quest-card--front .writing-field{border-bottom-color:#c9b88e;background-color:rgba(255,253,246,.72);background-image:linear-gradient(to bottom,transparent calc(100% - .22mm),#d7c9a5 calc(100% - .22mm));color:#302735}
+.quest-card--front .writing-field--single{background-color:rgba(255,253,246,.78);background-image:none}
+.quest-card--front .writing-field[data-empty="true"]::before{color:#514333}
 .quest-card--front .card-footer{padding:1.2mm 2mm 0;border-top-color:#b89a61;border-radius:.7mm;background:rgba(34,20,43,.83);color:#eadbb6}
 .quest-card--front .card-index{color:#e5c987}
 .quest-card--front .card-index i{color:#b89a61}

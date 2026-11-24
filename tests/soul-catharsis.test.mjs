@@ -58,6 +58,15 @@ test('the printable document has three matched cards on each A4 side', async () 
   assert.match(css, /break-after:page/);
 });
 
+test('the front artwork shows through the outlined, legible writing fields', async () => {
+  const css = await read('web/soul-catharsis.css');
+  assert.match(css, /quest-card--front \.front-main\{[^}]*background:transparent/);
+  assert.match(css, /quest-card--front \.quest-title-field\{[^}]*background:transparent/);
+  assert.match(css, /quest-card--front \.beneficiary-field\{[^}]*background:transparent/);
+  assert.match(css, /quest-card--front \.field-label\{[^}]*background:rgba\(255,253,246,\.96\)/);
+  assert.match(css, /quest-card--front \.writing-field\{[^}]*background-color:rgba\(255,253,246,\.72\)/);
+});
+
 test('the fields can be typed into before printing and cleared together', async () => {
   const [html, script] = await Promise.all([
     read('web/soul-catharsis/index.html'),
