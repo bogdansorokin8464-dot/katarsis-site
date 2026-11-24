@@ -28,13 +28,17 @@ test('the soul catharsis template and its assets are available through public GM
 test('the printable document has three matched cards on each A4 side', async () => {
   const html = await read('web/soul-catharsis/index.html');
   const css = await read('web/soul-catharsis.css');
+  const art = await readFile(new URL('../web/assets/e0698678a36c087fde7a4705.png', import.meta.url));
+  assert.equal(art.subarray(1, 4).toString('ascii'), 'PNG');
   assert.match(html, /<html lang="ru">/);
   assert.equal([...html.matchAll(/class="quest-card quest-card--front"/g)].length, 3);
   assert.equal([...html.matchAll(/class="quest-card quest-card--back"/g)].length, 3);
   assert.equal([...html.matchAll(/class="front-ornament"/g)].length, 3);
-  assert.equal([...html.matchAll(/class="card-art-background"/g)].length, 3);
-  assert.match(html, /src="\/assets\/e0698678a36c087fde7a4705\.png"/);
-  assert.match(css, /\.card-art-background\{position:absolute/);
+  assert.equal([...html.matchAll(/class="card-art-background"/g)].length, 0);
+  assert.match(css, /background-image:url\("\/assets\/e0698678a36c087fde7a4705\.png"\)/);
+  assert.match(css, /background-size:cover/);
+  assert.match(css, /quest-card--front \.quest-title-field\{padding:/);
+  assert.match(css, /quest-card--front \.hero-field\{padding:/);
   assert.match(html, /preserveAspectRatio="none"/);
   assert.match(html, /печать фоновой графики/);
   assert.match(html, /Лицевая сторона/);
