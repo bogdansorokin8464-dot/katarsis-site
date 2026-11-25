@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#4b2a59">
-  <meta name="description" content="Печатный шаблон двусторонних карточек «Катарсис души»: три карточки на листе A4, поля для героя, условия и награды.">
+  <meta name="description" content="Печатный шаблон двусторонних карточек «Катарсис души»: три карточки на листе A4, поля для названия и героя на лицевой стороне, условия, награды и пользы на обороте.">
   <link rel="icon" href="/assets/b38605d34f1d7a647b1aae9d.png">
   <link rel="stylesheet" href="/brand-font.css">
   <link rel="stylesheet" href="/soul-catharsis.css">
@@ -30,7 +30,7 @@
       </div>
       <aside class="print-guide" aria-label="Как печатать карточки">
         <span class="guide-mark" aria-hidden="true">✦</span>
-        <p><strong>На каждом листе A4 — три карточки.</strong> Для двусторонней печати выбери книжную ориентацию и переворот по длинному краю. Масштаб — 100%, отключи колонтитулы браузера.</p>
+        <p><strong>На каждом листе A4 — три карточки.</strong> Для двусторонней печати выбери книжную ориентацию и переворот по длинному краю. Масштаб — 100%, отключи колонтитулы браузера. Для цветной рубашки включи печать фоновой графики.</p>
       </aside>
     </header>
 
@@ -42,78 +42,171 @@
         </div>
         <div class="print-sheet front-sheet" aria-label="Три лицевые стороны карточек">
           <article class="quest-card quest-card--front" aria-label="Карточка 1 из 3, лицевая сторона">
+            <svg class="front-ornament" aria-hidden="true" viewBox="0 0 1200 560" preserveAspectRatio="none">
+              <rect class="ornament-frame" x="12" y="12" width="1176" height="536" rx="24"></rect>
+              <rect class="ornament-frame ornament-frame--inner" x="23" y="23" width="1154" height="514" rx="18"></rect>
+              <g class="ornament-corner">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(1200 0) scale(-1 1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(0 560) scale(1 -1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(1200 560) scale(-1 -1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <path class="ornament-center" d="M564 44H586L600 32L614 44H636M584 44L600 59L616 44M564 516H586L600 528L614 516H636M584 516L600 501L616 516"></path>
+              <circle class="ornament-dot" cx="600" cy="44" r="3"></circle>
+              <circle class="ornament-dot" cx="600" cy="516" r="3"></circle>
+            </svg>
             <header class="card-heading">
               <div class="brand-lockup">
                 <img src="/assets/b38605d34f1d7a647b1aae9d.png" alt="" width="40" height="40">
                 <div><span class="brand-name">КАТАРСИС</span><span class="brand-subtitle">НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</span></div>
               </div>
-              <div class="card-kind"><span>ОСОБЫЙ КВЕСТ</span><strong>ПУТЬ К ВОЗВЫШЕНИЮ</strong></div>
-            </header>
-            <div class="card-main front-main">
-              <section class="quest-field quest-title-field">
+              <section class="quest-field front-title-field">
                 <span class="field-label">НАЗВАНИЕ КАТАРСИСА ДУШИ</span>
-                <div class="writing-field writing-field--title" contenteditable="true" role="textbox" aria-label="Название катарсиса души, карточка 1" aria-multiline="true" data-empty="true" data-placeholder="Щёлкни и впиши название"></div>
+                <div class="writing-field writing-field--title" contenteditable="true" role="textbox" aria-label="Название катарсиса души, карточка 1" aria-multiline="true" data-empty="true" data-placeholder="Впиши название катарсиса души"></div>
               </section>
-              <section class="quest-field hero-field">
+            </header>
+            <div class="card-main front-main" aria-hidden="true"></div>
+            <footer class="card-footer">
+              <section class="quest-field front-hero-field">
                 <span class="field-label">ИМЯ ГЕРОЯ</span>
                 <div class="writing-field writing-field--single" contenteditable="true" role="textbox" aria-label="Имя героя, карточка 1" aria-multiline="false" data-empty="true" data-placeholder="Впиши имя героя"></div>
               </section>
-              <aside class="quest-field beneficiary-field">
-                <span class="field-label">КОМУ ЭТОТ КАТАРСИС БУДЕТ ПОЛЕЗЕН</span>
-                <div class="writing-field writing-field--notes" contenteditable="true" role="textbox" aria-label="Кому будет полезен катарсис, карточка 1" aria-multiline="true" data-empty="true" data-placeholder="Герой, союзник или тот, кому нужен этот путь"></div>
-              </aside>
-            </div>
-            <footer class="card-footer"><span>КАТАРСИС ДУШИ · ПУТЬ ГЕРОЯ</span><span class="card-index">01 <i>/</i> 03</span></footer>
+              <span class="card-index">01 <i>/</i> 03</span>
+            </footer>
           </article>
 
           <article class="quest-card quest-card--front" aria-label="Карточка 2 из 3, лицевая сторона">
+            <svg class="front-ornament" aria-hidden="true" viewBox="0 0 1200 560" preserveAspectRatio="none">
+              <rect class="ornament-frame" x="12" y="12" width="1176" height="536" rx="24"></rect>
+              <rect class="ornament-frame ornament-frame--inner" x="23" y="23" width="1154" height="514" rx="18"></rect>
+              <g class="ornament-corner">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(1200 0) scale(-1 1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(0 560) scale(1 -1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(1200 560) scale(-1 -1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <path class="ornament-center" d="M564 44H586L600 32L614 44H636M584 44L600 59L616 44M564 516H586L600 528L614 516H636M584 516L600 501L616 516"></path>
+              <circle class="ornament-dot" cx="600" cy="44" r="3"></circle>
+              <circle class="ornament-dot" cx="600" cy="516" r="3"></circle>
+            </svg>
             <header class="card-heading">
               <div class="brand-lockup">
                 <img src="/assets/b38605d34f1d7a647b1aae9d.png" alt="" width="40" height="40">
                 <div><span class="brand-name">КАТАРСИС</span><span class="brand-subtitle">НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</span></div>
               </div>
-              <div class="card-kind"><span>ОСОБЫЙ КВЕСТ</span><strong>ПУТЬ К ВОЗВЫШЕНИЮ</strong></div>
-            </header>
-            <div class="card-main front-main">
-              <section class="quest-field quest-title-field">
+              <section class="quest-field front-title-field">
                 <span class="field-label">НАЗВАНИЕ КАТАРСИСА ДУШИ</span>
-                <div class="writing-field writing-field--title" contenteditable="true" role="textbox" aria-label="Название катарсиса души, карточка 2" aria-multiline="true" data-empty="true" data-placeholder="Щёлкни и впиши название"></div>
+                <div class="writing-field writing-field--title" contenteditable="true" role="textbox" aria-label="Название катарсиса души, карточка 2" aria-multiline="true" data-empty="true" data-placeholder="Впиши название катарсиса души"></div>
               </section>
-              <section class="quest-field hero-field">
+            </header>
+            <div class="card-main front-main" aria-hidden="true"></div>
+            <footer class="card-footer">
+              <section class="quest-field front-hero-field">
                 <span class="field-label">ИМЯ ГЕРОЯ</span>
                 <div class="writing-field writing-field--single" contenteditable="true" role="textbox" aria-label="Имя героя, карточка 2" aria-multiline="false" data-empty="true" data-placeholder="Впиши имя героя"></div>
               </section>
-              <aside class="quest-field beneficiary-field">
-                <span class="field-label">КОМУ ЭТОТ КАТАРСИС БУДЕТ ПОЛЕЗЕН</span>
-                <div class="writing-field writing-field--notes" contenteditable="true" role="textbox" aria-label="Кому будет полезен катарсис, карточка 2" aria-multiline="true" data-empty="true" data-placeholder="Герой, союзник или тот, кому нужен этот путь"></div>
-              </aside>
-            </div>
-            <footer class="card-footer"><span>КАТАРСИС ДУШИ · ПУТЬ ГЕРОЯ</span><span class="card-index">02 <i>/</i> 03</span></footer>
+              <span class="card-index">02 <i>/</i> 03</span>
+            </footer>
           </article>
 
           <article class="quest-card quest-card--front" aria-label="Карточка 3 из 3, лицевая сторона">
+            <svg class="front-ornament" aria-hidden="true" viewBox="0 0 1200 560" preserveAspectRatio="none">
+              <rect class="ornament-frame" x="12" y="12" width="1176" height="536" rx="24"></rect>
+              <rect class="ornament-frame ornament-frame--inner" x="23" y="23" width="1154" height="514" rx="18"></rect>
+              <g class="ornament-corner">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(1200 0) scale(-1 1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(0 560) scale(1 -1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <g class="ornament-corner" transform="translate(1200 560) scale(-1 -1)">
+                <path d="M44 126V86C44 62 62 44 86 44H142"></path>
+                <path d="M48 91C65 91 65 68 84 68S103 91 120 91"></path>
+                <path d="M52 112H71C83 112 88 105 88 94"></path>
+                <path d="M62 48C62 61 68 68 81 68"></path>
+                <path d="M45 118H57"></path>
+              </g>
+              <path class="ornament-center" d="M564 44H586L600 32L614 44H636M584 44L600 59L616 44M564 516H586L600 528L614 516H636M584 516L600 501L616 516"></path>
+              <circle class="ornament-dot" cx="600" cy="44" r="3"></circle>
+              <circle class="ornament-dot" cx="600" cy="516" r="3"></circle>
+            </svg>
             <header class="card-heading">
               <div class="brand-lockup">
                 <img src="/assets/b38605d34f1d7a647b1aae9d.png" alt="" width="40" height="40">
                 <div><span class="brand-name">КАТАРСИС</span><span class="brand-subtitle">НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</span></div>
               </div>
-              <div class="card-kind"><span>ОСОБЫЙ КВЕСТ</span><strong>ПУТЬ К ВОЗВЫШЕНИЮ</strong></div>
-            </header>
-            <div class="card-main front-main">
-              <section class="quest-field quest-title-field">
+              <section class="quest-field front-title-field">
                 <span class="field-label">НАЗВАНИЕ КАТАРСИСА ДУШИ</span>
-                <div class="writing-field writing-field--title" contenteditable="true" role="textbox" aria-label="Название катарсиса души, карточка 3" aria-multiline="true" data-empty="true" data-placeholder="Щёлкни и впиши название"></div>
+                <div class="writing-field writing-field--title" contenteditable="true" role="textbox" aria-label="Название катарсиса души, карточка 3" aria-multiline="true" data-empty="true" data-placeholder="Впиши название катарсиса души"></div>
               </section>
-              <section class="quest-field hero-field">
+            </header>
+            <div class="card-main front-main" aria-hidden="true"></div>
+            <footer class="card-footer">
+              <section class="quest-field front-hero-field">
                 <span class="field-label">ИМЯ ГЕРОЯ</span>
                 <div class="writing-field writing-field--single" contenteditable="true" role="textbox" aria-label="Имя героя, карточка 3" aria-multiline="false" data-empty="true" data-placeholder="Впиши имя героя"></div>
               </section>
-              <aside class="quest-field beneficiary-field">
-                <span class="field-label">КОМУ ЭТОТ КАТАРСИС БУДЕТ ПОЛЕЗЕН</span>
-                <div class="writing-field writing-field--notes" contenteditable="true" role="textbox" aria-label="Кому будет полезен катарсис, карточка 3" aria-multiline="true" data-empty="true" data-placeholder="Герой, союзник или тот, кому нужен этот путь"></div>
-              </aside>
-            </div>
-            <footer class="card-footer"><span>КАТАРСИС ДУШИ · ПУТЬ ГЕРОЯ</span><span class="card-index">03 <i>/</i> 03</span></footer>
+              <span class="card-index">03 <i>/</i> 03</span>
+            </footer>
           </article>
         </div>
       </section>
@@ -130,7 +223,7 @@
                 <img src="/assets/b38605d34f1d7a647b1aae9d.png" alt="" width="40" height="40">
                 <div><span class="brand-name">КАТАРСИС</span><span class="brand-subtitle">НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</span></div>
               </div>
-              <div class="card-kind"><span>КАРТОЧКА КВЕСТА</span><strong>УСЛОВИЕ · НАГРАДА</strong></div>
+              <div class="card-kind"><span>КАРТОЧКА КВЕСТА</span><strong>УСЛОВИЕ · НАГРАДА · ПОЛЬЗА</strong></div>
             </header>
             <div class="card-main back-main">
               <section class="back-field back-field--condition">
@@ -140,6 +233,10 @@
               <section class="back-field back-field--reward">
                 <div class="back-field-heading"><span>02</span><h3>Награда</h3></div>
                 <div class="writing-field writing-field--long" contenteditable="true" role="textbox" aria-label="Награда за катарсис, карточка 1" aria-multiline="true" data-empty="true" data-placeholder="Запиши награду за выполненный квест"></div>
+              </section>
+              <section class="back-field back-field--beneficiary">
+                <div class="back-field-heading"><span>03</span><h3>Кому полезен катарсис</h3></div>
+                <div class="writing-field writing-field--long" contenteditable="true" role="textbox" aria-label="Кому будет полезен катарсис, карточка 1" aria-multiline="true" data-empty="true" data-placeholder="Герой, союзник или тот, кому нужен этот путь"></div>
               </section>
             </div>
             <footer class="card-footer"><span>КАТАРСИС ДУШИ · ПУТЬ ГЕРОЯ</span><span class="card-index">01 <i>/</i> 03</span></footer>
@@ -151,7 +248,7 @@
                 <img src="/assets/b38605d34f1d7a647b1aae9d.png" alt="" width="40" height="40">
                 <div><span class="brand-name">КАТАРСИС</span><span class="brand-subtitle">НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</span></div>
               </div>
-              <div class="card-kind"><span>КАРТОЧКА КВЕСТА</span><strong>УСЛОВИЕ · НАГРАДА</strong></div>
+              <div class="card-kind"><span>КАРТОЧКА КВЕСТА</span><strong>УСЛОВИЕ · НАГРАДА · ПОЛЬЗА</strong></div>
             </header>
             <div class="card-main back-main">
               <section class="back-field back-field--condition">
@@ -161,6 +258,10 @@
               <section class="back-field back-field--reward">
                 <div class="back-field-heading"><span>02</span><h3>Награда</h3></div>
                 <div class="writing-field writing-field--long" contenteditable="true" role="textbox" aria-label="Награда за катарсис, карточка 2" aria-multiline="true" data-empty="true" data-placeholder="Запиши награду за выполненный квест"></div>
+              </section>
+              <section class="back-field back-field--beneficiary">
+                <div class="back-field-heading"><span>03</span><h3>Кому полезен катарсис</h3></div>
+                <div class="writing-field writing-field--long" contenteditable="true" role="textbox" aria-label="Кому будет полезен катарсис, карточка 2" aria-multiline="true" data-empty="true" data-placeholder="Герой, союзник или тот, кому нужен этот путь"></div>
               </section>
             </div>
             <footer class="card-footer"><span>КАТАРСИС ДУШИ · ПУТЬ ГЕРОЯ</span><span class="card-index">02 <i>/</i> 03</span></footer>
@@ -172,7 +273,7 @@
                 <img src="/assets/b38605d34f1d7a647b1aae9d.png" alt="" width="40" height="40">
                 <div><span class="brand-name">КАТАРСИС</span><span class="brand-subtitle">НАСТОЛЬНАЯ РОЛЕВАЯ СИСТЕМА</span></div>
               </div>
-              <div class="card-kind"><span>КАРТОЧКА КВЕСТА</span><strong>УСЛОВИЕ · НАГРАДА</strong></div>
+              <div class="card-kind"><span>КАРТОЧКА КВЕСТА</span><strong>УСЛОВИЕ · НАГРАДА · ПОЛЬЗА</strong></div>
             </header>
             <div class="card-main back-main">
               <section class="back-field back-field--condition">
@@ -182,6 +283,10 @@
               <section class="back-field back-field--reward">
                 <div class="back-field-heading"><span>02</span><h3>Награда</h3></div>
                 <div class="writing-field writing-field--long" contenteditable="true" role="textbox" aria-label="Награда за катарсис, карточка 3" aria-multiline="true" data-empty="true" data-placeholder="Запиши награду за выполненный квест"></div>
+              </section>
+              <section class="back-field back-field--beneficiary">
+                <div class="back-field-heading"><span>03</span><h3>Кому полезен катарсис</h3></div>
+                <div class="writing-field writing-field--long" contenteditable="true" role="textbox" aria-label="Кому будет полезен катарсис, карточка 3" aria-multiline="true" data-empty="true" data-placeholder="Герой, союзник или тот, кому нужен этот путь"></div>
               </section>
             </div>
             <footer class="card-footer"><span>КАТАРСИС ДУШИ · ПУТЬ ГЕРОЯ</span><span class="card-index">03 <i>/</i> 03</span></footer>
