@@ -38,6 +38,8 @@ test('the printable document has three matched cards on each A4 side', async () 
   assert.equal([...html.matchAll(/class="quest-field front-hero-field"/g)].length, 3);
   assert.equal([...html.matchAll(/class="back-field back-field--beneficiary"/g)].length, 3);
   assert.equal([...html.matchAll(/class="quest-field beneficiary-field"/g)].length, 0);
+  assert.equal([...html.matchAll(/<div class="card-kind"><span>ОСОБЫЙ КВЕСТ/gu)].length, 0);
+  assert.equal([...html.matchAll(/<div class="card-kind"><span>КАРТОЧКА КВЕСТА/gu)].length, 3);
   assert.match(css, /background-image:url\("\/assets\/e0698678a36c087fde7a4705\.png"\)/);
   assert.match(css, /background-size:contain/);
   assert.match(html, /preserveAspectRatio="none"/);
@@ -67,7 +69,8 @@ test('the face shows the complete artwork between solid title and hero fields', 
   assert.match(css, /quest-card--front\{[^}]*background-size:contain/);
   assert.match(css, /quest-card--front \.front-main\{display:block[^}]*background:transparent/);
   assert.match(css, /quest-card--front \.front-title-field\{[^}]*background:#fffdf6/);
-  assert.match(css, /quest-card--front \.front-hero-field\{[^}]*background:#fffdf6/);
+  assert.match(css, /quest-card--front \.front-hero-field\{grid-column:2;[^}]*background:#fffdf6/);
+  assert.match(css, /quest-card--front \.card-index\{grid-column:3/);
   assert.match(css, /quest-card--front \.writing-field\{[^}]*background-color:#fffdf6/);
   assert.doesNotMatch(css, /front-main::before/);
   const fronts = [...html.matchAll(/<article class="quest-card quest-card--front"[\s\S]*?<\/article>/g)];
@@ -81,6 +84,7 @@ test('the face shows the complete artwork between solid title and hero fields', 
     const hero = card.indexOf('front-hero-field');
     const footerEnd = card.indexOf('</footer>');
     assert.ok(systemName < title && title < headerEnd && headerEnd < main && main < hero && hero < footerEnd, `front card ${index + 1} field positions`);
+    assert.doesNotMatch(card, /ОСОБЫЙ КВЕСТ|ПУТЬ К ВОЗВЫШЕНИЮ/);
   }
   assert.match(css, /back-main\{display:grid;grid-template-columns:repeat\(3,minmax\(0,1fr\)\)/);
 });
